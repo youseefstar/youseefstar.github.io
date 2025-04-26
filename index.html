@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="سایت شخصی Youseef Star - توسعه دهنده حرفه‌ای بک اند و فرانت اند با تخصص در Django و Flask. طراحی وبسایت‌های مدرن و اپلیکیشن‌های تحت وب با بهترین استانداردها">
+    <meta name="keywords" content="توسعه دهنده وب, برنامه نویس پایتون, طراحی UI/UX, Django, Flask, توسعه دهنده بک اند, توسعه دهنده فرانت اند, نمونه کار برنامه نویسی, استخدام برنامه نویس">
+    <meta name="author" content="Youseef Star">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Youseef Star | توسعه دهنده حرفه‌ای بک اند و فرانت اند">
+    <meta property="og:description" content="توسعه دهنده وب با تخصص در Django و Flask - نمونه کارها و اطلاعات تماس">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:site_name" content="Youseef Star">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Youseef Star | توسعه دهنده حرفه‌ای بک اند و فرانت اند">
+    <meta name="twitter:description" content="توسعه دهنده وب با تخصص در Django و Flask - نمونه کارها و اطلاعات تماس">
+    
+    <!-- Canonical URL to avoid duplicate content issues -->
+    <link rel="canonical" href="https://youseefstar.github.io/" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/just-logo.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/font-face.css" as="style">
+    
+    <!-- Title with primary keyword -->
+    <title>Youseef Star</title>
+    
+    <!-- CSS Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/font-face.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+</head>
+<body>
+    <!-- Header with semantic HTML and ARIA attributes -->
+    <header id="main-header" itemscope itemtype="https://schema.org/WPHeader">
+        <a href="#" class="logo" title="صفحه اصلی Youseef Star" itemprop="url">
+            <!-- Optimized logo image with dimensions and lazy loading -->
+            <img src="img/just-logo.png" alt="لوگو شخصی Youseef Star - توسعه دهنده وب" class="logo-img" 
+                 loading="lazy" decoding="async" itemprop="logo">
+        </a>
+
+        <!-- Main navigation with ARIA label -->
+        <nav aria-label="منوی اصلی" itemscope itemtype="https://schema.org/SiteNavigationElement">
+            <ul>
+                <li itemprop="name"><a href="#home" data-text="خانه" title="صفحه اصلی Youseef Star" itemprop="url">خانه</a></li>
+                <li itemprop="name"><a href="#about" data-text="درباره من" title="درباره Youseef Star" itemprop="url">درباره من</a></li>
+                <li itemprop="name"><a href="#skills" data-text="مهارت‌ها" title="مهارت‌های تخصصی Youseef Star" itemprop="url">مهارت‌ها</a></li>
+                <li itemprop="name"><a href="#portfolio" data-text="نمونه کارها" title="نمونه کارهای Youseef Star" itemprop="url">نمونه کارها</a></li>
+                <a href="#contact" class="contact-btn" title="تماس با Youseef Star" itemprop="url">تماس با من</a>
+            </ul>
+        </nav>
+
+        <!-- Mobile menu button with proper ARIA attributes -->
+        <button class="hamburger-menu" aria-label="منوی موبایل" aria-expanded="false" aria-controls="mobile-nav">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+
+        <!-- Mobile navigation menu -->
+        <div class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="#home" class="active" title="صفحه اصلی"><i class="fas fa-home" aria-hidden="true"></i>خانه</a></li>
+                <li><a href="#about" title="درباره من"><i class="fas fa-user" aria-hidden="true"></i>درباره من</a></li>
+                <li><a href="#skills" title="مهارت‌ها"><i class="fas fa-code" aria-hidden="true"></i>مهارت‌ها</a></li>
+                <li><a href="#portfolio" title="نمونه کارها"><i class="fas fa-briefcase" aria-hidden="true"></i>نمونه کارها</a></li>
+                <li><a href="#contact" title="تماس با من"><i class="fas fa-envelope" aria-hidden="true"></i>تماس</a></li>
+            </ul>
+            <a href="#contact" class="mobile-contact-btn" title="ارتباط با Youseef Star">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i> تماس با من
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero section with semantic markup -->
+    <section class="hero" id="home" itemscope itemtype="https://schema.org/Person">
+        <div class="floating-shapes">
+            <div class="shape" style="width: 200px; height: 200px; top: 20%; right: 10%;"></div>
+            <div class="shape" style="width: 150px; height: 150px; bottom: 15%; left: 15%;"></div>
+            <div class="shape" style="width: 100px; height: 100px; top: 60%; right: 20%;"></div>
+        </div>
+
+        <div class="hero-content">
+            <!-- Optimized hero image with dimensions -->
+            <img src="img/logo-text.png" alt="Youseef Star - توسعه دهنده حرفه‌ای وب" class="hero-logo" 
+                 loading="lazy" itemprop="image">
+            
+            <h1 class="hero-title" itemprop="name">سلام، من <span class="typing-container"><span class="typing-effect">Youseef Star</span></span> هستم</h1>
+            
+            <!-- Hero description with keywords -->
+            <p class="hero-subtitle" itemprop="description">
+                توسعه دهنده حرفه‌ای <span itemprop="jobTitle">بک اند</span> و <span itemprop="jobTitle">فرانت‌اند</span> با تخصص در 
+                <strong>Django</strong> و <strong>Flask</strong>. ایجاد راه‌حل‌های دیجیتال زیبا و کاربرپسند با استانداردهای روز توسعه وب
+            </p>
+            
+            <!-- Call-to-action button for better conversion -->
+            <!-- 
+            <div class="mobile-contact-btn">
+                <a href="#contact" title="شروع همکاری با Youseef Star">
+                    شروع همکاری
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                </a>
+                <a href="#">
+                    دریافت رزومه
+                </a>
+            </div>
+            -->
+
+        </div>
+    </section>
+
+    <!-- About section with rich semantic markup -->
+    <section id="about" class="section" aria-labelledby="about-heading" itemscope itemtype="https://schema.org/AboutPage">
+        <div class="floating-shapes">
+            <div class="shape" style="width: 200px; height: 200px; top: 10%; right: 5%;"></div>
+            <div class="shape" style="width: 250px; height: 250px; bottom: 15%; left: 10%;"></div>
+            <div class="shape" style="width: 150px; height: 150px; top: 60%; right: 20%;"></div>
+        </div>
+
+        <!-- Section heading with proper hierarchy -->
+        <h2 class="section-title" id="about-heading">درباره من</h2>
+
+        <div class="about-container">
+            <div class="about-img-container">
+                <div class="about-img" itemscope itemtype="https://schema.org/ImageObject">
+                    <!-- Optimized profile image with dimensions -->
+                    <img src="img/YouseefStar.png" alt="Youseef Star - توسعه دهنده وب" class="logo-img" 
+                         loading="lazy" decoding="async" itemprop="contentUrl">
+                </div>
+                <div class="about-img-decoration"></div>
+            </div>
+
+            <div class="about-content">
+                <div class="about-intro">
+                    <!-- Keyword-rich heading -->
+                    <h3>توسعه‌دهنده حرفه‌ای <span class="role-highlight" itemprop="jobTitle">بک اند</span> و <span class="role-highlight" itemprop="jobTitle">فرانت اند</span></h3>
+                    
+                    <!-- First paragraph with primary keywords -->
+                    <p class="about-text" itemprop="description">
+                        به عنوان یک <strong>توسعه‌دهنده وب</strong> جوان و پرانرژی، باور دارم که سن کم مانعی برای خلق آثار ارزشمند نیست. 
+                        من با تسلط بر فناوری‌های روز <strong>توسعه وب</strong> مانند <strong>Django</strong> و <strong>Flask</strong>، 
+                        راهکارهای خلاقانه و کاربردی ارائه می‌دهم.
+                    </p>
+                </div>
+
+                <!-- Second paragraph with secondary keywords -->
+                <p class="about-text">
+                    با تجربه در <strong>پروژه‌های متعدد وب</strong>، توانایی حل مسائل پیچیده با راهکارهای ساده و مؤثر را دارم. 
+                    همکاری با <strong>تیم‌های مختلف</strong> به من آموخته است که چگونه ایده‌ها را به <strong>محصولات دیجیتال</strong> تبدیل کنم.
+                </p>
+
+                <!-- Skills features with microdata -->
+                <div class="about-features">
+                    <div class="feature-item" itemscope itemtype="https://schema.org/PropertyValue">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="feature-title" itemprop="name">خلاقیت در توسعه</h4>
+                        <p itemprop="description">ارائه راهکارهای نوآورانه برای چالش‌های پیچیده برنامه‌نویسی</p>
+                    </div>
+                    <div class="feature-item" itemscope itemtype="https://schema.org/PropertyValue">
+                        <div class="feature-icon">
+                            <i class="fas fa-code" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="feature-title" itemprop="name">کدنویسی استاندارد</h4>
+                        <p itemprop="description">پیاده‌سازی کدهای تمیز، قابل نگهداری و با بهترین عملکرد</p>
+                    </div>
+                    <div class="feature-item" itemscope itemtype="https://schema.org/PropertyValue">
+                        <div class="feature-icon">
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="feature-title" itemprop="name">همکاری تیمی</h4>
+                        <p itemprop="description">تجربه کار مؤثر در تیم‌های بزرگ توسعه نرم‌افزار</p>
+                    </div>
+                </div>
+
+                <!-- Skills section with detailed markup -->
+                <div class="skills-container">
+                    <div class="skills-header">
+                        <h3 class="skills-title">مهارت‌های تخصصی</h3>
+                        <p class="skills-subtitle">تسلط بر تکنولوژی‌های روز توسعه وب و ابزارهای مرتبط</p>
+                    </div>
+
+                    <div class="skills-categories">
+                        <button class="skill-category-btn active" data-category="all">همه مهارت‌ها</button>
+                        <button class="skill-category-btn" data-category="frontend">فرانت‌اند</button>
+                        <button class="skill-category-btn" data-category="backend">بک‌اند</button>
+                        <button class="skill-category-btn" data-category="design">طراحی</button>
+                        <button class="skill-category-btn" data-category="tools">ابزارها</button>
+                    </div>
+
+                    <!-- Skills grid with microdata -->
+                    <div class="skills-grid" itemscope itemtype="https://schema.org/ItemList">
+                        <!-- Django skill -->
+                        <div class="skill-card" data-category="backend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-code" aria-hidden="true"></i>
+                                </div>
+                                <span class="skill-name" itemprop="name">Django</span>
+                            </div>
+                            <div class="skill-level-container">
+                                <div class="skill-level-info">
+                                    <span>تسلط:</span>
+                                    <span itemprop="value">90%</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 90%;" data-width="90%"></div>
+                                </div>
+                            </div>
+                            <meta itemprop="position" content="1" />
+                        </div>
+                        
+                        <!-- JavaScript skill -->
+                        <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fab fa-js" aria-hidden="true"></i>
+                                </div>
+                                <span class="skill-name" itemprop="name">JavaScript</span>
+                            </div>
+                            <div class="skill-level-container">
+                                <div class="skill-level-info">
+                                    <span>تسلط:</span>
+                                    <span itemprop="value">50%</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 50%;" data-width="50%"></div>
+                                </div>
+                            </div>
+                            <meta itemprop="position" content="2" />
+                        </div>
+                        
+                        <!-- CSS/Sass skill -->
+                        <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fab fa-css3-alt" aria-hidden="true"></i>
+                                </div>
+                                <span class="skill-name" itemprop="name">CSS</span>
+                            </div>
+                            <div class="skill-level-container">
+                                <div class="skill-level-info">
+                                    <span>تسلط:</span>
+                                    <span itemprop="value">95%</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 95%;" data-width="95%"></div>
+                                </div>
+                            </div>
+                            <meta itemprop="position" content="3" />
+                        </div>
+                        
+                        <!-- HTML5 skill -->
+                        <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fab fa-html5" aria-hidden="true"></i>
+                                </div>
+                                <span class="skill-name" itemprop="name">HTML5</span>
+                            </div>
+                            <div class="skill-level-container">
+                                <div class="skill-level-info">
+                                    <span>تسلط:</span>
+                                    <span itemprop="value">95%</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 95%;" data-width="95%"></div>
+                                </div>
+                            </div>
+                            <meta itemprop="position" content="4" />
+                        </div>
+                        
+                        <!-- Flask skill -->
+                        <div class="skill-card" data-category="backend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-flask" aria-hidden="true"></i>
+                                </div>
+                                <span class="skill-name" itemprop="name">Flask</span>
+                            </div>
+                            <div class="skill-level-container">
+                                <div class="skill-level-info">
+                                    <span>تسلط:</span>
+                                    <span itemprop="value">90%</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 90%;" data-width="90%"></div>
+                                </div>
+                            </div>
+                            <meta itemprop="position" content="5" />
+                        </div>
+                        
+                        <!-- UI/UX Design skill -->
+                        <div class="skill-card" data-category="design" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                                </div>
+                                <span class="skill-name" itemprop="name">UI/UX Design</span>
+                            </div>
+                            <div class="skill-level-container">
+                                <div class="skill-level-info">
+                                    <span>تسلط:</span>
+                                    <span itemprop="value">88%</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 88%;" data-width="88%"></div>
+                                </div>
+                            </div>
+                            <meta itemprop="position" content="6" />
+                        </div>
+
+                        <!-- Git & GitHub skill -->
+                        <div class="skill-card" data-category="tools" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                </div>
+                                <span class="skill-name" itemprop="name">Git & GitHub</span>
+                            </div>
+                            <div class="skill-level-container">
+                                <div class="skill-level-info">
+                                    <span>تسلط:</span>
+                                    <span itemprop="value">85%</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 85%;" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <meta itemprop="position" content="7" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio section with rich snippets -->
+    <section id="portfolio" class="section" aria-labelledby="portfolio-heading" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="section-title" id="portfolio-heading" data-aos="fade-up">نمونه کارهای من</h2>
+
+        <div class="portfolio-container">
+            <div class="portfolio-filter" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">همه پروژه‌ها</button>
+                <button class="filter-btn" data-filter="web">وب اپلیکیشن</button>
+                <button class="filter-btn" data-filter="mobile">موبایل</button>
+                <button class="filter-btn" data-filter="design">طراحی UI/UX</button>
+                <button class="filter-btn" data-filter="other">سایر</button>
+            </div>
+
+            <div class="portfolio-grid" itemscope itemtype="https://schema.org/ItemList">
+                <!-- SSO WEB3 Project -->
+                <div class="portfolio-item fade-in-up delay-1" data-category="web" data-aos="fade-up" data-aos-delay="200" 
+                     itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
+                    <span class="portfolio-category">1403-12-04</span>
+                    <img src="img/SSO.png" alt="سیستم SSO WEB3 - جشنواره خوارزمی" class="portfolio-img" 
+                         loading="lazy" decoding="async" width="400" height="300" itemprop="image">
+                    <div style="width: 60px; height: 60px; background: var(--darker-surface); border-radius: 8px; 
+                               display: flex; align-items: center; justify-content: center; color: var(--dark-text-secondary);">
+                        <i class="fas fa-image" aria-hidden="true"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title" itemprop="name">
+                            <a href="#" style="text-decoration: none; color: white;" title="مشاهده جزئیات SSO WEB3" itemprop="url">
+                                <i class="fas fa-link" aria-hidden="true"></i>
+                            </a>SSO WEB3 (جشنواره خوارزمی)
+                        </h3>
+                        <p class="portfolio-desc" itemprop="description">سیستم احراز هویت یکپارچه برای وبسایت‌های مختلف</p>
+                    </div>
+                    <meta itemprop="dateCreated" content="2025-02-22" />
+                    <meta itemprop="position" content="1" />
+                </div>
+  
+                <!-- WEB3 PRO Project -->
+                <div class="portfolio-item fade-in-up delay-1" data-category="web" data-aos="fade-up" data-aos-delay="200" 
+                     itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
+                    <span class="portfolio-category">1403-12-04</span>
+                    <img src="img/WEB3.png" alt="پروژه WEB3 PRO - جشنواره خوارزمی" class="portfolio-img" 
+                         loading="lazy" decoding="async" width="400" height="300" itemprop="image">
+                    <div style="width: 60px; height: 60px; background: var(--darker-surface); border-radius: 8px; 
+                               display: flex; align-items: center; justify-content: center; color: var(--dark-text-secondary);">
+                        <i class="fas fa-image" aria-hidden="true"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title" itemprop="name">
+                            <a href="#" style="text-decoration: none; color: white;" title="مشاهده جزئیات WEB3 PRO" itemprop="url">
+                                <i class="fas fa-link" aria-hidden="true"></i>
+                            </a>WEB3 PRO (خوارزمی)
+                        </h3>
+                        <p class="portfolio-desc" itemprop="description">پلتفرم توسعه برنامه‌های مبتنی بر وب۳</p>
+                    </div>
+                    <meta itemprop="dateCreated" content="2025-02-22" />
+                    <meta itemprop="position" content="2" />
+                </div>
+
+                <!-- Action Plane Project -->
+                <div class="portfolio-item fade-in-up delay-1" data-category="web" data-aos="fade-up" data-aos-delay="200" 
+                     itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
+                    <span class="portfolio-category">1404-1-16</span>
+                    <img src="img/ACTION.png" alt="برنامه هفتگی Action Plane" class="portfolio-img" 
+                         loading="lazy" decoding="async" width="400" height="300" itemprop="image">
+                    <div style="width: 60px; height: 60px; background: var(--darker-surface); border-radius: 8px; 
+                               display: flex; align-items: center; justify-content: center; color: var(--dark-text-secondary);">
+                        <i class="fas fa-image" aria-hidden="true"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title" itemprop="name">
+                            <a href="#" style="text-decoration: none; color: white;" title="مشاهده جزئیات Action Plane" itemprop="url">
+                                <i class="fas fa-link" aria-hidden="true"></i>
+                            </a>Action Plane (برنامه هفتگی)
+                        </h3>
+                        <p class="portfolio-desc" itemprop="description">برنامه‌ریزی و مدیریت زمان به صورت هفتگی</p>
+                    </div>
+                    <meta itemprop="dateCreated" content="2025-04-05" />
+                    <meta itemprop="position" content="3" />
+                </div>
+  
+                <!-- FOOTPRINT Studio Project -->
+                <div class="portfolio-item fade-in-up delay-1" data-category="web" data-aos="fade-up" data-aos-delay="200" 
+                     itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
+                    <span class="portfolio-category">1404-02-01</span>
+                    <img src="img/FOOTPRINT.png" alt="استودیو FOOTPRINT" class="portfolio-img" 
+                         loading="lazy" decoding="async" width="400" height="300" itemprop="image">
+                    <div style="width: 60px; height: 60px; background: var(--darker-surface); border-radius: 8px; 
+                               display: flex; align-items: center; justify-content: center; color: var(--dark-text-secondary);">
+                        <i class="fas fa-image" aria-hidden="true"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title" itemprop="name">
+                            <a href="https://footprint.liara.run" style="text-decoration: none; color: white;" 
+                               title="مشاهده وبسایت FOOTPRINT" rel="noopener noreferrer" itemprop="url">
+                                <i class="fas fa-link" aria-hidden="true"></i>
+                            </a>FOOTPRINT - Studio
+                        </h3>
+                        <p class="portfolio-desc" itemprop="description">استودیو طراحی و توسعه وبسایت‌های اختصاصی</p>
+                    </div>
+                    <meta itemprop="dateCreated" content="2025-04-21" />
+                    <meta itemprop="position" content="4" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section with semantic markup -->
+    <footer id="contact" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="footer-wave"></div>
+
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo" itemscope itemtype="https://schema.org/Organization">
+                    <p class="font-img" itemprop="name">Youseef Star</p>
+                </div>
+                <p class="footer-about" itemprop="description">
+                    یک طراح و توسعه‌دهنده خلاق با اشتیاق به ایجاد تجربه‌های دیجیتال منحصر به فرد و کاربرپسند. 
+                    من در توسعه بک اند و توسعه فرانت‌اند تخصص دارم.
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/youseefstar?igsh=em92sTN3bjhkeWRq" class="social-link" aria-label="صفحه اینستاگرام Youseef Star" title="اینستاگرام" itemprop="sameAs">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="حساب توییتر Youseef Star" title="توییتر" itemprop="sameAs">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="پروفایل لینکدین Youseef Star" title="لینکدین" itemprop="sameAs">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/youseefstar?tab=repositories" class="social-link" aria-label="ریپوزیتوری‌های GitHub Youseef Star" title="گیتهاب" itemprop="sameAs">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://t.me/YouseefStarDev" class="social-link" aria-label="کانال تلگرام Youseef Star" title="تلگرام" itemprop="sameAs">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col" itemscope itemtype="https://schema.org/ContactPoint">
+                <h3 class="footer-title">ارتباط با من</h3>
+                <div class="footer-contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    </div>
+                    <p class="contact-text" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span itemprop="addressLocality">قم</span>، <span itemprop="streetAddress">بلوار فردوسی</span>
+                    </p>
+                </div>
+                <div class="footer-contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                    </div>
+                    <p class="contact-text" dir="ltr" itemprop="telephone">
+                        +98 939 028 4763
+                    </p>
+                </div>
+                <div class="footer-contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <p class="contact-text" itemprop="email">
+                        youseefstar.dev@gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer bottom with copyright and links -->
+        <div class="footer-bottom">
+            <p class="footer-copyright">
+                © <span itemprop="copyrightYear">2025</span> تمامی حقوق برای 
+                <a href="#" title="Youseef Star" itemprop="copyrightHolder">Youseef Star</a> محفوظ است.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Resources -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        /**
+         * Structured data for rich snippets and SEO
+         * This helps search engines understand your content better
+         */
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Youseef Star",
+            "jobTitle": "توسعه دهنده بک اند و فرانت اند",
+            "url": "https://youseefstar.github.com",
+            "sameAs": [
+                "https://www.instagram.com/youseefstar?igsh=em92sTN3bjhkeWRq",
+                "https://github.com/youseefstar?tab=repositories",
+                // "https://linkedin.com/in/yourprofile",
+                // "https://twitter.com/yourprofile",
+                "https://t.me/YouseefStarDev"
+            ],
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "قم",
+                "addressRegion": "ایران",
+                "streetAddress": "بلوار فردوسی"
+            },
+            "email": "youseefstar.dev@gmail.com",
+            "telephone": "+989390284763",
+            "description": "توسعه دهنده وب با تخصص در Django و Flask. طراحی و پیاده‌سازی راهکارهای وب با استانداردهای روز و تجربه کاربری عالی.",
+            "knowsAbout": [
+                "Django",
+                "Flask",
+                "Python",
+                "Frontend Development",
+                "Backend Development",
+                "UI/UX Design",
+                "Web Development"
+            ],
+            "hasOccupation": {
+                "@type": "Occupation",
+                "name": "توسعه دهنده وب",
+                "skills": "Django, Flask, Python, HTML5, CSS3, JavaScript"
+            }
+        };
+        
+        // Add structured data to the page
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+        
+        // Initialize AOS animation with performance optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                disable: window.innerWidth < 768
+            });
+            
+        });
+        
+        // Track outbound links for analytics
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.href.includes('//') && 
+                !e.target.href.includes(window.location.host)) {
+                // Send analytics data here
+                console.log('Outbound link clicked:', e.target.href);
+            }
+        });
+    </script>
+    <script src="script.js" defer></script>
+    
+    <!-- Google Analytics tracking code (replace with your own) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</body>
+</html>
