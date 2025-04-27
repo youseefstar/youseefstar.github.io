@@ -1,237 +1,265 @@
+/**
+ * MAIN DOCUMENT READY HANDLER
+ * Optimized single DOMContentLoaded listener that manages all page functionality
+ * Combines all scripts into one efficient execution flow
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    // متغیرهای اصلی
+    // =====================================================================
+    // HAMBURGER MENU & HEADER SCROLL OPTIMIZATION
+    // =====================================================================
+    
+    // Cache DOM elements for menu functionality
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const mobileNav = document.querySelector('.mobile-nav');
     const header = document.getElementById('main-header');
+    let lastScroll = 0; // Track scroll position for header effects
 
-    // تابع ساده‌سازی toggle منو
+    /**
+     * Optimized menu toggle function using requestAnimationFrame
+     * Toggles mobile menu state with performance considerations
+     */
     function toggleMenu() {
-        const isActive = hamburgerMenu.classList.toggle('active');
-        mobileNav.classList.toggle('active');
-        document.body.style.overflow = isActive ? 'hidden' : 'auto';
+        requestAnimationFrame(() => {
+            const isActive = hamburgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isActive ? 'hidden' : 'auto'; 
+        });
     }
 
-    // مدیریت رویدادها با event delegation
-    document.addEventListener('click', function(e) {
-        // مدیریت منوی همبرگری
+    /**
+     * Global click handler using event delegation pattern
+     * Manages all click interactions in one efficient handler
+     * @param {Event} e - The click event object
+     */
+    const handleClick = (e) => {
+        // Handle hamburger menu toggle
         if (e.target.closest('.hamburger-menu')) {
             toggleMenu();
             return;
         }
 
-        // بستن منو با کلیک خارج
-        if (mobileNav.classList.contains('active') &&
-            !e.target.closest('.mobile-nav')) {
-            hamburgerMenu.classList.remove('active');
-            mobileNav.classList.remove('active');
-            document.body.style.overflow = 'auto';
+        // Close menu when clicking outside
+        if (mobileNav.classList.contains('active') && !e.target.closest('.mobile-nav')) {
+            requestAnimationFrame(() => {
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
         }
 
-        // علامت‌گذاری لینک فعال (هم برای موبایل و هم دسکتاپ)
-        if (e.target.closest('nav ul li a, .mobile-nav ul li a')) {
-            const links = e.target.closest('nav') ?
-                document.querySelectorAll('nav ul li a') :
-                document.querySelectorAll('.mobile-nav ul li a');
-
+        // Handle navigation link active states
+        const link = e.target.closest('nav ul li a, .mobile-nav ul li a');
+        if (link) {
+            const navContainer = link.closest('nav') || link.closest('.mobile-nav');
+            const links = navContainer.querySelectorAll('ul li a');
+            
+            // Update active state
             links.forEach(item => item.classList.remove('active'));
-            e.target.closest('a').classList.add('active');
+            link.classList.add('active');
 
-            // بستن منوی موبایل پس از کلیک
+            // Auto-close mobile menu after selection
             if (mobileNav.classList.contains('active')) {
                 toggleMenu();
             }
         }
-    });
+    };
 
-    // بهینه‌سازی اسکرول هدر
-    let lastScroll = 0;
-    window.addEventListener('scroll', function() {
+    /**
+     * Optimized scroll handler with throttling
+     * Manages header scroll effects efficiently
+     */
+    const handleScroll = () => {
         const scrollPosition = window.scrollY;
-
-        // کاهش فراخوانی کلاس‌های CSS
+        // Only update if scrolled significantly (throttling)
         if (Math.abs(scrollPosition - lastScroll) > 50) {
-            header.classList.toggle('header-scrolled', scrollPosition > 100);
-            lastScroll = scrollPosition;
-        }
-    }, { passive: true }); // اضافه کردن passive برای بهینه‌سازی
-
-    // انیمیشن اولیه ساده‌تر برای لینک‌ها
-    requestAnimationFrame(function() {
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach((link, index) => {
-            link.style.opacity = '1';
-            link.style.transform = 'translateY(0)';
-        });
-    });
-});
-
-// اسکریپت بهینه‌شده برای تایپینگ افکت
-document.addEventListener('DOMContentLoaded', function() {
-    const typingText = document.querySelector('.typing-effect');
-    const words = ["Youseef Star", "Backend Developer", "Frontend Developer", "توسعه‌دهنده وب"];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 150;
-
-    function type() {
-        const currentWord = words[wordIndex];
-
-        if (isDeleting) {
-            typingText.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typingText.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
-        if (!isDeleting && charIndex === currentWord.length) {
-            typingSpeed = 1000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            typingSpeed = 300;
-        }
-
-        setTimeout(type, typingSpeed);
-    }
-
-    type();
-});
-
-// اسکریپت پیشرفته برای فیلتر مهارت‌ها
-document.addEventListener('DOMContentLoaded', function() {
-    const categoryBtns = document.querySelectorAll('.skill-category-btn');
-    const skillCards = document.querySelectorAll('.skill-card');
-
-    // انیمیشن اولیه برای کارت‌ها
-    skillCards.forEach((card, index) => {
-        card.style.transform = 'translateY(50px)';
-        card.style.opacity = '0';
-        card.style.transition = `transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.3) ${index * 0.1}s, opacity 0.6s ease ${index * 0.1}s`;
-    });
-
-    // فعال کردن انیمیشن پس از لود صفحه
-    setTimeout(() => {
-        skillCards.forEach(card => {
-            card.style.transform = 'translateY(0)';
-            card.style.opacity = '1';
-        });
-    }, 500);
-
-    categoryBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // حذف کلاس active از همه دکمه‌ها
-            categoryBtns.forEach(b => b.classList.remove('active'));
-
-            // اضافه کردن کلاس active به دکمه کلیک شده
-            this.classList.add('active');
-
-            const category = this.dataset.category;
-
-            // انیمیشن فیلتر
-            skillCards.forEach(card => {
-                card.style.transform = 'scale(0.8)';
-                card.style.opacity = '0';
-
-                setTimeout(() => {
-                    if (category === 'all' || card.dataset.category === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-
-                    card.style.transform = 'scale(1)';
-                    card.style.opacity = '1';
-                }, 300);
+            requestAnimationFrame(() => {
+                // Toggle scrolled header class based on position
+                header.classList.toggle('header-scrolled', scrollPosition > 100);
+                lastScroll = scrollPosition;
             });
-        });
-    });
-
-});
-
-// اسکریپت برای فیلتر نمونه کارها
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS animation library
-    AOS.init({
-        duration: 800,
-        easing: 'ease-out-quad',
-        once: true,
-        offset: 50
-    });
-
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-    // فیلتر نمونه کارها
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // حذف کلاس active از همه دکمه‌ها
-            filterBtns.forEach(b => b.classList.remove('active'));
-
-            // اضافه کردن کلاس active به دکمه کلیک شده
-            this.classList.add('active');
-
-            const filter = this.dataset.filter;
-
-            // انیمیشن فیلتر
-            portfolioItems.forEach(item => {
-                item.style.transform = 'scale(0.95)';
-                item.style.opacity = '0.5';
-                item.style.filter = 'blur(2px)';
-
-                setTimeout(() => {
-                    if (filter === 'all' || item.dataset.category === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-
-                    item.style.transform = 'scale(1)';
-                    item.style.opacity = '1';
-                    item.style.filter = 'none';
-                }, 300);
-            });
-        });
-    });
-
-    // انیمیشن هنگام اسکرول
-    const animateOnScroll = () => {
-        const portfolioSection = document.querySelector('#portfolio');
-        const sectionPosition = portfolioSection.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
-
-        if (sectionPosition < screenPosition) {
-            portfolioItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('visible');
-                }, index * 150);
-            });
-
-            // حذف ایونت لیستنر پس از اجرا
-            window.removeEventListener('scroll', animateOnScroll);
         }
     };
 
-    window.addEventListener('scroll', animateOnScroll);
+    // Attach event listeners
+    document.addEventListener('click', handleClick);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // اجرای اولیه برای بررسی موقعیت
-    animateOnScroll();
-});
+    // =====================================================================
+    // TYPING EFFECT OPTIMIZATION
+    // =====================================================================
+    const typingText = document.querySelector('.typing-effect');
+    if (typingText) {
+        const words = ["Youseef Star", "Backend Developer", "Frontend Developer", "توسدهنده وب"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 150;
+        let timeoutId;
 
-// اسکریپت پیشرفته برای فوتر
-document.addEventListener('DOMContentLoaded', function() {
-    // انیمیشن اسکرول برای بخش‌های فوتر
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+        /**
+         * Recursive typing animation function
+         * Handles both typing and deleting phases
+         */
+        const type = () => {
+            const currentWord = words[wordIndex];
+            
+            // Update text content based on current phase
+            typingText.textContent = isDeleting 
+                ? currentWord.substring(0, charIndex - 1)
+                : currentWord.substring(0, charIndex + 1);
+
+            // Update position
+            charIndex += isDeleting ? -1 : 1;
+
+            // State management
+            if (!isDeleting && charIndex === currentWord.length) {
+                // Pause at end of word
+                typingSpeed = 1000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                // Move to next word
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typingSpeed = 300;
             }
-        });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.footer-col').forEach(col => {
-        observer.observe(col);
-    });
+            // Schedule next frame
+            timeoutId = setTimeout(type, typingSpeed);
+        };
+
+        // Start animation
+        type();
+
+        // Cleanup timeout when leaving page
+        window.addEventListener('beforeunload', () => {
+            clearTimeout(timeoutId);
+        });
+    }
+
+    // =====================================================================
+    // SKILLS FILTER OPTIMIZATION
+    // =====================================================================
+    const skillCategoryBtns = document.querySelectorAll('.skill-category-btn');
+    const skillCards = document.querySelectorAll('.skill-card');
+
+    if (skillCards.length) {
+        // Prepare for animations using will-change
+        skillCards.forEach(card => {
+            card.style.willChange = 'transform, opacity';
+        });
+
+        // Initial animation with minimal delay
+        setTimeout(() => {
+            skillCards.forEach(card => {
+                card.style.transform = 'translateY(0)';
+                card.style.opacity = '1';
+            });
+        }, 50);
+
+        // Filter functionality
+        skillCategoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                skillCategoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const category = this.dataset.category;
+
+                // Animate cards
+                skillCards.forEach(card => {
+                    card.style.transform = 'scale(0.8)';
+                    card.style.opacity = '0';
+
+                    setTimeout(() => {
+                        // Show/hide based on filter
+                        card.style.display = (category === 'all' || card.dataset.category === category) 
+                            ? 'block' 
+                            : 'none';
+                        // Restore appearance
+                        card.style.transform = 'scale(1)';
+                        card.style.opacity = '1';
+                    }, 300);
+                });
+            });
+        });
+    }
+
+    // =====================================================================
+    // PORTFOLIO FILTER OPTIMIZATION
+    // =====================================================================
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    if (portfolioItems.length) {
+        /**
+         * IntersectionObserver for scroll-triggered animations
+         * More efficient than scroll event listeners
+         */
+        const portfolioObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Staggered animation
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 50);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all portfolio items
+        portfolioItems.forEach(item => {
+            portfolioObserver.observe(item);
+        });
+
+        // Portfolio filter functionality
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active filter button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+
+                // Animate portfolio items
+                portfolioItems.forEach(item => {
+                    item.style.transform = 'scale(0.95)';
+                    item.style.opacity = '0.5';
+                    item.style.filter = 'blur(2px)';
+
+                    setTimeout(() => {
+                        // Apply filter
+                        item.style.display = (filter === 'all' || item.dataset.category === filter)
+                            ? 'block'
+                            : 'none';
+                        // Restore appearance
+                        item.style.transform = 'scale(1)';
+                        item.style.opacity = '1';
+                        item.style.filter = 'none';
+                    }, 300);
+                });
+            });
+        });
+    }
+
+    // =====================================================================
+    // FOOTER ANIMATION OPTIMIZATION
+    // =====================================================================
+    const footerCols = document.querySelectorAll('.footer-col');
+    if (footerCols.length) {
+        /**
+         * Footer animation observer
+         * Triggers when footer columns enter viewport
+         */
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all footer columns
+        footerCols.forEach(col => {
+            footerObserver.observe(col);
+        });
+    }
 });
