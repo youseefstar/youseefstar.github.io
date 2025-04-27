@@ -9,8 +9,10 @@
     --dark-text: #f0f0f0;
     --dark-text-secondary: #b0b0b0;
     --dark-border: #333;
+    --success-color: #4caf50;
     --glass-effect: rgba(30, 30, 30, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -23,8 +25,13 @@
 body {
     background-color: var(--dark-bg);
     color: var(--dark-text);
-    line-height: 1.6;
+    line-height: 1.8;
+    background-image:
+        radial-gradient(circle at 75% 25%, rgba(108, 99, 255, 0.15), transparent 60%),
+        radial-gradient(circle at 25% 75%, rgba(255, 107, 107, 0.1), transparent 60%);
+    background-attachment: fixed;
     padding-top: 80px;
+    overflow-x: hidden;
 }
 
 /* هدر پیشرفته */
@@ -321,32 +328,6 @@ nav ul li a.active::after {
     }
 }
 
-:root {
-    --primary-color: #6c63ff;
-    --primary-light: #8a85ff;
-    --primary-dark: #564fd1;
-    --dark-bg: #121212;
-    --darker-bg: #0a0a0a;
-    --dark-surface: #1e1e1e;
-    --darker-surface: #171717;
-    --dark-text: #f0f0f0;
-    --dark-text-secondary: #b0b0b0;
-    --dark-border: #333;
-    --success-color: #4caf50;
-    --glass-effect: rgba(30, 30, 30, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
-    line-height: 1.8;
-    background-image:
-        radial-gradient(circle at 75% 25%, rgba(108, 99, 255, 0.15), transparent 50%),
-        radial-gradient(circle at 25% 75%, rgba(255, 107, 107, 0.1), transparent 50%);
-    background-attachment: fixed;
-}
-
 /* بخش شعار پیشرفته */
 .hero {
     min-height: 100vh;
@@ -519,31 +500,9 @@ body {
     }
 }
 
-:root {
-    --primary-color: #6c63ff;
-    --primary-light: #8a85ff;
-    --primary-dark: #564fd1;
-    --dark-bg: #121212;
-    --darker-bg: #0a0a0a;
-    --dark-surface: #1e1e1e;
-    --darker-surface: #171717;
-    --dark-text: #f0f0f0;
-    --dark-text-secondary: #b0b0b0;
-    --dark-border: #333;
-    --success-color: #4caf50;
-    --glass-effect: rgba(30, 30, 30, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
-}
 
-body {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
-    line-height: 1.8;
-    background-image:
-        radial-gradient(circle at 75% 25%, rgba(108, 99, 255, 0.15), transparent 60%),
-        radial-gradient(circle at 25% 75%, rgba(255, 107, 107, 0.1), transparent 60%);
-    background-attachment: fixed;
-}
+
+
 
 /* استایل‌های عمومی بخش‌ها */
 .section {
@@ -1082,29 +1041,6 @@ body {
     }
 }
 
-:root {
-    --primary-color: #6c63ff;
-    --primary-light: #8a85ff;
-    --primary-dark: #564fd1;
-    --dark-bg: #0f0f13;
-    --darker-bg: #0a0a0c;
-    --dark-surface: #1a1a23;
-    --darker-surface: #14141a;
-    --dark-text: #f5f5ff;
-    --dark-text-secondary: #c0c0d0;
-    --dark-border: #3a3a4a;
-    --glass-effect: rgba(26, 26, 35, 0.85);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
-    line-height: 1.8;
-    overflow-x: hidden;
-}
-
 /* استایل‌های عمومی بخش‌ها */
 .section {
     padding: 8rem 10%;
@@ -1453,22 +1389,6 @@ body {
     animation-delay: 0.1s;
 }
 
-:root {
-    --primary-color: #6c63ff;
-    --primary-light: #8a85ff;
-    --primary-dark: #564fd1;
-    --dark-bg: #0f0f13;
-    --darker-bg: #0a0a0c;
-    --dark-surface: #1a1a23;
-    --darker-surface: #14141a;
-    --dark-text: #f5f5ff;
-    --dark-text-secondary: #c0c0d0;
-    --dark-border: #3a3a4a;
-    --success-color: #4caf50;
-    --glass-effect: rgba(26, 26, 35, 0.9);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 /* استایل فوتر */
 footer {
