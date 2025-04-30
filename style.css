@@ -13,6 +13,12 @@
     --glass-effect: rgba(30, 30, 30, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
     --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --primary-pdf: #7b2cbf;
+    --secondary-pdf: #3a86ff;
+    --neon-pdf: #00f5d4;
+    --text-pdf: #ffffff;
+    --glow-pdf: 0 0 15px rgba(0, 245, 212, 0.7);
+    --gradient-angle-pdf: 135deg;
 }
 
 * {
@@ -1718,4 +1724,219 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.btn-container {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    perspective: 1000px;
+}
+
+.download-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(var(--gradient-angle-pdf), var(--primary-pdf), var(--secondary-pdf));
+    color: var(--text-pdf);
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(123, 44, 191, 0.5);
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-style: preserve-3d;
+    width: 100%;
+    z-index: 1;
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(var(--gradient-angle-pdf), var(--secondary-pdf), var(--primary-pdf));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(123, 44, 191, 0.7), var(--glow-pdf);
+}
+
+.download-btn:hover::before {
+    opacity: 1;
+}
+
+.download-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 15px rgba(123, 44, 191, 0.7);
+}
+
+.download-btn i {
+    margin-left: 10px;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover i {
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(var(--glow-pdf));
+    color: var(--neon-pdf);
+}
+
+/* افکت نور پویا */
+.light-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        transparent 20%,
+        rgba(0, 245, 212, 0.15) 50%,
+        transparent 80%
+    );
+    transform: rotate(30deg);
+    animation: shine 6s infinite;
+    z-index: 0;
+    opacity: 0.8;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(30deg); }
+}
+
+/* حلقه پالس با رنگ نئونی */
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--neon-pdf);
+    border-radius: 50px;
+    animation: pulse 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    70% { opacity: 0; }
+    100% { transform: scale(1.08); opacity: 0; }
+}
+
+/* تولتیپ شیشه‌ای */
+.tooltip {
+    position: absolute;
+    top: -45px;
+    background: rgba(15, 14, 23, 0.9);
+    color: var(--neon-pdf);
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    transform: translateY(10px);
+    pointer-events: none;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 245, 212, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.download-btn:hover .tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* افکت کلیک */
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* ذرات نورانی */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--neon-pdf);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float 4s infinite ease-out;
+    box-shadow: 0 0 5px var(--neon-pdf);
+}
+
+@keyframes float {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.7; }
+    100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+}
+
+/* ریسپانسیو */
+@media (max-width: 480px) {
+    .download-btn {
+        padding: 16px 28px;
+        font-size: 1.1rem;
+    }
+    
+    .download-btn i {
+        margin-left: 8px;
+        font-size: 1.1rem;
+    }
+    
+    .tooltip {
+        font-size: 0.8rem;
+        top: -40px;
+        padding: 6px 12px;
+    }
+    
+    :root {
+        --gradient-angle-pdf: 120deg;
+    }
+}
+
+/* انیمیشن تغییر تدریجی رنگ */
+@keyframes gradientShift {
+    0% { --primary-pdf: #7b2cbf; --secondary-pdf: #3a86ff; }
+    50% { --primary-pdf: #9d4edd; --secondary-pdf: #4361ee; }
+    100% { --primary-pdf: #7b2cbf; --secondary-pdf: #3a86ff; }
+}
+
+.btn-container {
+    animation: gradientShift 15s infinite;
 }

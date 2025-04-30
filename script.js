@@ -263,3 +263,84 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('luxuryBtn');
+    const particlesContainer = document.getElementById('particles');
+    
+    // ایجاد ذرات نورانی با بهینه‌سازی
+    function createParticles() {
+        // تعداد ذرات را کاهش داده‌ام برای عملکرد بهتر
+        const particleCount = window.innerWidth < 480 ? 8 : 12;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // موقعیت و اندازه تصادفی
+            const size = Math.random() * 3 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.bottom = '0';
+            
+            // تنظیمات انیمیشن
+            const delay = Math.random() * 5;
+            const duration = Math.random() * 3 + 3;
+            
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+            
+            // رنگ‌های متنوع برای ذرات
+            const hue = 170 + Math.random() * 30; // محدوده فیروزه‌ای
+            particle.style.background = `hsl(${hue}, 100%, 70%)`;
+            particle.style.boxShadow = `0 0 ${Math.random() * 3 + 2}px hsl(${hue}, 100%, 70%)`;
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+    
+    // افکت کلیک بهبود یافته
+    btn.addEventListener('click', function(e) {
+        // فقط اگر روی خود دکمه کلیک شده باشد (نه روی لینک)
+        if (e.target === this) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            
+            // رنگ ریپل متناسب با تم
+            ripple.style.background = `radial-gradient(circle, rgba(0,245,212,0.6) 0%, rgba(123,44,191,0.3) 100%)`;
+            
+            this.appendChild(ripple);
+            
+            // حذف ریپل بعد از انیمیشن
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+    });
+    
+    // ایجاد ذرات با تاخیر برای بهبود عملکرد بارگذاری
+    setTimeout(createParticles, 300);
+    
+    // بهینه‌سازی برای دستگاه‌های لمسی
+    btn.addEventListener('touchstart', function() {
+        this.classList.add('active');
+    });
+    
+    btn.addEventListener('touchend', function() {
+        this.classList.remove('active');
+    });
+    
+    // تغییر تدریجی زاویه گرادیانت برای افکت پویا
+    let angle = 135;
+    setInterval(() => {
+        angle = (angle + 0.5) % 360;
+        document.documentElement.style.setProperty('--gradient-angle-pdf', `${angle}deg`);
+    }, 100);
+});
