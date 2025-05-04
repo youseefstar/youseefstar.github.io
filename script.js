@@ -467,10 +467,18 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
-        if (percent == 0){
+        if (percent == 0 || percent == 1 || percent == 99 || percent == 100){
             elements.percent.style.display = 'none';
+            elements.circle.style.background = 'none'
         } else {
             elements.percent.style.display = 'flex';
+            elements.circle.style.background = `
+                conic-gradient(
+                    var(--primary-prog) 0%,
+                    var(--secondary-prog) ${percent}%,
+                    transparent ${percent}% 100%
+                )
+            `;
         }
         
         if (percent >= 95) {
