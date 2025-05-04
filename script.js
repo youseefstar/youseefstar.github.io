@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // =====================================================================
     const typingText = document.querySelector('.typing-effect');
     if (typingText) {
-        const words = ["Youseef Star", "Backend Developer", "Frontend Developer", "توسدهنده وب"];
+        const words = ["Youseef Star", "Backend Developer", "Frontend Developer", "توسعه دهنده وب"];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -344,3 +344,104 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.style.setProperty('--gradient-angle-pdf', `${angle}deg`);
     }, 100);
 });
+
+(function() {
+    'use strict';
+    
+    const elements = {
+        circle: document.getElementById('progressCircle'),
+        text: document.getElementById('progressText'),
+        percent: document.getElementById('progressPercent'),
+        container: document.querySelector('.reading-progress')
+    };
+    
+    let lastPercent = -1;
+    let isUpdating = false;
+    let supportsConicGradient = false;
+    
+    // بررسی پشتیبانی از قابلیت‌ها
+    function checkFeatures() {
+        supportsConicGradient = CSS.supports('background', 'conic-gradient(from 0deg, red, blue)');
+        if (!supportsConicGradient) {
+            elements.circle.style.display = 'none';
+            elements.percent.style.boxShadow = `inset 0 0 0 3px ${getComputedStyle(document.documentElement).getPropertyValue('--primary-light-prog')}`;
+            elements.percent.style.border = `3px solid var(--primary-prog)`;
+        }
+    }
+    
+    function getDocHeight() {
+        return Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight,
+            document.body.clientHeight,
+            document.documentElement.clientHeight
+        );
+    }
+    
+    function calculateProgress() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        return Math.min(100, Math.max(0, Math.round(
+            (scrollTop / (getDocHeight() - window.innerHeight)) * 100
+        )));
+    }
+    
+    function updateUI(percent) {
+        if (percent === lastPercent) return;
+        
+        elements.text.textContent = `${percent}%`;
+        
+        if (supportsConicGradient) {
+            elements.circle.style.background = `
+                conic-gradient(
+                    var(--primary-prog) 0%,
+                    var(--secondary-prog) ${percent}%,
+                    transparent ${percent}% 100%
+                )
+            `;
+        }
+
+        if (percent == 0){
+            elements.percent.style.display = 'none';
+        } else {
+            elements.percent.style.display = 'flex';
+        }
+        
+        if (percent >= 95) {
+            elements.percent.style.color = 'var(--success-prog)';
+        } else if (percent >= 70) {
+            elements.percent.style.color = 'var(--accent-prog)';
+        } else {
+            elements.percent.style.color = 'var(--primary-prog)';
+        }
+        
+        elements.container.style.opacity = (percent <= 2 || percent >= 98) ? '0.6' : '1';
+        lastPercent = percent;
+    }
+    
+    function handleScroll() {
+        if (!isUpdating) {
+            isUpdating = true;
+            requestAnimationFrame(() => {
+                updateUI(calculateProgress());
+                isUpdating = false;
+            });
+        }
+    }
+    
+    let resizeTimer;
+    function handleResize() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            checkFeatures();
+            updateUI(calculateProgress());
+        }, 100);
+    }
+    
+    // راه‌اندازی اولیه
+    checkFeatures();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+    updateUI(0);
+})();

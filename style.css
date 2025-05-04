@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('font/Vazir-Bold.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --primary-color: #6c63ff;
     --primary-light: #8a85ff;
@@ -19,6 +27,11 @@
     --text-pdf: #ffffff;
     --glow-pdf: 0 0 15px rgba(0, 245, 212, 0.7);
     --gradient-angle-pdf: 135deg;
+    --primary-prog: #4361ee;
+    --accent-prog: #4895ef;
+    --success-prog: #4cc9f0;
+    --primary-prog-light-prog: #4361ee22;
+    --secondary-prog: #3f37c9;
 }
 
 * {
@@ -38,6 +51,81 @@ body {
     background-attachment: fixed;
     padding-top: 80px;
     overflow-x: hidden;
+}
+
+.reading-progress {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: var(--transition);
+    backface-visibility: hidden;
+}
+
+.progress-container {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-percent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--primary-prog);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    user-select: none;
+    background: var(--glass);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    /* Fallback برای مرورگرهای قدیمی */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.progress-circle {
+    position: absolute;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    top: -6px;
+    left: -6px;
+    border-radius: 50%;
+    -webkit-mask: radial-gradient(transparent 60%, black 61%);
+    mask: radial-gradient(transparent 60%, black 61%);
+    transform: rotate(-90deg);
+    transition: all 0.2s ease-out;
+    z-index: -1;
+    /* Fallback برای مرورگرهایی که conic-gradient را پشتیبانی نمی‌کنند */
+    background: var(--primary-prog);
+    background: -webkit-conic-gradient(var(--primary-prog) 0%, var(--secondary-prog) 100%);
+    background: conic-gradient(var(--primary-prog) 0%, var(--secondary-prog) 100%);
+}
+
+@media (max-width: 768px) {
+    .reading-progress {
+        bottom: 1rem;
+    }
+    .progress-container {
+        width: 4rem;
+        height: 4rem;
+    }
+    .progress-percent {
+        font-size: 0.95rem;
+    }
 }
 
 /* هدر پیشرفته */

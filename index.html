@@ -29,25 +29,31 @@
     <!-- Favicon -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="img/just-logo.png">
+    <link rel="manifest" href="img/manifest.json">
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    <link rel="preload" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/font-face.css" as="style">
     
     <!-- Title with primary keyword -->
     <title>Youseef Star</title>
     
     <!-- CSS Resources -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/font-face.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="style.css">
     
-    <!-- Preconnect to external domains for performance -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
 </head>
 <body>
+
+    <div class="reading-progress">
+        <div class="progress-container">
+            <div class="progress-circle" id="progressCircle"></div>
+            <div class="progress-percent" id="progressPercent">
+                <span id="progressText">0%</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Header with semantic HTML and ARIA attributes -->
     <header id="main-header" itemscope itemtype="https://schema.org/WPHeader">
         <a href="#" class="logo" title="صفحه اصلی Youseef Star" itemprop="url">
@@ -603,8 +609,6 @@
     </script>
     <script src="script.js" defer></script>
     
-    <!-- Google Analytics tracking code (replace with your own) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

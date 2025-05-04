@@ -1,0 +1,20 @@
+{
+    "name": "Youseef Star | Developer",
+    "short_name": "Youseef Star | Developer",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4f46e5",
+    "icons": [
+      {
+        "src": "/img/just-logo.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/img/just-logo.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
