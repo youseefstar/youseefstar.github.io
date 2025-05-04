@@ -767,6 +767,7 @@ nav ul li a.active::after {
     font-size: 1.2rem;
     position: relative;
     padding-right: 2rem;
+    text-align: justify;
 }
 
 .about-text::before {
