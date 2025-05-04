@@ -26,6 +26,15 @@ body {
     scrollbar-arrow-color: #0a0a0a;
 }
 
+.container {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* اینترنت اکسپلورر و Edge */
+    scrollbar-width: none;  /* فایرفاکس */
+}
+.container::-webkit-scrollbar {
+    display: none; /* کروم، سافاری، اپرا */
+}
+
 @font-face {
     font-family: 'Vazirmatn';
     src: url('font/Vazir-Bold.woff2') format('woff2');
