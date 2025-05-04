@@ -506,23 +506,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
-    
-    // منوی همبرگری برای موبایل
-    hamburger.addEventListener('click', function() {
-      this.classList.toggle('active');
-      mobileNav.classList.toggle('active');
-      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-    });
-    
-    // بستن منوی موبایل هنگام کلیک روی لینک‌ها
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function() {
-        mobileNav.classList.remove('active');
-        hamburger.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-    
+
     // مقداردهی اولیه برای لینک فعال
     const initialSection = window.location.hash || '#home';
     document.querySelector(`nav a[href="${initialSection}"]`)?.classList.add('active');
