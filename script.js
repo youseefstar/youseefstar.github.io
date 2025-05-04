@@ -343,6 +343,71 @@ document.addEventListener('DOMContentLoaded', function() {
         angle = (angle + 0.5) % 360;
         document.documentElement.style.setProperty('--gradient-angle-pdf', `${angle}deg`);
     }, 100);
+
+    // بخش‌های مختلف صفحه
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a, .mobile-nav a');
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburger = document.querySelector('.hamburger-menu');
+    
+    // فعال کردن اسکرول نرم برای تمام لینک‌ها
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          // بستن منوی موبایل در صورت باز بودن
+          if (mobileNav.classList.contains('active')) {
+            mobileNav.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+          
+          // اسکرول به بخش مورد نظر
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // به‌روزرسانی URL بدون رفرش صفحه
+          if (history.pushState) {
+            history.pushState(null, null, targetId);
+          } else {
+            window.location.hash = targetId;
+          }
+        }
+      });
+    });
+    
+    // فعال‌سازی لینک‌ها هنگام اسکرول
+    window.addEventListener('scroll', function() {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // مقداردهی اولیه برای لینک فعال
+    const initialSection = window.location.hash || '#home';
+    document.querySelector(`nav a[href="${initialSection}"]`)?.classList.add('active');
+    document.querySelector(`.mobile-nav a[href="${initialSection}"]`)?.classList.add('active');
 });
 
 (function() {
@@ -445,70 +510,3 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', handleResize, { passive: true });
     updateUI(0);
 })();
-
-document.addEventListener('DOMContentLoaded', function() {
-    // بخش‌های مختلف صفحه
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav a, .mobile-nav a');
-    const mobileNav = document.getElementById('mobile-nav');
-    const hamburger = document.querySelector('.hamburger-menu');
-    
-    // فعال کردن اسکرول نرم برای تمام لینک‌ها
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          // بستن منوی موبایل در صورت باز بودن
-          if (mobileNav.classList.contains('active')) {
-            mobileNav.classList.remove('active');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
-          }
-          
-          // اسکرول به بخش مورد نظر
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          
-          // به‌روزرسانی URL بدون رفرش صفحه
-          if (history.pushState) {
-            history.pushState(null, null, targetId);
-          } else {
-            window.location.hash = targetId;
-          }
-        }
-      });
-    });
-    
-    // فعال‌سازی لینک‌ها هنگام اسکرول
-    window.addEventListener('scroll', function() {
-      let current = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= (sectionTop - 150)) {
-          current = section.getAttribute('id');
-        }
-      });
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // مقداردهی اولیه برای لینک فعال
-    const initialSection = window.location.hash || '#home';
-    document.querySelector(`nav a[href="${initialSection}"]`)?.classList.add('active');
-    document.querySelector(`.mobile-nav a[href="${initialSection}"]`)?.classList.add('active');
-  });
