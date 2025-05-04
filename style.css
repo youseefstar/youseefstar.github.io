@@ -41,6 +41,11 @@
     font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #6e00ff #0a0a0a; /* thumb: بنفش / track: مشکی */
+}
+
 body {
     background-color: var(--dark-bg);
     color: var(--dark-text);
