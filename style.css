@@ -1,3 +1,31 @@
+/* برای مرورگرهای مبتنی بر WebKit (کروم، سافاری، جدیدترین اج) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a; /* رنگ track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6e00ff; /* رنگ thumb */
+    border-radius: 4px;
+}
+
+/* برای فایرفاکس */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #6e00ff #0a0a0a;
+}
+
+/* برای اینترنت اکسپلورر و اج قدیمی */
+body {
+    scrollbar-face-color: #6e00ff;
+    scrollbar-track-color: #0a0a0a;
+    scrollbar-arrow-color: #0a0a0a;
+}
+
 @font-face {
     font-family: 'Vazirmatn';
     src: url('font/Vazir-Bold.woff2') format('woff2');
@@ -39,11 +67,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-html {
-    scrollbar-width: thin;
-    scrollbar-color: #6e00ff #0a0a0a; /* thumb: بنفش / track: مشکی */
 }
 
 body {
