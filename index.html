@@ -119,7 +119,7 @@
             <!-- Call-to-action button for better conversion -->
             <div class="btn-container">
                 <button class="download-btn" id="luxuryBtn">
-                    <span class="tooltip">رزومه حرفه‌ای - 2MB</span>
+                    <span class="tooltip">رزومه - 2MB</span>
                     <div class="particles" id="particles"></div>
                     <div class="light-effect"></div>
                     <div class="pulse-ring"></div>
@@ -197,164 +197,167 @@
                         <p itemprop="description">تجربه کار مؤثر در تیم‌های بزرگ توسعه نرم‌افزار</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Skills section with detailed markup -->
-                <div class="skills-container">
-                    <div class="skills-header">
-                        <h3 class="skills-title">مهارت‌های تخصصی</h3>
-                        <p class="skills-subtitle">تسلط بر تکنولوژی‌های روز توسعه وب و ابزارهای مرتبط</p>
+    <section class="section" id="skills">
+        
+        <!-- Skills section with detailed markup -->
+        <div class="skills-container" id="skills">
+            <div class="skills-header">
+                <h3 class="skills-title">مهارت‌های تخصصی</h3>
+                <p class="skills-subtitle">تسلط بر تکنولوژی‌های روز توسعه وب و ابزارهای مرتبط</p>
+            </div>
+
+            <div class="skills-categories">
+                <button class="skill-category-btn active" data-category="all">همه مهارت‌ها</button>
+                <button class="skill-category-btn" data-category="frontend">فرانت‌اند</button>
+                <button class="skill-category-btn" data-category="backend">بک‌اند</button>
+                <button class="skill-category-btn" data-category="design">طراحی</button>
+                <button class="skill-category-btn" data-category="tools">ابزارها</button>
+            </div>
+
+            <!-- Skills grid with microdata -->
+            <div class="skills-grid" itemscope itemtype="https://schema.org/ItemList">
+                <!-- Django skill -->
+                <div class="skill-card" data-category="backend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-code" aria-hidden="true"></i>
+                        </div>
+                        <span class="skill-name" itemprop="name">Django</span>
                     </div>
-
-                    <div class="skills-categories">
-                        <button class="skill-category-btn active" data-category="all">همه مهارت‌ها</button>
-                        <button class="skill-category-btn" data-category="frontend">فرانت‌اند</button>
-                        <button class="skill-category-btn" data-category="backend">بک‌اند</button>
-                        <button class="skill-category-btn" data-category="design">طراحی</button>
-                        <button class="skill-category-btn" data-category="tools">ابزارها</button>
-                    </div>
-
-                    <!-- Skills grid with microdata -->
-                    <div class="skills-grid" itemscope itemtype="https://schema.org/ItemList">
-                        <!-- Django skill -->
-                        <div class="skill-card" data-category="backend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <div class="skill-header">
-                                <div class="skill-icon">
-                                    <i class="fas fa-code" aria-hidden="true"></i>
-                                </div>
-                                <span class="skill-name" itemprop="name">Django</span>
-                            </div>
-                            <div class="skill-level-container">
-                                <div class="skill-level-info">
-                                    <span>تسلط:</span>
-                                    <span itemprop="value">90%</span>
-                                </div>
-                                <div class="skill-level">
-                                    <div class="skill-progress" style="width: 90%;" data-width="90%"></div>
-                                </div>
-                            </div>
-                            <meta itemprop="position" content="1" />
+                    <div class="skill-level-container">
+                        <div class="skill-level-info">
+                            <span>تسلط:</span>
+                            <span itemprop="value">90%</span>
                         </div>
-                        
-                        <!-- JavaScript skill -->
-                        <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <div class="skill-header">
-                                <div class="skill-icon">
-                                    <i class="fab fa-js" aria-hidden="true"></i>
-                                </div>
-                                <span class="skill-name" itemprop="name">JavaScript</span>
-                            </div>
-                            <div class="skill-level-container">
-                                <div class="skill-level-info">
-                                    <span>تسلط:</span>
-                                    <span itemprop="value">50%</span>
-                                </div>
-                                <div class="skill-level">
-                                    <div class="skill-progress" style="width: 50%;" data-width="50%"></div>
-                                </div>
-                            </div>
-                            <meta itemprop="position" content="2" />
-                        </div>
-                        
-                        <!-- CSS/Sass skill -->
-                        <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <div class="skill-header">
-                                <div class="skill-icon">
-                                    <i class="fab fa-css3-alt" aria-hidden="true"></i>
-                                </div>
-                                <span class="skill-name" itemprop="name">CSS</span>
-                            </div>
-                            <div class="skill-level-container">
-                                <div class="skill-level-info">
-                                    <span>تسلط:</span>
-                                    <span itemprop="value">95%</span>
-                                </div>
-                                <div class="skill-level">
-                                    <div class="skill-progress" style="width: 95%;" data-width="95%"></div>
-                                </div>
-                            </div>
-                            <meta itemprop="position" content="3" />
-                        </div>
-                        
-                        <!-- HTML5 skill -->
-                        <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <div class="skill-header">
-                                <div class="skill-icon">
-                                    <i class="fab fa-html5" aria-hidden="true"></i>
-                                </div>
-                                <span class="skill-name" itemprop="name">HTML5</span>
-                            </div>
-                            <div class="skill-level-container">
-                                <div class="skill-level-info">
-                                    <span>تسلط:</span>
-                                    <span itemprop="value">95%</span>
-                                </div>
-                                <div class="skill-level">
-                                    <div class="skill-progress" style="width: 95%;" data-width="95%"></div>
-                                </div>
-                            </div>
-                            <meta itemprop="position" content="4" />
-                        </div>
-                        
-                        <!-- Flask skill -->
-                        <div class="skill-card" data-category="backend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <div class="skill-header">
-                                <div class="skill-icon">
-                                    <i class="fas fa-flask" aria-hidden="true"></i>
-                                </div>
-                                <span class="skill-name" itemprop="name">Flask</span>
-                            </div>
-                            <div class="skill-level-container">
-                                <div class="skill-level-info">
-                                    <span>تسلط:</span>
-                                    <span itemprop="value">90%</span>
-                                </div>
-                                <div class="skill-level">
-                                    <div class="skill-progress" style="width: 90%;" data-width="90%"></div>
-                                </div>
-                            </div>
-                            <meta itemprop="position" content="5" />
-                        </div>
-                        
-                        <!-- UI/UX Design skill -->
-                        <div class="skill-card" data-category="design" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <div class="skill-header">
-                                <div class="skill-icon">
-                                    <i class="fas fa-mobile-alt" aria-hidden="true"></i>
-                                </div>
-                                <span class="skill-name" itemprop="name">UI/UX Design</span>
-                            </div>
-                            <div class="skill-level-container">
-                                <div class="skill-level-info">
-                                    <span>تسلط:</span>
-                                    <span itemprop="value">88%</span>
-                                </div>
-                                <div class="skill-level">
-                                    <div class="skill-progress" style="width: 88%;" data-width="88%"></div>
-                                </div>
-                            </div>
-                            <meta itemprop="position" content="6" />
-                        </div>
-
-                        <!-- Git & GitHub skill -->
-                        <div class="skill-card" data-category="tools" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <div class="skill-header">
-                                <div class="skill-icon">
-                                    <i class="fab fa-github" aria-hidden="true"></i>
-                                </div>
-                                <span class="skill-name" itemprop="name">Git & GitHub</span>
-                            </div>
-                            <div class="skill-level-container">
-                                <div class="skill-level-info">
-                                    <span>تسلط:</span>
-                                    <span itemprop="value">85%</span>
-                                </div>
-                                <div class="skill-level">
-                                    <div class="skill-progress" style="width: 85%;" data-width="85%"></div>
-                                </div>
-                            </div>
-                            <meta itemprop="position" content="7" />
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 90%;" data-width="90%"></div>
                         </div>
                     </div>
+                    <meta itemprop="position" content="1" />
+                </div>
+                
+                <!-- JavaScript skill -->
+                <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-js" aria-hidden="true"></i>
+                        </div>
+                        <span class="skill-name" itemprop="name">JavaScript</span>
+                    </div>
+                    <div class="skill-level-container">
+                        <div class="skill-level-info">
+                            <span>تسلط:</span>
+                            <span itemprop="value">50%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 50%;" data-width="50%"></div>
+                        </div>
+                    </div>
+                    <meta itemprop="position" content="2" />
+                </div>
+                
+                <!-- CSS/Sass skill -->
+                <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-css3-alt" aria-hidden="true"></i>
+                        </div>
+                        <span class="skill-name" itemprop="name">CSS</span>
+                    </div>
+                    <div class="skill-level-container">
+                        <div class="skill-level-info">
+                            <span>تسلط:</span>
+                            <span itemprop="value">95%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 95%;" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <meta itemprop="position" content="3" />
+                </div>
+                
+                <!-- HTML5 skill -->
+                <div class="skill-card" data-category="frontend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5" aria-hidden="true"></i>
+                        </div>
+                        <span class="skill-name" itemprop="name">HTML5</span>
+                    </div>
+                    <div class="skill-level-container">
+                        <div class="skill-level-info">
+                            <span>تسلط:</span>
+                            <span itemprop="value">95%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 95%;" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <meta itemprop="position" content="4" />
+                </div>
+                
+                <!-- Flask skill -->
+                <div class="skill-card" data-category="backend" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-flask" aria-hidden="true"></i>
+                        </div>
+                        <span class="skill-name" itemprop="name">Flask</span>
+                    </div>
+                    <div class="skill-level-container">
+                        <div class="skill-level-info">
+                            <span>تسلط:</span>
+                            <span itemprop="value">90%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 90%;" data-width="90%"></div>
+                        </div>
+                    </div>
+                    <meta itemprop="position" content="5" />
+                </div>
+                
+                <!-- UI/UX Design skill -->
+                <div class="skill-card" data-category="design" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                        </div>
+                        <span class="skill-name" itemprop="name">UI/UX Design</span>
+                    </div>
+                    <div class="skill-level-container">
+                        <div class="skill-level-info">
+                            <span>تسلط:</span>
+                            <span itemprop="value">88%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 88%;" data-width="88%"></div>
+                        </div>
+                    </div>
+                    <meta itemprop="position" content="6" />
+                </div>
+
+                <!-- Git & GitHub skill -->
+                <div class="skill-card" data-category="tools" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </div>
+                        <span class="skill-name" itemprop="name">Git & GitHub</span>
+                    </div>
+                    <div class="skill-level-container">
+                        <div class="skill-level-info">
+                            <span>تسلط:</span>
+                            <span itemprop="value">85%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="width: 85%;" data-width="85%"></div>
+                        </div>
+                    </div>
+                    <meta itemprop="position" content="7" />
                 </div>
             </div>
         </div>
