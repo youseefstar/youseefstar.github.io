@@ -520,26 +520,24 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('mainContent').classList.remove('active');
-        });
+    document.getElementById('mainContent').classList.remove('active');
+});
 
-        function playMusic() {
-            const audio = new Audio('music.mp3');
-            audio.play()
-                .then(() => {
-                    // اگر موزیک پخش شد، پاپ‌آپ را مخفی و محتوا را نمایش دهید
-                    document.getElementById('popup').style.display = 'none';
-                    document.getElementById('mainContent').classList.add('active');
-                })
-                .catch(e => {
-                    alert("برای پخش، لطفاً صفحه را کلیک کنید.");
-                    document.getElementById('popup').style.display = 'none';
-                    document.getElementById('mainContent').classList.add('active');
-                });
-        }
-       document.getElementById('popup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.style.display = 'none';
-                document.getElementById('mainContent').classList.add('active');
-            }
+function playMusic() {
+    const audio = new Audio('music.mp3');
+    audio.play()
+        .then(() => {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('mainContent').classList.add('active');
+        })
+        .catch(e => {
+            alert("برای پخش، لطفاً صفحه را کلیک کنید.");
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('mainContent').classList.add('active');
         });
+}
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('mainContent').classList.add('active');
+}
