@@ -45,13 +45,9 @@
 </head>
 <body>
 
-    <div id="popup">
-        <p>آیا مایلید موزیک پس‌زمینه پخش شود؟</p>
-        <div class="btn-container">
-            <button id="playBtn" onclick="playMusic()">بله، پخش کن</button>
-            <button id="cancelBtn" onclick="closePopup()">انصراف</button>
-        </div>
-    </div>
+    <audio id="myPlayer" autoplay style="display:none;">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="reading-progress">
         <div class="progress-container">
