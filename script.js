@@ -519,25 +519,4 @@ document.addEventListener('DOMContentLoaded', function() {
     updateUI(0);
 })();
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('mainContent').classList.remove('active');
-});
-
-function playMusic() {
-    const audio = new Audio('music.mp3');
-    audio.play()
-        .then(() => {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('mainContent').classList.add('active');
-        })
-        .catch(e => {
-            alert("برای پخش، لطفاً صفحه را کلیک کنید.");
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('mainContent').classList.add('active');
-        });
-}
-
-function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-    document.getElementById('mainContent').classList.add('active');
-}
+document.getElementById('myPlayer').play().catch(e => {});
