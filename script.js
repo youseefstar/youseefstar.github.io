@@ -519,4 +519,19 @@ document.addEventListener('DOMContentLoaded', function() {
     updateUI(0);
 })();
 
-document.getElementById('myPlayer').play().catch(e => {});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const musicPlayer = document.getElementById('backgroundMusic');
+
+    function playAudio() {
+        musicPlayer.play().catch(e => {
+            console.log('پخش خودکار مسدود شده، ای کرومه...:', e);
+        });
+    }
+
+    document.body.addEventListener('click', function firstInteraction() {
+        playAudio();
+        document.body.removeEventListener('click', firstInteraction);
+    });
+    playAudio();
+});
