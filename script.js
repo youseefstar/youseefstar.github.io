@@ -7,6 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // =====================================================================
     // HAMBURGER MENU & HEADER SCROLL OPTIMIZATION
     // =====================================================================
+
+    // Music Autoplay
+    const musicPlayer = document.getElementById('backgroundMusic');
+
+    function playAudio() {
+        musicPlayer.play().catch(e => {
+            console.log('پخش خودکار مسدود شده، ای کرومه...:', e);
+        });
+    }
+
+    document.body.addEventListener('click', function firstInteraction() {
+        playAudio();
+        document.body.removeEventListener('click', firstInteraction);
+    });
+    playAudio();
     
     // Cache DOM elements for menu functionality
     const hamburgerMenu = document.querySelector('.hamburger-menu');
@@ -518,20 +533,3 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', handleResize, { passive: true });
     updateUI(0);
 })();
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const musicPlayer = document.getElementById('backgroundMusic');
-
-    function playAudio() {
-        musicPlayer.play().catch(e => {
-            console.log('پخش خودکار مسدود شده، ای کرومه...:', e);
-        });
-    }
-
-    document.body.addEventListener('click', function firstInteraction() {
-        playAudio();
-        document.body.removeEventListener('click', firstInteraction);
-    });
-    playAudio();
-});
