@@ -47,7 +47,10 @@
 
     <div id="popup">
         <p>آیا مایلید موزیک پس‌زمینه پخش شود؟</p>
-        <button onclick="playMusic()">بله، پخش کن</button>
+        <div class="btn-container">
+            <button id="playBtn" onclick="playMusic()">بله، پخش کن</button>
+            <button id="cancelBtn" onclick="closePopup()">انصراف</button>
+        </div>
     </div>
 
     <div class="reading-progress">
