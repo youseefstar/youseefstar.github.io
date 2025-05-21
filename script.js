@@ -518,19 +518,8 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', handleResize, { passive: true });
     updateUI(0);
 })();
-const audio = document.getElementById("bgMusic");
-let hasPlayed = false; // برای جلوگیری از پخش مکرر
-window.addEventListener("scroll", function() {
-    if (!hasPlayed) {
-        // تلاش برای پخش صدا
-        audio.play()
-            .then(() => {
-                hasPlayed = true;
-            })
-            .catch(error => {
-                console.error("پخش خودکار مسدود شد:", error);
-                    // نمایش دکمه پخش اگر مرورگر اجازه ندهد
-                alert("لطفاً برای پخش موزیک، روی صفحه کلیک کنید.");
-            });
-    }
-}, { once: true });
+
+function playMusic() {
+    const audio = new Audio('music.mp3');
+    audio.play().catch(e => alert("برای پخش، لطفاً صفحه را کلیک کنید."));
+}
