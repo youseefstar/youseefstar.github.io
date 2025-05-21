@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // State management
             if (!isDeleting && charIndex === currentWord.length) {
                 // Pause at end of word
-                typingSpeed = 1000;
+                typingSpeed = 700;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 // Move to next word
