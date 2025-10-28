@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مرورگر تمرکزی — جستجوی گوگل با پس‌زمینهٔ انگیزشی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #0b1220;
+      --bg2: #10192e;
+      --accent: #6366f1;
+      --accent-2: #16a34a;
+      --text: rgba(255, 255, 255, 0.9);
+      --muted: rgba(255, 255, 255, 0.6);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: 'Vazirmatn', sans-serif; }
+
+    body {
+      background: radial-gradient(circle at 10% 20%, rgba(99,102,241,0.2), transparent),
+                  radial-gradient(circle at 80% 90%, rgba(16,185,129,0.15), transparent),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+      padding: 0;
+    }
+
+    .topbar {
+      width: 100%;
+      height: 48px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .dots { display: flex; gap: 8px; margin-right: 12px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red { background: #f87171; }
+    .dot.yellow { background: #facc15; }
+    .dot.green { background: #4ade80; }
+
+    .address-bar {
+      flex: 1;
+      height: 28px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 16px;
+      text-align: center;
+    }
+
+    h1 { font-size: 26px; margin-bottom: 16px; color: white; }
+    p.lead { color: var(--muted); font-size: 14px; margin-bottom: 30px; }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 8px 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      backdrop-filter: blur(8px);
+    }
+
+    input[type="text"] {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 15px;
+      padding: 10px;
+    }
+
+    button.btn {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+    button.btn:hover { filter: brightness(1.1); }
+
+    .quick { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .chip {
+      background: rgba(255,255,255,0.07);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.25s;
+    }
+    .chip:hover { background: rgba(255,255,255,0.15); }
+
+    .msg-box {
+      margin-top: 60px;
+      background: rgba(255,255,255,0.06);
+      padding: 30px;
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+      max-width: 640px;
+    }
+
+    .typed { display: inline-block; position: relative; }
+    .cursor { display: inline-block; width: 2px; height: 1.1em; background: white; vertical-align: middle; animation: blink 1s steps(2, end) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .msg { font-size: 18px; font-weight: 600; color: white; margin-bottom: 8px; }
+    .sub { font-size: 13px; color: var(--muted); }
+
+    footer {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 80px;
+      padding-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="dots">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <div class="address-bar">focus-browser://search</div>
+  </div>
+
+  <main>
+    <h1>جستجو در گوگل — و تمرکز روی هدف</h1>
+    <p class="lead">از اینجا جستجو کن، اما حواست رو از مسیر موفقیت پرت نکن. هر بار که جستجو می‌کنی، یک قدم جلوتر برو.</p>
+
+    <form class="search-box" action="https://www.google.com/search" method="get" target="_blank">
+      <input type="text" name="q" id="q" placeholder="چی می‌خوای یاد بگیری یا پیدا کنی؟" required />
+      <button type="submit" class="btn">جستجو</button>
+    </form>
+
+    <div class="quick">
+      <div class="chip" onclick="fill('آموزش پایتون برای مبتدی‌ها')">آموزش پایتون</div>
+      <div class="chip" onclick="fill('ریاضیات پایه برای برنامه‌نویسان')">ریاضیات پایه</div>
+      <div class="chip" onclick="fill('تمرکز بهتر و جلوگیری از حواس‌پرتی')">تمرکز بهتر</div>
+      <div class="chip" onclick="fill('ایده‌های پروژه برای تازه‌کارها')">ایده‌های پروژه</div>
+      <div class="chip" onclick="fill('ترفندهای مطالعه مؤثر')">مطالعه مؤثر</div>
+    </div>
+
+    <div class="msg-box">
+      <div class="msg"><span class="typed" id="typed"></span><span class="cursor"></span></div>
+      <div class="sub" id="sub">کافی‌ست شروع کنی.</div>
+    </div>
+  </main>
+
+  <footer>این صفحه برای تمرکز ساخته شده — هر جستجو یعنی یک گام به‌سوی پیشرفت.</footer>
+
+  <script>
+    const messages = [
+      { text: 'هر قدم کوچک، تو رو جلو می‌بره.', sub: 'کافی‌ست شروع کنی.' },
+      { text: 'وقتت با کیفیت‌تر باشه، زندگی‌ت موثرتر می‌شه.', sub: 'یک تمرین ۲۵ دقیقه‌ای انجام بده.' },
+      { text: 'خطا یعنی یادگیری — اشتباه نترس.', sub: 'کدنویسی، تجربه‌محوره.' },
+      { text: 'آموختن آهسته و پیوسته بهتر از پرشتاب و ناپایدار است.', sub: 'هر روز یک گام.' },
+      { text: 'بهتر از ایده‌پردازی، اجراست.', sub: 'امروز یک مینی‌نسخه پیاده کن.' }
+    ];
+
+    let i = 0;
+    const typedEl = document.getElementById('typed');
+    const subEl = document.getElementById('sub');
+
+    function typeMessage(text, callback) {
+      typedEl.textContent = '';
+      let j = 0;
+      const speed = 50;
+      const typing = setInterval(() => {
+        typedEl.textContent += text.charAt(j);
+        j++;
+        if (j >= text.length) {
+          clearInterval(typing);
+          if (callback) callback();
+        }
+      }, speed);
+    }
+
+    function showNext() {
+      i = (i + 1) % messages.length;
+      subEl.textContent = messages[i].sub;
+      typeMessage(messages[i].text);
+    }
+
+    typeMessage(messages[0].text);
+    setInterval(showNext, 7000);
+
+    function fill(text) {
+      document.getElementById('q').value = text;
+      document.getElementById('q').focus();
+    }
+  </script>
+</body>
+</html>
