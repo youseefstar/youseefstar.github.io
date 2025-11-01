@@ -1006,14 +1006,14 @@ canvas.addEventListener("click", (e) => {
 });
 
 // مدیریت رویدادهای لمسی برای دستگاه‌های لمسی
-canvas.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  const rect = canvas.getBoundingClientRect();
-  const touch = e.touches[0];
-  const x = touch.clientX - rect.left;
-  const y = touch.clientY - rect.top;
-  handleCanvasClick(x, y);
-}, { passive: false });
+// canvas.addEventListener("touchstart", (e) => {
+//   e.preventDefault();
+//   const rect = canvas.getBoundingClientRect();
+//   const touch = e.touches[0];
+//   const x = touch.clientX - rect.left;
+//   const y = touch.clientY - rect.top;
+//   handleCanvasClick(x, y);
+// }, { passive: false });
 
 // رویدادهای دکمه‌ها
 startGameBtn.addEventListener("click", startGame);
