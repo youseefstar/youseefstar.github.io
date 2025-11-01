@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>هنیا</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+    transition: background 0.5s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* حالت‌های مختلف تم */
+  body.theme-default {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  }
+  
+  body.theme-dark {
+    background: linear-gradient(135deg, #0c0c0c, #1a1a1a, #2d2d2d);
+  }
+  
+  body.theme-ocean {
+    background: linear-gradient(135deg, #006994, #008080, #004953);
+  }
+  
+  body.theme-forest {
+    background: linear-gradient(135deg, #0a3d2e, #1b5e20, #2e7d32);
+  }
+  
+  body.theme-sunset {
+    background: linear-gradient(135deg, #ff6b6b, #ffa726, #ff8a65);
+  }
+  
+  body.theme-candy {
+    background: linear-gradient(135deg, #ff9ff3, #f368e0, #ff6b9d);
+  }
+  
+  body.theme-space {
+    background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+  }
+
+  /* استایل‌های صفحه اصلی */
+  .main-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.5s ease;
+    padding: 20px;
+  }
+
+  .main-menu.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .game-title {
+    color: white;
+    font-size: clamp(32px, 10vw, 60px);
+    margin-bottom: 15px;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  
+  .high-score {
+    color: #ffcc00;
+    font-size: clamp(18px, 5vw, 28px);
+    margin-bottom: 30px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+
+  .menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: min(300px, 80%);
+  }
+
+  .menu-btn {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: clamp(16px, 5vw, 20px);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .menu-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.5);
+  }
+
+  .theme-btn {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+  }
+
+  /* استایل‌های صفحه انتخاب تم */
+  .theme-selection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 200;
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .theme-selection.active {
+    display: flex;
+  }
+
+  .theme-title {
+    color: white;
+    font-size: clamp(24px, 7vw, 36px);
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .theme-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .theme-option {
+    width: min(150px, 40vw);
+    height: min(120px, 30vw);
+    border-radius: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .theme-option:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+  }
+
+  .theme-option.default {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  }
+
+  .theme-option.dark {
+    background: linear-gradient(135deg, #0c0c0c, #1a1a1a, #2d2d2d);
+  }
+
+  .theme-option.ocean {
+    background: linear-gradient(135deg, #006994, #008080, #004953);
+  }
+  
+  .theme-option.forest {
+    background: linear-gradient(135deg, #0a3d2e, #1b5e20, #2e7d32);
+  }
+  
+  .theme-option.sunset {
+    background: linear-gradient(135deg, #ff6b6b, #ffa726, #ff8a65);
+  }
+  
+  .theme-option.candy {
+    background: linear-gradient(135deg, #ff9ff3, #f368e0, #ff6b9d);
+  }
+  
+  .theme-option.space {
+    background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+  }
+
+  .theme-name {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    font-size: clamp(12px, 3vw, 16px);
+  }
+
+  .back-btn {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* استایل‌های بازی */
+  .game-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  canvas {
+    background: linear-gradient(160deg, #222831, #393e46);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    display: none;
+    transition: filter 0.5s ease;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    display: none;
+    border-radius: 20px;
+  }
+
+  .score-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 16px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: clamp(14px, 4vw, 20px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
+    z-index: 6;
+  }
+
+  .title {
+    position: absolute;
+    top: 10px;
+    color: white;
+    font-size: clamp(18px, 6vw, 28px);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    display: none;
+    z-index: 6;
+  }
+
+  .instructions {
+    position: absolute;
+    bottom: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: clamp(12px, 3vw, 16px);
+    text-align: center;
+    width: 100%;
+    display: none;
+    z-index: 6;
+    padding: 0 10px;
+  }
+
+  .game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    font-size: clamp(18px, 6vw, 28px);
+    z-index: 10;
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .restart-btn, .menu-back-btn {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: clamp(14px, 4vw, 18px);
+    transition: all 0.3s ease;
+    margin-right: 10px;
+  }
+
+  .menu-back-btn {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+  }
+
+  .restart-btn:hover, .menu-back-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* استایل برای دستگاه‌های بسیار کوچک */
+  @media (max-width: 480px) and (max-height: 700px) {
+    .menu-buttons {
+      gap: 15px;
+    }
+    
+    .menu-btn {
+      padding: 12px 24px;
+    }
+    
+    .theme-options {
+      gap: 10px;
+    }
+    
+    .theme-option {
+      width: min(130px, 42vw);
+      height: min(100px, 32vw);
+    }
+    
+    .button-group {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .restart-btn, .menu-back-btn {
+      margin-right: 0;
+      width: 200px;
+    }
+  }
+
+  /* استایل برای حالت landscape در موبایل */
+  @media (max-height: 500px) {
+    .main-menu {
+      padding: 10px;
+    }
+    
+    .game-title {
+      margin-bottom: 10px;
+    }
+    
+    .high-score {
+      margin-bottom: 20px;
+    }
+    
+    .menu-buttons {
+      gap: 15px;
+    }
+    
+    .theme-selection {
+      padding: 10px;
+    }
+    
+    .theme-title {
+      margin-bottom: 20px;
+    }
+    
+    .theme-options {
+      gap: 10px;
+    }
+  }
+</style>
+</head>
+<body class="theme-default">
+<!-- صفحه اصلی -->
+<div class="main-menu" id="mainMenu">
+  <h1 class="game-title">هنیا</h1>
+  <div class="high-score" id="highScoreDisplay">بیشترین امتیاز: 0</div>
+  <div class="menu-buttons">
+    <button class="menu-btn" id="startGameBtn">شروع بازی</button>
+    <button class="menu-btn theme-btn" id="changeThemeBtn">تغییر تم</button>
+  </div>
+</div>
+
+<!-- صفحه انتخاب تم -->
+<div class="theme-selection" id="themeSelection">
+  <h2 class="theme-title">انتخاب تم بازی</h2>
+  <div class="theme-options">
+    <div class="theme-option default" data-theme="default">
+      <div class="theme-name">تم پیش‌فرض</div>
+    </div>
+    <div class="theme-option dark" data-theme="dark">
+      <div class="theme-name">تم تاریک</div>
+    </div>
+    <div class="theme-option ocean" data-theme="ocean">
+      <div class="theme-name">تم اقیانوسی</div>
+    </div>
+    <div class="theme-option forest" data-theme="forest">
+      <div class="theme-name">تم جنگلی</div>
+    </div>
+    <div class="theme-option sunset" data-theme="sunset">
+      <div class="theme-name">تم غروب</div>
+    </div>
+    <div class="theme-option candy" data-theme="candy">
+      <div class="theme-name">تم آب نباتی</div>
+    </div>
+    <div class="theme-option space" data-theme="space">
+      <div class="theme-name">تم فضایی</div>
+    </div>
+  </div>
+  <button class="back-btn" id="backToMenuBtn">بازگشت به منو</button>
+</div>
+
+<!-- عناصر بازی -->
+<div class="game-container">
+  <div class="title">هنیا</div>
+  <div class="score-container" id="scoreDisplay">امتیاز: 0</div>
+  <canvas id="game"></canvas>
+  <div class="blur-overlay" id="blurOverlay"></div>
+  <div class="instructions">برای تعویض رنگ دایره‌ها کلیک کنید</div>
+
+  <!-- صفحه پایان بازی -->
+  <div class="game-over" id="gameOver">
+    <div>شما باختی!</div>
+    <div>امتیاز نهایی: <span id="finalScore">0</span></div>
+    <div class="button-group">
+      <button class="restart-btn" onclick="restartGame()">شروع مجدد</button>
+      <button class="menu-back-btn" onclick="backToMainMenu()">بازگشت به منو</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// متغیرهای اصلی
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const gameOverScreen = document.getElementById("gameOver");
+const finalScoreDisplay = document.getElementById("finalScore");
+const mainMenu = document.getElementById("mainMenu");
+const themeSelection = document.getElementById("themeSelection");
+const startGameBtn = document.getElementById("startGameBtn");
+const changeThemeBtn = document.getElementById("changeThemeBtn");
+const backToMenuBtn = document.getElementById("backToMenuBtn");
+const themeOptions = document.querySelectorAll(".theme-option");
+const blurOverlay = document.getElementById("blurOverlay");
+const highScoreDisplay = document.getElementById("highScoreDisplay");
+
+let w, h;
+
+// تعریف تم‌ها با رنگ‌های متنوع
+const themes = {
+  'default': {
+    background: ['#1a1a2e', '#16213e', '#0f3460'],
+    ballColors: ['#393e46', 'white']
+  },
+  'dark': {
+    background: ['#0c0c0c', '#1a1a1a', '#2d2d2d'],
+    ballColors: ['#8a2be2', '#00ffff']
+  },
+  'ocean': {
+    background: ['#006994', '#008080', '#004953'],
+    ballColors: ['#1e90ff', '#00ced1']
+  },
+  'forest': {
+    background: ['#0a3d2e', '#1b5e20', '#2e7d32'],
+    ballColors: ['#228b22', '#ffd700']
+  },
+  'sunset': {
+    background: ['#ff6b6b', '#ffa726', '#ff8a65'],
+    ballColors: ['#ff4500', '#ffd700']
+  },
+  'candy': {
+    background: ['#ff9ff3', '#f368e0', '#ff6b9d'],
+    ballColors: ['#ff1493', '#00ff7f']
+  },
+  'space': {
+    background: ['#0d1b2a', '#1b263b', '#415a77'],
+    ballColors: ['#9370db', '#00bfff']
+  }
+};
+
+// بارگذاری تنظیمات از localStorage
+let currentTheme = localStorage.getItem('hania-theme') || 'default';
+let highScore = parseInt(localStorage.getItem('hania-highscore')) || 0;
+
+// به‌روزرسانی بیشترین امتیاز در صفحه اصلی
+highScoreDisplay.textContent = `بیشترین امتیاز: ${highScore}`;
+
+// اعمال تم ذخیره شده
+document.body.className = `theme-${currentTheme}`;
+
+let bottomCircles = [];
+let balls = [];
+let score = 0;
+let spawnInterval = 2000;
+let speed = 5;
+let lastTime = 0;
+let clickEffect = null;
+let gameActive = false;
+let nextSpawnTime = 0;
+let frameId = null;
+
+// تابع برای تنظیم اندازه کانواس
+function resizeCanvas() {
+  const container = document.querySelector('.game-container');
+  const maxWidth = Math.min(400, window.innerWidth * 0.9);
+  const maxHeight = Math.min(600, window.innerHeight * 0.85);
+  
+  // حفظ نسبت ابعاد
+  const aspectRatio = 400 / 600;
+  let newWidth = maxWidth;
+  let newHeight = newWidth / aspectRatio;
+  
+  if (newHeight > maxHeight) {
+    newHeight = maxHeight;
+    newWidth = newHeight * aspectRatio;
+  }
+  
+  canvas.width = newWidth;
+  canvas.height = newHeight;
+  
+  // به‌روزرسانی متغیرهای ابعاد
+  w = canvas.width;
+  h = canvas.height;
+  
+  // به‌روزرسانی موقعیت دایره‌های پایین
+  bottomCircles = [
+    { x: w / 4, y: h - 50, color: themes[currentTheme].ballColors[0] },
+    { x: (3 * w) / 4, y: h - 50, color: themes[currentTheme].ballColors[1] }
+  ];
+}
+
+// شروع بازی
+function startGame() {
+  // تنظیم اندازه کانواس
+  resizeCanvas();
+  
+  // پنهان کردن منوی اصلی
+  mainMenu.classList.add("hidden");
+  
+  // نمایش عناصر بازی
+  canvas.style.display = "block";
+  scoreDisplay.style.display = "block";
+  document.querySelector(".title").style.display = "block";
+  document.querySelector(".instructions").style.display = "block";
+  
+  // تنظیم وضعیت بازی
+  gameActive = true;
+  balls = [];
+  score = 0;
+  scoreDisplay.textContent = "امتیاز: " + score;
+  gameOverScreen.style.display = "none";
+  blurOverlay.style.display = "none";
+  lastTime = 0;
+  nextSpawnTime = 0;
+  
+  // شروع حلقه بازی
+  if (frameId) {
+    cancelAnimationFrame(frameId);
+  }
+  frameId = requestAnimationFrame(gameLoop);
+}
+
+// بازگشت به منوی اصلی
+function backToMainMenu() {
+  // پنهان کردن عناصر بازی
+  canvas.style.display = "none";
+  scoreDisplay.style.display = "none";
+  document.querySelector(".title").style.display = "none";
+  document.querySelector(".instructions").style.display = "none";
+  gameOverScreen.style.display = "none";
+  blurOverlay.style.display = "none";
+  
+  // نمایش منوی اصلی
+  mainMenu.classList.remove("hidden");
+  
+  // توقف بازی
+  gameActive = false;
+  if (frameId) {
+    cancelAnimationFrame(frameId);
+    frameId = null;
+  }
+}
+
+// تغییر تم
+function changeTheme(themeName) {
+  currentTheme = themeName;
+  document.body.className = `theme-${themeName}`;
+  
+  // به‌روزرسانی رنگ توپ‌ها
+  bottomCircles[0].color = themes[themeName].ballColors[0];
+  bottomCircles[1].color = themes[themeName].ballColors[1];
+  
+  // ذخیره در localStorage
+  localStorage.setItem('hania-theme', themeName);
+  
+  // بسته شدن صفحه انتخاب تم
+  themeSelection.classList.remove("active");
+}
+
+// تابع برای ایجاد توپ‌ها با رنگ‌های تصادفی سمت‌ها
+function spawnBalls() {
+  const ballColors = themes[currentTheme].ballColors;
+  if (Math.random() < 0.5) {
+    balls.push({ x: w / 4, y: 0, color: ballColors[0] });
+    balls.push({ x: (3 * w) / 4, y: 0, color: ballColors[1] });
+  } else {
+    balls.push({ x: w / 4, y: 0, color: ballColors[1] });
+    balls.push({ x: (3 * w) / 4, y: 0, color: ballColors[0] });
+  }
+}
+
+// رسم دایره‌های پایین با ظاهر زیبا
+function drawBottomCircle(x, y, color, r = 30) {
+  // تنظیم شعاع بر اساس اندازه صفحه
+  const radius = Math.max(20, r * (w / 400));
+  
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  
+  // گرادینت زیبا برای دایره‌های پایین
+  let gradient;
+  const isLightColor = color === 'white' || color === '#ffd700' || color === '#00ff7f' || color === '#00bfff' || color === '#00ced1' || color === '#00ffff';
+  
+  if (isLightColor) {
+    gradient = ctx.createRadialGradient(x-8, y-8, 5, x, y, radius);
+    gradient.addColorStop(0, "#ffffff");
+    gradient.addColorStop(0.7, "#e0e0e0");
+    gradient.addColorStop(1, "#c0c0c0");
+  } else {
+    gradient = ctx.createRadialGradient(x-8, y-8, 5, x, y, radius);
+    gradient.addColorStop(0, lightenColor(color, 40));
+    gradient.addColorStop(0.7, color);
+    gradient.addColorStop(1, darkenColor(color, 20));
+  }
+  
+  ctx.fillStyle = gradient;
+  ctx.shadowColor = isLightColor ? "rgba(255,255,255,0.5)" : "rgba(100,100,100,0.5)";
+  ctx.shadowBlur = 15;
+  ctx.shadowOffsetX = 2;
+  ctx.shadowOffsetY = 2;
+  ctx.fill();
+  
+  // حاشیه براق
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.strokeStyle = isLightColor ? "rgba(255,255,255,0.8)" : "rgba(150,150,150,0.8)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+// تابع برای روشن کردن رنگ
+function lightenColor(color, percent) {
+  if (color.startsWith('#')) {
+    const num = parseInt(color.slice(1), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = (num >> 16) + amt;
+    const G = (num >> 8 & 0x00FF) + amt;
+    const B = (num & 0x0000FF) + amt;
+    return `#${(0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+            (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+            (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1)}`;
+  }
+  return color;
+}
+
+// تابع برای تیره کردن رنگ
+function darkenColor(color, percent) {
+  if (color.startsWith('#')) {
+    const num = parseInt(color.slice(1), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = (num >> 16) - amt;
+    const G = (num >> 8 & 0x00FF) - amt;
+    const B = (num & 0x0000FF) - amt;
+    return `#${(0x1000000 + (R > 0 ? R : 0) * 0x10000 +
+            (G > 0 ? G : 0) * 0x100 +
+            (B > 0 ? B : 0)).toString(16).slice(1)}`;
+  }
+  return color;
+}
+
+// رسم توپ‌های در حال سقوط با ظاهر زیبا
+function drawBall(x, y, color, r = 20) {
+  // تنظیم شعاع بر اساس اندازه صفحه
+  const radius = Math.max(15, r * (w / 400));
+  
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  
+  // گرادینت زیبا برای توپ‌ها
+  let gradient;
+  const isLightColor = color === 'white' || color === '#ffd700' || color === '#00ff7f' || color === '#00bfff' || color === '#00ced1' || color === '#00ffff';
+  
+  if (isLightColor) {
+    gradient = ctx.createRadialGradient(x-6, y-6, 3, x, y, radius);
+    gradient.addColorStop(0, "#ffffff");
+    gradient.addColorStop(0.6, "#d0d0d0");
+    gradient.addColorStop(1, "#a0a0a0");
+  } else {
+    gradient = ctx.createRadialGradient(x-6, y-6, 3, x, y, radius);
+    gradient.addColorStop(0, lightenColor(color, 30));
+    gradient.addColorStop(0.6, color);
+    gradient.addColorStop(1, darkenColor(color, 20));
+  }
+  
+  ctx.fillStyle = gradient;
+  ctx.shadowColor = isLightColor ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.7)";
+  ctx.shadowBlur = 10;
+  ctx.fill();
+  
+  // درخشش داخلی
+  ctx.beginPath();
+  ctx.arc(x, y, radius-5, 0, Math.PI * 2);
+  ctx.strokeStyle = isLightColor ? "rgba(255,255,255,0.4)" : "rgba(100,100,100,0.4)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  
+  // نقطه براق
+  ctx.beginPath();
+  ctx.arc(x-5, y-5, 4, 0, Math.PI * 2);
+  ctx.fillStyle = isLightColor ? "rgba(255,255,255,0.9)" : "rgba(180,180,180,0.7)";
+  ctx.fill();
+}
+
+// رسم افکت کلیک
+function drawClickEffect() {
+  if (clickEffect) {
+    const elapsed = Date.now() - clickEffect.startTime;
+    const progress = Math.min(elapsed / 300, 1); // 300ms duration
+    const alpha = 1 - progress;
+    const radius = 30 + progress * 40;
+    
+    ctx.beginPath();
+    ctx.arc(clickEffect.x, clickEffect.y, radius, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(255, 215, 0, ${alpha})`;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    
+    if (progress >= 1) {
+      clickEffect = null;
+    }
+  }
+}
+
+// بهینه‌سازی: استفاده از Object Pooling برای توپ‌ها
+const ballPool = {
+  pool: [],
+  get: function(x, y, color) {
+    if (this.pool.length > 0) {
+      const ball = this.pool.pop();
+      ball.x = x;
+      ball.y = y;
+      ball.color = color;
+      return ball;
+    }
+    return { x, y, color };
+  },
+  release: function(ball) {
+    this.pool.push(ball);
+  }
+};
+
+// بهینه‌سازی: استفاده از Spatial Partitioning برای تشخیص برخورد
+const spatialGrid = {
+  cellSize: 50,
+  grid: {},
+  
+  clear: function() {
+    this.grid = {};
+  },
+  
+  addBall: function(ball) {
+    const cellX = Math.floor(ball.x / this.cellSize);
+    const cellY = Math.floor(ball.y / this.cellSize);
+    const key = `${cellX},${cellY}`;
+    
+    if (!this.grid[key]) {
+      this.grid[key] = [];
+    }
+    this.grid[key].push(ball);
+  },
+  
+  getNearbyBalls: function(x, y) {
+    const cellX = Math.floor(x / this.cellSize);
+    const cellY = Math.floor(y / this.cellSize);
+    const result = [];
+    
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        const key = `${cellX + dx},${cellY + dy}`;
+        if (this.grid[key]) {
+          result.push(...this.grid[key]);
+        }
+      }
+    }
+    
+    return result;
+  }
+};
+
+// به‌روزرسانی موقعیت توپ‌ها
+function update(deltaTime) {
+  if (!gameActive) return;
+  
+  ctx.clearRect(0, 0, w, h);
+  
+  // پس‌زمینه زیبا
+  const gradient = ctx.createLinearGradient(0, 0, 0, h);
+  const themeColors = themes[currentTheme].background;
+  gradient.addColorStop(0, themeColors[0]);
+  gradient.addColorStop(0.5, themeColors[1]);
+  gradient.addColorStop(1, themeColors[2]);
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, w, h);
+  
+  // رسم خطوط راهنما
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.setLineDash([5, 5]);
+  ctx.beginPath();
+  ctx.moveTo(w/2, 0);
+  ctx.lineTo(w/2, h);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  
+  // بهینه‌سازی: پاک کردن و پر کردن شبکه فضایی
+  spatialGrid.clear();
+  
+  // بهینه‌سازی: به‌روزرسانی موقعیت توپ‌ها و اضافه کردن به شبکه فضایی
+  for (let i = 0; i < balls.length; i++) {
+    const b = balls[i];
+    b.y += speed * (deltaTime / 16);
+    spatialGrid.addBall(b);
+  }
+  
+  // بهینه‌سازی: تشخیص برخورد با استفاده از شبکه فضایی
+  for (let i = balls.length - 1; i >= 0; i--) {
+    const b = balls[i];
+    
+    // برخورد با دایره‌های پایین
+    if (b.y > h - 80) {
+      let target = b.x < w / 2 ? bottomCircles[0] : bottomCircles[1];
+      if (b.color === target.color) {
+        score++;
+        scoreDisplay.textContent = "امتیاز: " + score;
+        ballPool.release(balls[i]);
+        balls.splice(i, 1); // حذف توپ فقط در صورت برخورد صحیح
+      } else {
+        // فقط یک بار پایان بازی را نمایش می‌دهیم
+        if (gameActive) {
+          gameOver();
+        }
+        // توپ حذف نمی‌شود و در جای خود باقی می‌ماند
+      }
+    }
+  }
+  
+  // رسم توپ‌ها
+  for (let i = 0; i < balls.length; i++) {
+    const b = balls[i];
+    drawBall(b.x, b.y, b.color, 20);
+  }
+
+  // رسم دایره‌های پایین
+  for (let c of bottomCircles) {
+    drawBottomCircle(c.x, c.y, c.color);
+  }
+  
+  // رسم افکت کلیک
+  drawClickEffect();
+}
+
+// حلقه اصلی بازی (بهینه‌سازی شده)
+function gameLoop(timestamp) {
+  if (!lastTime) lastTime = timestamp;
+  const deltaTime = timestamp - lastTime;
+  lastTime = timestamp;
+
+  // زمان‌بندی دقیق برای ایجاد توپ‌ها
+  if (gameActive && timestamp > nextSpawnTime) {
+    spawnBalls();
+    nextSpawnTime = timestamp + spawnInterval;
+    
+    // افزایش سرعت و کاهش فاصله ایجاد توپ‌ها با افزایش امتیاز
+    if (score > 0 && score % 5 === 0) {
+      speed = Math.min(10, 5 + Math.floor(score / 5));
+      spawnInterval = Math.max(800, 2000 - Math.floor(score / 5) * 100);
+    }
+  }
+
+  update(deltaTime);
+  frameId = requestAnimationFrame(gameLoop);
+}
+
+// پایان بازی
+function gameOver() {
+  gameActive = false;
+  finalScoreDisplay.textContent = score;
+  gameOverScreen.style.display = "flex";
+  blurOverlay.style.display = "block";
+  
+  // ذخیره بیشترین امتیاز
+  if (score > highScore) {
+    highScore = score;
+    localStorage.setItem('hania-highscore', highScore);
+    highScoreDisplay.textContent = `بیشترین امتیاز: ${highScore}`;
+  }
+}
+
+// شروع مجدد بازی
+function restartGame() {
+  // آزاد کردن تمام توپ‌ها به استخر
+  for (let ball of balls) {
+    ballPool.release(ball);
+  }
+  balls = [];
+  
+  score = 0;
+  speed = 5;
+  spawnInterval = 2000;
+  scoreDisplay.textContent = "امتیاز: " + score;
+  gameActive = true;
+  gameOverScreen.style.display = "none";
+  blurOverlay.style.display = "none";
+  lastTime = 0;
+  nextSpawnTime = 0;
+  
+  // راه‌اندازی مجدد حلقه بازی
+  if (frameId) {
+    cancelAnimationFrame(frameId);
+  }
+  frameId = requestAnimationFrame(gameLoop);
+}
+
+// تعویض رنگ دایره‌ها با کلیک
+function handleCanvasClick(x, y) {
+  if (!gameActive) return;
+  
+  clickEffect = {
+    x: x,
+    y: y,
+    startTime: Date.now()
+  };
+  
+  const temp = bottomCircles[0].color;
+  bottomCircles[0].color = bottomCircles[1].color;
+  bottomCircles[1].color = temp;
+}
+
+// مدیریت رویدادهای لمسی و کلیک
+canvas.addEventListener("click", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  handleCanvasClick(x, y);
+});
+
+// مدیریت رویدادهای لمسی برای دستگاه‌های لمسی
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches[0];
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+  handleCanvasClick(x, y);
+}, { passive: false });
+
+// رویدادهای دکمه‌ها
+startGameBtn.addEventListener("click", startGame);
+changeThemeBtn.addEventListener("click", () => {
+  themeSelection.classList.add("active");
+});
+backToMenuBtn.addEventListener("click", () => {
+  themeSelection.classList.remove("active");
+});
+
+// رویداد انتخاب تم
+themeOptions.forEach(option => {
+  option.addEventListener("click", () => {
+    const theme = option.getAttribute("data-theme");
+    changeTheme(theme);
+  });
+});
+
+// تنظیم مجدد اندازه کانواس هنگام تغییر اندازه پنجره
+window.addEventListener("resize", () => {
+  if (gameActive) {
+    resizeCanvas();
+  }
+});
+
+// مقداردهی اولیه
+resizeCanvas();
+
+// شروع حلقه بازی
+frameId = requestAnimationFrame(gameLoop);
+</script>
+</body>
+</html>
