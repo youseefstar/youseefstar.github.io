@@ -26,35 +26,6 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* حالت‌های مختلف تم */
-  body.theme-default {
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-  }
-  
-  body.theme-dark {
-    background: linear-gradient(135deg, #0c0c0c, #1a1a1a, #2d2d2d);
-  }
-  
-  body.theme-ocean {
-    background: linear-gradient(135deg, #006994, #008080, #004953);
-  }
-  
-  body.theme-forest {
-    background: linear-gradient(135deg, #0a3d2e, #1b5e20, #2e7d32);
-  }
-  
-  body.theme-sunset {
-    background: linear-gradient(135deg, #ff6b6b, #ffa726, #ff8a65);
-  }
-  
-  body.theme-candy {
-    background: linear-gradient(135deg, #ff9ff3, #f368e0, #ff6b9d);
-  }
-  
-  body.theme-space {
-    background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
-  }
-
   /* استایل‌های صفحه اصلی */
   .main-menu {
     position: absolute;
@@ -179,30 +150,6 @@
 
   .theme-option.default {
     background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-  }
-
-  .theme-option.dark {
-    background: linear-gradient(135deg, #0c0c0c, #1a1a1a, #2d2d2d);
-  }
-
-  .theme-option.ocean {
-    background: linear-gradient(135deg, #006994, #008080, #004953);
-  }
-  
-  .theme-option.forest {
-    background: linear-gradient(135deg, #0a3d2e, #1b5e20, #2e7d32);
-  }
-  
-  .theme-option.sunset {
-    background: linear-gradient(135deg, #ff6b6b, #ffa726, #ff8a65);
-  }
-  
-  .theme-option.candy {
-    background: linear-gradient(135deg, #ff9ff3, #f368e0, #ff6b9d);
-  }
-  
-  .theme-option.space {
-    background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
   }
 
   .theme-name {
@@ -421,7 +368,7 @@
   }
 </style>
 </head>
-<body class="theme-default">
+<body>
 <!-- صفحه اصلی -->
 <div class="main-menu" id="mainMenu">
   <h1 class="game-title">هنیا</h1>
@@ -438,24 +385,6 @@
   <div class="theme-options">
     <div class="theme-option default" data-theme="default">
       <div class="theme-name">تم پیش‌فرض</div>
-    </div>
-    <div class="theme-option dark" data-theme="dark">
-      <div class="theme-name">تم تاریک</div>
-    </div>
-    <div class="theme-option ocean" data-theme="ocean">
-      <div class="theme-name">تم اقیانوسی</div>
-    </div>
-    <div class="theme-option forest" data-theme="forest">
-      <div class="theme-name">تم جنگلی</div>
-    </div>
-    <div class="theme-option sunset" data-theme="sunset">
-      <div class="theme-name">تم غروب</div>
-    </div>
-    <div class="theme-option candy" data-theme="candy">
-      <div class="theme-name">تم آب نباتی</div>
-    </div>
-    <div class="theme-option space" data-theme="space">
-      <div class="theme-name">تم فضایی</div>
     </div>
   </div>
   <button class="back-btn" id="backToMenuBtn">بازگشت به منو</button>
@@ -503,30 +432,6 @@ const themes = {
   'default': {
     background: ['#1a1a2e', '#16213e', '#0f3460'],
     ballColors: ['#393e46', 'white']
-  },
-  'dark': {
-    background: ['#0c0c0c', '#1a1a1a', '#2d2d2d'],
-    ballColors: ['#8a2be2', '#00ffff']
-  },
-  'ocean': {
-    background: ['#006994', '#008080', '#004953'],
-    ballColors: ['#1e90ff', '#00ced1']
-  },
-  'forest': {
-    background: ['#0a3d2e', '#1b5e20', '#2e7d32'],
-    ballColors: ['#228b22', '#ffd700']
-  },
-  'sunset': {
-    background: ['#ff6b6b', '#ffa726', '#ff8a65'],
-    ballColors: ['#ff4500', '#ffd700']
-  },
-  'candy': {
-    background: ['#ff9ff3', '#f368e0', '#ff6b9d'],
-    ballColors: ['#ff1493', '#00ff7f']
-  },
-  'space': {
-    background: ['#0d1b2a', '#1b263b', '#415a77'],
-    ballColors: ['#9370db', '#00bfff']
   }
 };
 
@@ -536,9 +441,6 @@ let highScore = parseInt(localStorage.getItem('hania-highscore')) || 0;
 
 // به‌روزرسانی بیشترین امتیاز در صفحه اصلی
 highScoreDisplay.textContent = `بیشترین امتیاز: ${highScore}`;
-
-// اعمال تم ذخیره شده
-document.body.className = `theme-${currentTheme}`;
 
 let bottomCircles = [];
 let balls = [];
@@ -550,6 +452,17 @@ let clickEffect = null;
 let gameActive = false;
 let nextSpawnTime = 0;
 let frameId = null;
+
+// متغیرهای جدید برای انیمیشن جابجایی توپ‌ها
+let swapAnimation = {
+  active: false,
+  startTime: 0,
+  duration: 400, // مدت زمان انیمیشن به میلی‌ثانیه
+  leftCircle: { x: 0, y: 0, color: '' },
+  rightCircle: { x: 0, y: 0, color: '' },
+  targetLeftX: 0,
+  targetRightX: 0
+};
 
 // تابع برای تنظیم اندازه کانواس
 function resizeCanvas() {
@@ -636,7 +549,6 @@ function backToMainMenu() {
 // تغییر تم
 function changeTheme(themeName) {
   currentTheme = themeName;
-  document.body.className = `theme-${themeName}`;
   
   // به‌روزرسانی رنگ توپ‌ها
   bottomCircles[0].color = themes[themeName].ballColors[0];
@@ -793,6 +705,48 @@ function drawClickEffect() {
   }
 }
 
+// تابع برای رسم انیمیشن جابجایی توپ‌ها
+function drawSwapAnimation() {
+  if (!swapAnimation.active) return;
+  
+  const elapsed = Date.now() - swapAnimation.startTime;
+  const progress = Math.min(elapsed / swapAnimation.duration, 1);
+  
+  // محاسبه موقعیت فعلی با استفاده از تابع easeOutCubic برای انیمیشن نرم
+  const easedProgress = 1 - Math.pow(1 - progress, 3);
+  
+  // محاسبه موقعیت فعلی توپ‌ها
+  const leftX = swapAnimation.leftCircle.x + (swapAnimation.targetLeftX - swapAnimation.leftCircle.x) * easedProgress;
+  const rightX = swapAnimation.rightCircle.x + (swapAnimation.targetRightX - swapAnimation.rightCircle.x) * easedProgress;
+  
+  // رسم توپ‌ها در موقعیت‌های فعلی
+  drawBottomCircle(leftX, swapAnimation.leftCircle.y, swapAnimation.leftCircle.color);
+  drawBottomCircle(rightX, swapAnimation.rightCircle.y, swapAnimation.rightCircle.color);
+  
+  // رسم خطوط متصل کننده
+  ctx.beginPath();
+  ctx.moveTo(leftX, swapAnimation.leftCircle.y);
+  ctx.lineTo(rightX, swapAnimation.rightCircle.y);
+  ctx.strokeStyle = `rgba(255, 255, 255, ${0.5 * (1 - progress)})`;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  
+  // اگر انیمیشن تمام شده باشد
+  if (progress >= 1) {
+    swapAnimation.active = false;
+    
+    // به‌روزرسانی موقعیت و رنگ توپ‌ها در آرایه اصلی
+    // این قسمت کلیدی است - باید موقعیت و رنگ هر دو توپ را به‌روزرسانی کنیم
+    const tempColor = bottomCircles[0].color;
+    bottomCircles[0].color = bottomCircles[1].color;
+    bottomCircles[1].color = tempColor;
+    
+    // موقعیت‌ها را به حالت اولیه برگردانیم
+    bottomCircles[0].x = swapAnimation.leftCircle.x;
+    bottomCircles[1].x = swapAnimation.rightCircle.x;
+  }
+}
+
 // بهینه‌سازی: استفاده از Object Pooling برای توپ‌ها
 const ballPool = {
   pool: [],
@@ -889,7 +843,17 @@ function update(deltaTime) {
     
     // برخورد با دایره‌های پایین
     if (b.y > h - 80) {
-      let target = b.x < w / 2 ? bottomCircles[0] : bottomCircles[1];
+      // این قسمت کلیدی است - باید موقعیت فعلی توپ را با رنگ توپ‌های پایین مقایسه کنیم
+      // نه با موقعیت ثابت آن‌ها
+      let target;
+      if (b.x < w / 2) {
+        // توپ در سمت چپ است
+        target = bottomCircles[0];
+      } else {
+        // توپ در سمت راست است
+        target = bottomCircles[1];
+      }
+      
       if (b.color === target.color) {
         score++;
         scoreDisplay.textContent = "امتیاز: " + score;
@@ -911,10 +875,15 @@ function update(deltaTime) {
     drawBall(b.x, b.y, b.color, 20);
   }
 
-  // رسم دایره‌های پایین
-  for (let c of bottomCircles) {
-    drawBottomCircle(c.x, c.y, c.color);
+  // رسم دایره‌های پایین (اگر انیمیشن فعال نیست)
+  if (!swapAnimation.active) {
+    for (let c of bottomCircles) {
+      drawBottomCircle(c.x, c.y, c.color);
+    }
   }
+  
+  // رسم انیمیشن جابجایی توپ‌ها (اگر فعال باشد)
+  drawSwapAnimation();
   
   // رسم افکت کلیک
   drawClickEffect();
@@ -982,19 +951,37 @@ function restartGame() {
   frameId = requestAnimationFrame(gameLoop);
 }
 
-// تعویض رنگ دایره‌ها با کلیک
+// تعویض رنگ دایره‌ها با کلیک (با انیمیشن)
 function handleCanvasClick(x, y) {
-  if (!gameActive) return;
+  if (!gameActive || swapAnimation.active) return;
   
+  // ایجاد افکت کلیک
   clickEffect = {
     x: x,
     y: y,
     startTime: Date.now()
   };
   
-  const temp = bottomCircles[0].color;
-  bottomCircles[0].color = bottomCircles[1].color;
-  bottomCircles[1].color = temp;
+  // شروع انیمیشن جابجایی توپ‌ها
+  swapAnimation.active = true;
+  swapAnimation.startTime = Date.now();
+  
+  // ذخیره موقعیت و رنگ اولیه
+  swapAnimation.leftCircle = {
+    x: bottomCircles[0].x,
+    y: bottomCircles[0].y,
+    color: bottomCircles[0].color
+  };
+  
+  swapAnimation.rightCircle = {
+    x: bottomCircles[1].x,
+    y: bottomCircles[1].y,
+    color: bottomCircles[1].color
+  };
+  
+  // تعیین مقاصد
+  swapAnimation.targetLeftX = bottomCircles[1].x;
+  swapAnimation.targetRightX = bottomCircles[0].x;
 }
 
 // مدیریت رویدادهای لمسی و کلیک
@@ -1006,14 +993,14 @@ canvas.addEventListener("click", (e) => {
 });
 
 // مدیریت رویدادهای لمسی برای دستگاه‌های لمسی
-// canvas.addEventListener("touchstart", (e) => {
-//   e.preventDefault();
-//   const rect = canvas.getBoundingClientRect();
-//   const touch = e.touches[0];
-//   const x = touch.clientX - rect.left;
-//   const y = touch.clientY - rect.top;
-//   handleCanvasClick(x, y);
-// }, { passive: false });
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches[0];
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+  handleCanvasClick(x, y);
+}, { passive: false });
 
 // رویدادهای دکمه‌ها
 startGameBtn.addEventListener("click", startGame);
