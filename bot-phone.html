@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ساخت ربات هوشمند برای کسب‌وکار شما</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap);
+    
+    :root {
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --secondary: #3a0ca3;
+      --accent: #4cc9f0;
+      --bg: #f6f8fb;
+      --phone-body: #e9edf3;
+      --screen: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.15);
+      --chat-bg: #f0f2f5;
+      --header-blue: #2a2d3e;
+      --user-bubble: #dcf8c6;
+      --bot-bubble: #ffffff;
+      --icon-color: #546571;
+      --success: #4ade80;
+    }
+    
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: radial-gradient(circle at center, #fefefe, var(--bg));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: Vazirmatn, Inter, system-ui, 'Segoe UI', sans-serif;
+    }
+    
+    svg {
+      width: 360px;
+      height: auto;
+      max-width: 92vw;
+      filter: drop-shadow(0 10px 20px var(--shadow));
+    }
+    
+    .platform-icon {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .platform-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 380 780" xmlns="http://www.w3.org/2000/svg" aria-label="موبایل در حال ساخت ربات هوشمند">
+    <defs>
+      <linearGradient id="gradModern" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f9fbfd"/>
+        <stop offset="100%" stop-color="#e2e8ef"/>
+      </linearGradient>
+      
+      <!-- Gradient for header -->
+      <linearGradient id="headerGradient" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#4361ee"/>
+        <stop offset="100%" stop-color="#3a0ca3"/>
+      </linearGradient>
+      
+      <!-- Gradient for user bubble -->
+      <linearGradient id="userBubbleGradient" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#4cc9f0"/>
+        <stop offset="100%" stop-color="#4895ef"/>
+      </linearGradient>
+    </defs>
+    
+    <!-- Phone body with enhanced shadow -->
+    <rect x="15" y="15" width="350" height="750" rx="60" fill="url(#gradModern)" stroke="#d0d7df" stroke-width="1.5"/>
+    <rect x="25" y="25" width="330" height="730" rx="55" fill="var(--screen)"/>
+    
+    <!-- Decorative elements -->
+    <circle cx="60" cy="70" r="8" fill="var(--accent)" opacity="0.7"/>
+    <circle cx="320" cy="120" r="6" fill="var(--primary-light)" opacity="0.5"/>
+    <circle cx="80" cy="650" r="5" fill="var(--secondary)" opacity="0.4"/>
+    
+    <foreignObject x="25" y="25" width="330" height="730">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <style>
+          .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 730px;
+            font-family: Vazirmatn, Tahoma, sans-serif;
+            background-color: var(--chat-bg);
+            border-radius: 55px;
+            overflow: hidden;
+            box-sizing: border-box;
+            position: relative;
+          }
+          
+          .chat-header {
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+            direction: rtl;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .chat-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+          }
+          
+          .chat-header .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fff;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+          }
+          
+          .chat-header .avatar svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--primary);
+          }
+          
+          .chat-header .info {
+            text-align: right;
+            flex-grow: 1;
+          }
+          
+          .chat-header .name {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 3px;
+          }
+          
+          .chat-header .status {
+            font-size: .85em;
+            opacity: .9;
+            display: flex;
+            align-items: center;
+          }
+          
+          .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            margin-left: 5px;
+            animation: pulse 2s infinite;
+          }
+          
+          @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+          }
+          
+          .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            direction: rtl;
+            background: linear-gradient(180deg, #f8fafc 0%, #f0f2f5 100%);
+          }
+          
+          .bubble {
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 80%;
+            font-size: .95em;
+            line-height: 1.5;
+            word-wrap: break-word;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+          }
+          
+          .user-msg {
+            background: linear-gradient(90deg, #4cc9f0, #4895ef);
+            color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            text-align: right;
+          }
+          
+          .bot-msg {
+            background-color: var(--bot-bubble);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: right;
+            border: 1px solid #e9ecef;
+          }
+          
+          .user-msg.command {
+            background: linear-gradient(90deg, #3a0ca3, #4361ee);
+            color: white;
+            font-family: 'Vazirmatn', monospace;
+            font-size: 1em;
+            font-weight: 600;
+          }
+          
+          .bot-msg.highlight {
+            background-color: #f0f7ff;
+            border-left: 3px solid var(--primary);
+            display: none;
+          }
+
+          .bot-msg.highlight.active {
+            display: inline;
+            animation: fadeIn 0.5s ease;
+          }
+          
+          
+          .chat-input {
+            padding: 10px 15px;
+            background: var(--screen);
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            direction: rtl;
+            min-height: 60px;
+            flex-shrink: 0;
+          }
+          
+          .chat-input .input-box {
+            flex-grow: 1;
+            background: var(--chat-bg);
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 10px 15px;
+            text-align: right;
+            color: #555;
+            font-size: .9em;
+            margin: 0 10px;
+            font-family: Vazirmatn, Tahoma, sans-serif;
+            transition: all 0.3s ease;
+          }
+          
+          .chat-input .input-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+          }
+          
+          .chat-input .input-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--icon-color);
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: fill 0.3s ease;
+          }
+          
+          .chat-input .input-icon:hover {
+            fill: var(--primary);
+          }
+          
+          .chat-input .send-btn {
+            fill: var(--primary);
+            transform: scaleX(-1);
+          }
+          
+          .platforms-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: #fff;
+            border-top: 1px solid #e9e9e9;
+            flex-shrink: 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+          }
+          
+          .platform-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7em;
+            color: #555;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+          }
+          
+          .platform-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: white;
+          }
+          
+          .platform-icon.telegram {
+            background: linear-gradient(135deg, #34aadf, #2a96d6);
+            color: white;
+          }
+          
+          .platform-icon.ita {
+            background: linear-gradient(135deg, #00a2ff, #0078d4);
+            color: white;
+          }
+          
+          .platform-icon.rubika {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: white;
+          }
+          
+          .platform-icon.bale {
+            background: linear-gradient(135deg, #00c853, #00a844);
+            color: white;
+          }
+          
+          .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-right: 5px;
+            font-weight: 600;
+          }
+          
+          .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 18px;
+            align-self: flex-end;
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            margin-bottom: 5px;
+          }
+          
+          .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #a0a0a0;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1.4s infinite ease-in-out;
+          }
+          
+          .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+          .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+          
+          @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+          }
+          
+          .platform-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+          }
+          
+          .platform-option {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+            min-width: 70px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          }
+          
+          .platform-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #f8fafc;
+          }
+          
+          .platform-option.telegram {
+            border-color: #34aadf;
+            color: #34aadf;
+          }
+          
+          .platform-option.ita {
+            border-color: #00a2ff;
+            color: #00a2ff;
+          }
+          
+          .platform-option.rubika {
+            border-color: #7c3aed;
+            color: #7c3aed;
+          }
+          
+          .platform-option.bale {
+            border-color: #00c853;
+            color: #00c853;
+          }
+          
+          .platform-info {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            direction: rtl;
+          }
+          
+          .platform-info.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+          }
+          
+          .platform-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          
+          .platform-info p {
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #4a5568;
+          }
+          
+          .platform-info ul {
+            margin: 10px 0;
+            padding-right: 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+          }
+          
+          .platform-info li {
+            margin-bottom: 6px;
+          }
+          
+          .back-button {
+            background: #f1f5f9;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.8em;
+            cursor: pointer;
+            margin-top: 10px;
+            color: #475569;
+            transition: all 0.3s ease;
+            font-family: Vazirmatn, Tahoma, sans-serif;
+          }
+          
+          .back-button:hover {
+            background: #e2e8f0;
+          }
+          
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        </style>
+        
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="avatar">
+              <svg viewBox="0 0 24 24">
+                <path d="M13.8,1A1.2,1.2,0,0,0,12.7.2L12,0L9,3L5,1L1,5L3,9L0,12L.2,12.7A1.2,1.2,0,0,0,1,13.8L2.5,15.3L4,21L8,23L12,21L15.3,22.5L22.5,15.3L21,12L23,8L21,4L15.3,2.5L13.8,1M19,12C19,15.86,15.86,19,12,19C8.14,19,5,15.86,5,12C5,8.14,8.14,5,12,5C15.86,5,19,8.14,19,12Z"/>
+              </svg>
+            </div>
+            <div class="info">
+              <div class="name">ربات‌ساز حرفه‌ای</div>
+              <div class="status"><span class="status-indicator"></span> همیشه آنلاین</div>
+            </div>
+          </div>
+          
+          <div class="chat-messages" style="direction: ltr;">
+            <div class="bubble user-msg command">/newbot</div>
+            <div class="bubble bot-msg">
+                برای کدام پلتفرم می‌خواهید ربات خود را ایجاد کنید؟
+              <div class="platform-options">
+                <div class="platform-option telegram" onclick="selectPlatform('telegram')">تلگرام</div>
+                <div class="platform-option ita" onclick="selectPlatform('ita')">ایتا</div>
+                <div class="platform-option rubika" onclick="selectPlatform('rubika')">روبیکا</div>
+                <div class="platform-option bale" onclick="selectPlatform('bale')">بله</div>
+              </div>
+            </div>
+
+            <div class="typing-indicator">
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+            </div>
+            
+            <div class="platform-info" id="telegram-info">
+              <h3>📱 ربات تلگرام</h3>
+              <p>ربات‌های تلگرام قدرتمندترین و محبوب‌ترین ربات‌ها در جهان هستند. با ساخت ربات تلگرام می‌توانید:</p>
+              <ul>
+                <li>به بیش از 800 میلیون کاربر دسترسی داشته باشید</li>
+                <li>از API قدرتمند تلگرام استفاده کنید</li>
+                <li>ربات‌های تعاملی با قابلیت‌های پیشرفته بسازید</li>
+                <li>از امنیت بالای پلتفرم بهره‌مند شوید</li>
+              </ul>
+              <button class="back-button" onclick="goBack()">← بازگشت به انتخاب پلتفرم</button>
+            </div>
+            
+            <div class="platform-info" id="ita-info">
+              <h3>📱 ربات ایتا</h3>
+              <p>ایتا یک پیام‌رسان ایرانی پرطرفدار است که ربات‌های آن امکانات ویژه‌ای برای کسب‌وکارهای ایرانی فراهم می‌کنند:</p>
+              <ul>
+                <li>دسترسی به کاربران ایرانی فعال</li>
+                <li>پشتیبانی از پرداخت‌های داخلی</li>
+                <li>امکان ارسال نوتیفیکیشن به کاربران</li>
+                <li>سازگاری کامل با کسب‌وکارهای ایرانی</li>
+              </ul>
+              <button class="back-button" onclick="goBack()">← بازگشت به انتخاب پلتفرم</button>
+            </div>
+            
+            <div class="platform-info" id="rubika-info">
+              <h3>📱 ربات روبیکا</h3>
+              <p>روبیکا یک ابراپ ایرانی با قابلیت‌های متنوع است که ربات‌های آن می‌توانند خدمات گسترده‌ای ارائه دهند:</p>
+              <ul>
+                <li>امکان ساخت ربات‌های چندمنظوره</li>
+                <li>پشتیبانی از استیکر و محتوای چندرسانه‌ای</li>
+                <li>امکان یکپارچه‌سازی با خدمات بانکی</li>
+                <li>دسترسی به کاربران فعال ایرانی</li>
+              </ul>
+              <button class="back-button" onclick="goBack()">← بازگشت به انتخاب پلتفرم</button>
+            </div>
+            
+            <div class="platform-info" id="bale-info">
+              <h3>📱 ربات بله</h3>
+              <p>بله یک پیام‌رسان ایرانی با تمرکز بر خدمات بانکی و مالی است که برای ربات‌های تجاری ایده‌آل است:</p>
+              <ul>
+                <li>یکپارچگی کامل با خدمات بانکی</li>
+                <li>امکان انجام تراکنش‌های مالی امن</li>
+                <li>دسترسی به کاربران با قدرت خرید بالا</li>
+                <li>امنیت فوق‌العاده برای تراکنش‌ها</li>
+              </ul>
+              <button class="back-button" onclick="goBack()">← بازگشت به انتخاب پلتفرم</button>
+            </div>
+
+            <div class="bubble bot-msg highlight">
+              <span class="badge">موفق</span> ربات <span class="platform"></span> با موفقیت ساخته شد! 🎉
+            </div>
+          </div>
+          
+          <div class="chat-input">
+            <svg class="input-icon send-btn" viewBox="0 0 24 24">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+            </svg>
+            <div class="input-box">پیام خود را اینجا تایپ کنید...</div>
+            <svg class="input-icon" viewBox="0 0 24 24">
+              <path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"></path>
+            </svg>
+          </div>
+          
+          <div class="platforms-bar">
+            <div class="platform-icon telegram" title="ربات تلگرام">TL</div>
+            <div class="platform-icon ita" title="ربات ایتا">IT</div>
+            <div class="platform-icon rubika" title="ربات روبیکا">RB</div>
+            <div class="platform-icon bale" title="ربات بله">BL</div>
+          </div>
+        </div>
+      </div>
+    </foreignObject>
+    
+    <!-- Home indicator -->
+    <rect x="150" y="730" width="80" height="6" rx="3" fill="#ccd2da"/>
+    
+    <!-- Decorative elements -->
+    <circle cx="320" cy="200" r="4" fill="var(--accent)" opacity="0.6"/>
+    <circle cx="50" cy="500" r="3" fill="var(--primary-light)" opacity="0.4"/>
+  </svg>
+
+  <script>
+    function selectPlatform(platform) {
+      // Hide all platform info sections
+      document.querySelectorAll('.platform-info').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Show the selected platform info
+      document.getElementById(`${platform}-info`).classList.add('active');
+      
+      // Scroll to the platform info
+      document.getElementById(`${platform}-info`).scrollIntoView({ behavior: 'smooth' });
+
+      document.querySelector('.highlight').classList.add('active');
+      document.querySelector('.platform').innerHTML = platform;
+      document.querySelector('.typing-indicator').style.display = 'none';
+    }
+    
+    function goBack() {
+      // Hide all platform info sections
+      document.querySelectorAll('.platform-info').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      document.querySelector('.highlight').classList.remove('active');
+      document.querySelector('.typing-indicator').style.display = 'flex';
+      
+      // Scroll back to the platform options
+      document.querySelector('.platform-options').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
