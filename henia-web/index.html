@@ -1052,63 +1052,63 @@ const themes = {
     ballColors: ['#45b7d1', '#96ceb4'],
     levelRequired: 2,
     price: 0,
-    owned: true
+    owned: false
   },
   'lavender': {
     background: ['#e6e6fa', '#d8bfd8', '#dda0dd'],
     ballColors: ['#9370db', '#ba55d3'],
     levelRequired: 3,
     price: 0,
-    owned: true
+    owned: false
   },
   'sunset': {
     background: ['#ffcccb', '#ffb6c1', '#ffa07a'],
     ballColors: ['#ff6347', '#ff4500'],
     levelRequired: 4,
     price: 0,
-    owned: true
+    owned: false
   },
   'forest': {
     background: ['#98fb98', '#90ee90', '#adff2f'],
     ballColors: ['#228b22', '#006400'],
     levelRequired: 5,
     price: 0,
-    owned: true
+    owned: false
   },
   'sky': {
     background: ['#87ceeb', '#b0e0e6', '#add8e6'],
     ballColors: ['#1e90ff', '#0000ff'],
     levelRequired: 6,
     price: 0,
-    owned: true
+    owned: false
   },
   'desert': {
     background: ['#f5deb3', '#f4a460', '#daa520'],
     ballColors: ['#cd853f', '#8b4513'],
     levelRequired: 7,
     price: 0,
-    owned: true
+    owned: false
   },
   'berry': {
     background: ['#d8bfd8', '#ee82ee', '#da70d6'],
     ballColors: ['#c71585', '#8b008b'],
     levelRequired: 8,
     price: 0,
-    owned: true
+    owned: false
   },
   'mint': {
     background: ['#98ff98', '#afeeee', '#e0ffff'],
     ballColors: ['#20b2aa', '#008080'],
     levelRequired: 9,
     price: 0,
-    owned: true
+    owned: false
   },
   'rose': {
     background: ['#ffe4e1', '#ffb6c1', '#ff69b4'],
     ballColors: ['#ff1493', '#c71585'],
     levelRequired: 10,
     price: 0,
-    owned: true
+    owned: false
   },
   'galaxy': {
     background: ['#0c0c2e', '#1a1a4a', '#2d2d7a'],
@@ -1235,11 +1235,20 @@ let gamesPlayed = parseInt(localStorage.getItem('hania-gamesPlayed')) || 0;
 let totalScore = parseInt(localStorage.getItem('hania-totalScore')) || 0;
 let maxLevel = parseInt(localStorage.getItem('hania-maxLevel')) || 1;
 let playTime = parseInt(localStorage.getItem('hania-playTime')) || 0; // به دقیقه
-let ownedThemes = JSON.parse(localStorage.getItem('hania-ownedThemes')) || ['default', 'ocean', 'lavender', 'sunset', 'forest', 'sky', 'desert', 'berry', 'mint', 'rose'];
+let ownedThemes = JSON.parse(localStorage.getItem('hania-ownedThemes')) || ['default'];
 let ownedPowerups = JSON.parse(localStorage.getItem('hania-ownedPowerups')) || { slow: 3, clear: 2, double: 1, shield: 3 };
 let challengeProgress = JSON.parse(localStorage.getItem('hania-challengeProgress')) || challenges;
 let swapsCount = parseInt(localStorage.getItem('hania-swapsCount')) || 0;
 let powerupsUsed = parseInt(localStorage.getItem('hania-powerupsUsed')) || 0;
+
+// به‌روزرسانی مالکیت تم‌ها از localStorage
+if (ownedThemes) {
+  ownedThemes.forEach(themeName => {
+    if (themes[themeName]) {
+      themes[themeName].owned = true;
+    }
+  });
+}
 
 // به‌روزرسانی نمایش اطلاعات در صفحه اصلی
 highScoreDisplay.textContent = `بیشترین امتیاز: ${highScore}`;
@@ -1297,6 +1306,15 @@ function resizeCanvas() {
     { x: w / 4, y: h - 50, color: themes[currentTheme].ballColors[0] },
     { x: (3 * w) / 4, y: h - 50, color: themes[currentTheme].ballColors[1] }
   ];
+}
+
+// تابع stop برای توقف بازی
+function stopGame() {
+  gameActive = false;
+  if (frameId) {
+    cancelAnimationFrame(frameId);
+    frameId = null;
+  }
 }
 
 // شروع بازی
@@ -1368,11 +1386,7 @@ function backToMainMenu() {
   mainMenu.classList.remove("hidden");
   
   // توقف بازی
-  gameActive = false;
-  if (frameId) {
-    cancelAnimationFrame(frameId);
-    frameId = null;
-  }
+  stopGame();
 }
 
 // تغییر تم
@@ -1934,9 +1948,9 @@ const spatialGrid = {
   }
 };
 
-// بررسی ارتقای سطح
+// بررسی ارتقای سطح (هر 50 امتیاز)
 function checkLevelUp() {
-  const newLevel = Math.min(10, Math.floor(score / 10) + 1);
+  const newLevel = Math.min(10, Math.floor(score / 50) + 1);
   
   if (newLevel > playerLevel) {
     playerLevel = newLevel;
@@ -1947,6 +1961,9 @@ function checkLevelUp() {
     // نمایش صفحه ارتقای سطح
     newLevelDisplay.textContent = playerLevel;
     levelUpScreen.style.display = "flex";
+    
+    // توقف بازی هنگام ارتقای سطح
+    stopGame();
     
     // به‌روزرسانی قفل تم‌ها
     updateThemeLocks();
@@ -1959,6 +1976,10 @@ function checkLevelUp() {
 // بستن صفحه ارتقای سطح
 function closeLevelUp() {
   levelUpScreen.style.display = "none";
+  
+  // ادامه بازی
+  gameActive = true;
+  frameId = requestAnimationFrame(gameLoop);
 }
 
 // استفاده از قدرت
