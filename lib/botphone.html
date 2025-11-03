@@ -236,7 +236,6 @@
             animation: fadeIn 0.5s ease;
           }
           
-          
           .chat-input {
             padding: 10px 15px;
             background: var(--screen);
@@ -489,6 +488,75 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
           }
+          
+          /* اضافه کردن استایل‌های جدید */
+          .simple-stats {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+            border-radius: 12px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #475569;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          }
+          
+          .cta-container {
+            text-align: center;
+            padding: 10px 0;
+          }
+          
+          .primary-cta {
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+            font-family: Vazirmatn, Tahoma, sans-serif;
+          }
+          
+          .primary-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(67, 97, 238, 0.4);
+          }
+          
+          .quick-features {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 15px 0;
+          }
+          
+          .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85em;
+            color: #475569;
+          }
+          
+          .mini-cta {
+            background: linear-gradient(90deg, #4895ef, #4cc9f0);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: Vazirmatn, Tahoma, sans-serif;
+            box-shadow: 0 2px 8px rgba(76, 201, 240, 0.3);
+          }
+          
+          .mini-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 201, 240, 0.4);
+          }
         </style>
         
         <div class="chat-container">
@@ -514,12 +582,24 @@
                 <div class="platform-option rubika" onclick="selectPlatform('rubika')">روبیکا</div>
                 <div class="platform-option bale" onclick="selectPlatform('bale')">بله</div>
               </div>
+              
+              <!-- اضافه کردن CTA کوچک -->
+              <div style="text-align: center; margin-top: 15px;">
+                <button class="mini-cta" onclick="startCreation()">
+                  ساخت ربات در ۲ دقیقه 🚀
+                </button>
+              </div>
             </div>
 
             <div class="typing-indicator">
               <div class="typing-dot"></div>
               <div class="typing-dot"></div>
               <div class="typing-dot"></div>
+            </div>
+            
+            <!-- اضافه کردن آمار ساده -->
+            <div class="simple-stats">
+              📊 +۱,۲۵۰ ربات فعال
             </div>
             
             <div class="platform-info" id="telegram-info">
@@ -585,18 +665,13 @@
             </svg>
           </div>
           
-          <div class="platforms-bar">
-            <div class="platform-icon telegram" title="ربات تلگرام">TL</div>
-            <div class="platform-icon ita" title="ربات ایتا">IT</div>
-            <div class="platform-icon rubika" title="ربات روبیکا">RB</div>
-            <div class="platform-icon bale" title="ربات بله">BL</div>
-          </div>
+          <button class="primary-cta" onclick="startBotCreation()">شروع رایگان</button>
         </div>
       </div>
     </foreignObject>
     
     <!-- Home indicator -->
-    <rect x="150" y="730" width="80" height="6" rx="3" fill="#ccd2da"/>
+    <rect x="150" y="745" width="80" height="6" rx="3" fill="#ccd2da"/>
     
     <!-- Decorative elements -->
     <circle cx="320" cy="200" r="4" fill="var(--accent)" opacity="0.6"/>
@@ -632,6 +707,14 @@
       
       // Scroll back to the platform options
       document.querySelector('.platform-options').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function startCreation() {
+      alert('شروع فرآیند ساخت ربات! این یک دمو است. در نسخه واقعی به صفحه ساخت ربات هدایت می‌شوید.');
+    }
+    
+    function startBotCreation() {
+      alert('شروع فرآیند ساخت ربات! این یک دمو است. در نسخه واقعی به صفحه ساخت ربات هدایت می‌شوید.');
     }
   </script>
 </body>
