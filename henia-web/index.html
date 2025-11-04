@@ -132,6 +132,10 @@
     background: linear-gradient(135deg, #9b59b6, #8e44ad);
   }
 
+  .challenges-btn {
+    background: linear-gradient(135deg, #00b4db, #0083b0);
+  }
+
   /* استایل‌های صفحه انتخاب تم */
   .theme-selection {
     position: absolute;
@@ -260,9 +264,6 @@
 
   /* استایل‌های بازی */
   .game-container {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -1123,6 +1124,124 @@
       gap: 10px;
     }
   }
+
+  /* استایل‌های جدید برای بهبود واکنش‌گرایی */
+  @media (max-width: 768px) {
+    .game-container {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .powerups-container {
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      left: 0;
+      bottom: 10px;
+    }
+    
+    .powerup-btn {
+      font-size: 10px;
+      padding: 6px 10px;
+    }
+    
+    .powerup-count {
+      width: 18px;
+      height: 18px;
+      font-size: 10px;
+    }
+    
+    .score-container, .level-container, .coins-container, .time-container {
+      padding: 6px 12px;
+      font-size: clamp(12px, 3.5vw, 16px);
+    }
+    
+    .score-container {
+      top: 10px;
+      left: 10px;
+    }
+    
+    .level-container {
+      top: 10px;
+      right: 10px;
+    }
+    
+    .coins-container {
+      top: 50px;
+      left: 10px;
+    }
+    
+    .time-container {
+      top: 50px;
+      right: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .powerups-container {
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    
+    .powerup-btn {
+      flex: 1;
+      min-width: 80px;
+      justify-content: center;
+    }
+  }
+
+  @media (orientation: landscape) and (max-height: 500px) {
+    .game-title {
+      font-size: clamp(24px, 8vw, 40px);
+      margin-bottom: 5px;
+    }
+    
+    .high-score, .player-level, .player-coins {
+      font-size: clamp(14px, 4vw, 20px);
+      margin-bottom: 5px;
+    }
+    
+    .menu-buttons {
+      gap: 10px;
+    }
+    
+    .menu-btn {
+      padding: 8px 16px;
+      font-size: clamp(14px, 4vw, 18px);
+    }
+    
+    .theme-options {
+      gap: 8px;
+    }
+    
+    .theme-option {
+      width: min(120px, 28vw);
+      height: min(90px, 20vw);
+    }
+  }
+
+  /* برای دسکتاپ و تبلت‌های بزرگ */
+  @media (min-width: 1024px) {
+    .game-container {
+      max-width: 500px;
+      max-height: 800px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    }
+  }
+
+  /* برای تبلت‌ها */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .game-container {
+      max-width: 600px;
+      max-height: 900px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1137,6 +1256,7 @@
     <button class="menu-btn game-modes-btn" id="gameModesBtn">حالت‌های بازی</button>
     <button class="menu-btn theme-btn" id="changeThemeBtn">تغییر تم</button>
     <button class="menu-btn customization-btn" id="customizationBtn">شخصی‌سازی</button>
+    <button class="menu-btn challenges-btn" id="challengesBtn">چالش‌ها</button>
     <button class="menu-btn stats-btn" id="statsBtn">آمار بازی</button>
     <button class="menu-btn shop-btn" id="shopBtn">فروشگاه</button>
     <button class="menu-btn download-btn" id="downloadBtn">دانلود بازی</button>
@@ -1269,6 +1389,15 @@
     </div>
   </div>
   <button class="back-btn" id="backFromCustomizationBtn">بازگشت</button>
+</div>
+
+<!-- صفحه چالش‌ها -->
+<div class="challenges-page" id="challengesPage">
+  <h2 class="challenges-title">چالش‌های بازی</h2>
+  <div class="challenges-container" id="challengesContainer">
+    <!-- چالش‌ها با اسکریپت پر می‌شوند -->
+  </div>
+  <button class="back-btn" id="backFromChallengesBtn">بازگشت</button>
 </div>
 
 <!-- صفحه آمار -->
@@ -1405,6 +1534,7 @@ const mainMenu = document.getElementById("mainMenu");
 const themeSelection = document.getElementById("themeSelection");
 const gameModesPage = document.getElementById("gameModesPage");
 const customizationPage = document.getElementById("customizationPage");
+const challengesPage = document.getElementById("challengesPage");
 const statsPage = document.getElementById("statsPage");
 const shopPage = document.getElementById("shopPage");
 const achievementsPage = document.getElementById("achievementsPage");
@@ -1412,12 +1542,14 @@ const startGameBtn = document.getElementById("startGameBtn");
 const gameModesBtn = document.getElementById("gameModesBtn");
 const changeThemeBtn = document.getElementById("changeThemeBtn");
 const customizationBtn = document.getElementById("customizationBtn");
+const challengesBtn = document.getElementById("challengesBtn");
 const statsBtn = document.getElementById("statsBtn");
 const shopBtn = document.getElementById("shopBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const backToMenuBtn = document.getElementById("backToMenuBtn");
 const backFromModesBtn = document.getElementById("backFromModesBtn");
 const backFromCustomizationBtn = document.getElementById("backFromCustomizationBtn");
+const backFromChallengesBtn = document.getElementById("backFromChallengesBtn");
 const backFromStatsBtn = document.getElementById("backFromStatsBtn");
 const backFromShopBtn = document.getElementById("backFromShopBtn");
 const backFromAchievementsBtn = document.getElementById("backFromAchievementsBtn");
@@ -1433,6 +1565,7 @@ const newLevelDisplay = document.getElementById("newLevel");
 const powerupsContainer = document.getElementById("powerupsContainer");
 const powerupActive = document.getElementById("powerupActive");
 const shopItems = document.getElementById("shopItems");
+const challengesContainer = document.getElementById("challengesContainer");
 const achievementsContainer = document.getElementById("achievementsContainer");
 const tutorial = document.getElementById("tutorial");
 
@@ -1850,8 +1983,9 @@ let shieldCount = 3; // تعداد محافظ‌های باقی‌مانده
 
 // تابع برای تنظیم اندازه کانواس
 function resizeCanvas() {
-  w = window.innerWidth;
-  h = window.innerHeight;
+  const gameContainer = document.querySelector('.game-container');
+  w = gameContainer.clientWidth;
+  h = gameContainer.clientHeight;
   
   canvas.width = w;
   canvas.height = h;
@@ -2135,7 +2269,7 @@ function spawnBalls() {
 // رسم توپ‌ها به شکل دایره
 function drawBallCircle(x, y, color, type = 'normal', r = 20) {
   // تنظیم شعاع بر اساس اندازه صفحه
-  const radius = Math.max(15, r * (w / 400));
+  const radius = Math.max(15, r * (Math.min(w, h) / 400));
   
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, Math.PI * 2);
@@ -2199,7 +2333,7 @@ function drawBallCircle(x, y, color, type = 'normal', r = 20) {
 // رسم توپ‌ها به شکل مربع
 function drawBallSquare(x, y, color, type = 'normal', r = 20) {
   // تنظیم اندازه بر اساس اندازه صفحه
-  const size = Math.max(15, r * (w / 400));
+  const size = Math.max(15, r * (Math.min(w, h) / 400));
   
   ctx.beginPath();
   ctx.rect(x - size, y - size, size * 2, size * 2);
@@ -2255,7 +2389,7 @@ function drawBallSquare(x, y, color, type = 'normal', r = 20) {
 // رسم توپ‌ها به شکل ستاره
 function drawBallStar(x, y, color, type = 'normal', r = 20) {
   // تنظیم شعاع بر اساس اندازه صفحه
-  const radius = Math.max(15, r * (w / 400));
+  const radius = Math.max(15, r * (Math.min(w, h) / 400));
   
   // رسم ستاره
   drawStar(x, y, 5, radius, radius * 0.5);
@@ -2351,7 +2485,7 @@ function drawFlame(cx, cy, size) {
 // رسم دایره‌های پایین با ظاهر زیبا
 function drawBottomCircle(x, y, color, r = 30) {
   // تنظیم شعاع بر اساس اندازه صفحه
-  const radius = Math.max(20, r * (w / 400));
+  const radius = Math.max(20, r * (Math.min(w, h) / 400));
   
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, Math.PI * 2);
@@ -3191,6 +3325,39 @@ function downloadGame() {
   document.body.removeChild(link);
 }
 
+// نمایش صفحه چالش‌ها
+function showChallenges() {
+  // پر کردن چالش‌ها
+  challengesContainer.innerHTML = '';
+  
+  challengeProgress.forEach(challenge => {
+    const progress = Math.min(challenge.progress / challenge.target * 100, 100);
+    const completed = challenge.completed;
+    
+    const challengeItem = document.createElement('div');
+    challengeItem.className = 'challenge-item';
+    challengeItem.innerHTML = `
+      <div style="flex: 1;">
+        <div>${challenge.title}</div>
+        <div style="font-size: 14px; opacity: 0.8;">${challenge.description}</div>
+        <div class="challenge-progress">
+          <div class="challenge-progress-bar" style="width: ${progress}%"></div>
+        </div>
+        ${completed ? 
+          '<div class="challenge-completed">کامل شده</div>' : 
+          `<div>${challenge.progress}/${challenge.target}</div>`
+        }
+      </div>
+      <div class="challenge-reward">${challenge.reward.coins} سکه</div>
+    `;
+    
+    challengesContainer.appendChild(challengeItem);
+  });
+  
+  // نمایش صفحه چالش‌ها
+  challengesPage.classList.add('active');
+}
+
 // نمایش صفحه آمار
 function showStats() {
   // به‌روزرسانی آمار
@@ -3377,6 +3544,7 @@ changeThemeBtn.addEventListener("click", () => {
 customizationBtn.addEventListener("click", () => {
   customizationPage.classList.add("active");
 });
+challengesBtn.addEventListener("click", showChallenges);
 statsBtn.addEventListener("click", showStats);
 shopBtn.addEventListener("click", showShop);
 downloadBtn.addEventListener("click", downloadGame);
@@ -3388,6 +3556,9 @@ backFromModesBtn.addEventListener("click", () => {
 });
 backFromCustomizationBtn.addEventListener("click", () => {
   customizationPage.classList.remove("active");
+});
+backFromChallengesBtn.addEventListener("click", () => {
+  challengesPage.classList.remove("active");
 });
 backFromStatsBtn.addEventListener("click", () => {
   statsPage.classList.remove("active");
