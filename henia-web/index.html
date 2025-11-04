@@ -75,14 +75,6 @@
     text-align: center;
   }
 
-  .player-coins {
-    color: #ffd700;
-    font-size: clamp(16px, 4vw, 24px);
-    margin-bottom: 10px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    text-align: center;
-  }
-
   .menu-buttons {
     display: flex;
     flex-direction: column;
@@ -115,14 +107,6 @@
   .download-btn {
     background: linear-gradient(135deg, #00b09b, #96c93d);
   }
-  
-  .stats-btn {
-    background: linear-gradient(135deg, #ff8c00, #ff4500);
-  }
-  
-  .shop-btn {
-    background: linear-gradient(135deg, #9b59b6, #8e44ad);
-  }
 
   .game-modes-btn {
     background: linear-gradient(135deg, #ff8c00, #ff4500);
@@ -130,10 +114,6 @@
 
   .customization-btn {
     background: linear-gradient(135deg, #9b59b6, #8e44ad);
-  }
-
-  .challenges-btn {
-    background: linear-gradient(135deg, #00b4db, #0083b0);
   }
 
   /* استایل‌های صفحه انتخاب تم */
@@ -233,18 +213,6 @@
     border-radius: 10px;
     font-size: 12px;
   }
-  
-  .theme-price {
-    position: absolute;
-    top: 30px;
-    left: 5px;
-    background: rgba(255, 215, 0, 0.8);
-    color: #333;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: bold;
-  }
 
   .back-btn {
     margin-top: 30px;
@@ -325,23 +293,6 @@
     display: none;
     z-index: 6;
   }
-  
-  .coins-container {
-    position: absolute;
-    top: 70px;
-    left: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 8px 16px;
-    border-radius: 30px;
-    color: #ffd700;
-    font-weight: bold;
-    font-size: clamp(14px, 4vw, 20px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: none;
-    z-index: 6;
-  }
 
   .time-container {
     position: absolute;
@@ -360,54 +311,6 @@
     z-index: 6;
   }
   
-  .powerups-container {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 6;
-  }
-  
-  .powerup-btn {
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .powerup-btn:hover:not(:disabled) {
-    background: rgba(0, 0, 0, 0.7);
-    transform: scale(1.05);
-  }
-  
-  .powerup-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .powerup-count {
-    background: #ff416c;
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-  }
-
   .title {
     position: absolute;
     top: 20px;
@@ -483,21 +386,6 @@
     50% { opacity: 1; transform: scale(1.1); }
     100% { opacity: 1; transform: scale(1); }
   }
-  
-  .powerup-active {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 18px;
-    z-index: 20;
-    display: none;
-    text-align: center;
-  }
 
   .restart-btn, .menu-back-btn {
     background: linear-gradient(135deg, #ff416c, #ff4b2b);
@@ -527,248 +415,6 @@
     margin-top: 20px;
     flex-wrap: wrap;
     gap: 10px;
-  }
-
-  /* استایل‌های صفحه آمار */
-  .stats-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 200;
-    backdrop-filter: blur(5px);
-    padding: 20px;
-    overflow-y: auto;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateX(100%);
-    color: white;
-    text-align: center;
-  }
-  
-  .stats-page.active {
-    display: flex;
-    transform: translateX(0);
-  }
-  
-  .stats-title {
-    font-size: clamp(24px, 7vw, 36px);
-    margin-bottom: 30px;
-  }
-  
-  .stats-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    max-width: 600px;
-    width: 100%;
-  }
-  
-  .stat-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 15px;
-    text-align: center;
-  }
-  
-  .stat-value {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffcc00;
-    margin-top: 5px;
-  }
-
-  /* استایل‌های صفحه فروشگاه */
-  .shop-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 200;
-    backdrop-filter: blur(5px);
-    padding: 20px;
-    overflow-y: auto;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateX(100%);
-    color: white;
-    text-align: center;
-  }
-  
-  .shop-page.active {
-    display: flex;
-    transform: translateX(0);
-  }
-  
-  .shop-title {
-    font-size: clamp(24px, 7vw, 36px);
-    margin-bottom: 30px;
-  }
-  
-  .shop-categories {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .category-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .category-btn.active {
-    background: rgba(255, 255, 255, 0.3);
-  }
-  
-  .shop-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-    max-width: 800px;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .shop-item {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  .shop-item:hover:not(.owned) {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-  }
-  
-  .shop-item.owned {
-    opacity: 0.7;
-    cursor: default;
-  }
-  
-  .item-price {
-    background: rgba(255, 215, 0, 0.8);
-    color: #333;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-top: 10px;
-    display: inline-block;
-  }
-  
-  .item-owned {
-    background: rgba(0, 255, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-top: 10px;
-    display: inline-block;
-  }
-
-  /* استایل‌های صفحه چالش‌ها */
-  .challenges-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 200;
-    backdrop-filter: blur(5px);
-    padding: 20px;
-    overflow-y: auto;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateX(100%);
-    color: white;
-    text-align: center;
-  }
-  
-  .challenges-page.active {
-    display: flex;
-    transform: translateX(0);
-  }
-  
-  .challenges-title {
-    font-size: clamp(24px, 7vw, 36px);
-    margin-bottom: 30px;
-  }
-  
-  .challenges-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 600px;
-    width: 100%;
-  }
-  
-  .challenge-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 15px;
-    text-align: right;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .challenge-progress {
-    background: rgba(255, 255, 255, 0.2);
-    height: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-    overflow: hidden;
-  }
-  
-  .challenge-progress-bar {
-    background: #ffcc00;
-    height: 100%;
-    border-radius: 5px;
-    transition: width 0.5s ease;
-  }
-  
-  .challenge-reward {
-    background: rgba(255, 215, 0, 0.8);
-    color: #333;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-top: 10px;
-    display: inline-block;
-  }
-  
-  .challenge-completed {
-    background: rgba(0, 255, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-top: 10px;
-    display: inline-block;
   }
 
   /* استایل‌های صفحه حالت‌های بازی */
@@ -921,86 +567,6 @@
     margin-top: 10px;
   }
 
-  /* استایل‌های صفحه دستاوردها */
-  .achievements-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 200;
-    backdrop-filter: blur(5px);
-    padding: 20px;
-    overflow-y: auto;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateX(100%);
-    color: white;
-    text-align: center;
-  }
-  
-  .achievements-page.active {
-    display: flex;
-    transform: translateX(0);
-  }
-  
-  .achievements-title {
-    font-size: clamp(24px, 7vw, 36px);
-    margin-bottom: 30px;
-  }
-  
-  .achievements-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 600px;
-    width: 100%;
-  }
-  
-  .achievement-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 15px;
-    text-align: right;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .achievement-icon {
-    font-size: 30px;
-    margin-left: 15px;
-  }
-  
-  .achievement-progress {
-    background: rgba(255, 255, 255, 0.2);
-    height: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-    overflow: hidden;
-  }
-  
-  .achievement-progress-bar {
-    background: #ffcc00;
-    height: 100%;
-    border-radius: 5px;
-    transition: width 0.5s ease;
-  }
-  
-  .achievement-completed {
-    background: rgba(0, 255, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-top: 10px;
-    display: inline-block;
-  }
-
   /* استایل‌های راهنمای بازی */
   .tutorial {
     position: absolute;
@@ -1076,15 +642,7 @@
       margin-right: 0;
       width: 200px;
     }
-    
-    .stats-container {
-      grid-template-columns: 1fr;
-    }
-    
-    .shop-items {
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-    
+
     .game-modes-container, .customization-options {
       grid-template-columns: 1fr;
     }
@@ -1131,27 +689,8 @@
       max-width: 100%;
       max-height: 100%;
     }
-    
-    .powerups-container {
-      flex-direction: row;
-      justify-content: center;
-      width: 100%;
-      left: 0;
-      bottom: 10px;
-    }
-    
-    .powerup-btn {
-      font-size: 10px;
-      padding: 6px 10px;
-    }
-    
-    .powerup-count {
-      width: 18px;
-      height: 18px;
-      font-size: 10px;
-    }
-    
-    .score-container, .level-container, .coins-container, .time-container {
+
+    .score-container, .level-container, .time-container {
       padding: 6px 12px;
       font-size: clamp(12px, 3.5vw, 16px);
     }
@@ -1166,27 +705,9 @@
       right: 10px;
     }
     
-    .coins-container {
-      top: 50px;
-      left: 10px;
-    }
-    
     .time-container {
       top: 50px;
       right: 10px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .powerups-container {
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-    
-    .powerup-btn {
-      flex: 1;
-      min-width: 80px;
-      justify-content: center;
     }
   }
 
@@ -1196,7 +717,7 @@
       margin-bottom: 5px;
     }
     
-    .high-score, .player-level, .player-coins {
+    .high-score, .player-level {
       font-size: clamp(14px, 4vw, 20px);
       margin-bottom: 5px;
     }
@@ -1250,15 +771,11 @@
   <h1 class="game-title">هنیا</h1>
   <div class="high-score" id="highScoreDisplay">بیشترین امتیاز: 0</div>
   <div class="player-level" id="playerLevelDisplay">سطح: 1</div>
-  <div class="player-coins" id="playerCoinsDisplay">سکه: 0</div>
   <div class="menu-buttons">
     <button class="menu-btn" id="startGameBtn">شروع بازی</button>
     <button class="menu-btn game-modes-btn" id="gameModesBtn">حالت‌های بازی</button>
     <button class="menu-btn theme-btn" id="changeThemeBtn">تغییر تم</button>
     <button class="menu-btn customization-btn" id="customizationBtn">شخصی‌سازی</button>
-    <button class="menu-btn challenges-btn" id="challengesBtn">چالش‌ها</button>
-    <button class="menu-btn stats-btn" id="statsBtn">آمار بازی</button>
-    <button class="menu-btn shop-btn" id="shopBtn">فروشگاه</button>
     <button class="menu-btn download-btn" id="downloadBtn">دانلود بازی</button>
   </div>
 </div>
@@ -1307,15 +824,6 @@
       <div class="theme-name">رز</div>
       <div class="level-requirement">سطح ۱۰</div>
     </div>
-    <!-- تم‌های ویژه -->
-    <div class="theme-option locked" data-theme="galaxy" style="background: linear-gradient(135deg, #0c0c2e, #1a1a4a, #2d2d7a);">
-      <div class="theme-name">کهکشان</div>
-      <div class="theme-price">50 سکه</div>
-    </div>
-    <div class="theme-option locked" data-theme="neon" style="background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);">
-      <div class="theme-name">نئون</div>
-      <div class="theme-price">100 سکه</div>
-    </div>
   </div>
   <button class="back-btn" id="backToMenuBtn">بازگشت به منو</button>
 </div>
@@ -1334,20 +842,10 @@
       <div>سرعت</div>
       <div class="mode-description">توپ‌ها سریع‌تر می‌آیند</div>
     </div>
-    <div class="game-mode" data-mode="chain">
-      <div class="mode-icon">🔗</div>
-      <div>زنجیره‌ای</div>
-      <div class="mode-description">امتیاز مضاعف برای ردیف درست</div>
-    </div>
     <div class="game-mode" data-mode="survival">
       <div class="mode-icon">⏱️</div>
       <div>بقا</div>
       <div class="mode-description">زمان محدود</div>
-    </div>
-    <div class="game-mode" data-mode="practice">
-      <div class="mode-icon">🎯</div>
-      <div>تمرینی</div>
-      <div class="mode-description">بدون پایان بازی</div>
     </div>
   </div>
   <button class="back-btn" id="backFromModesBtn">بازگشت</button>
@@ -1391,96 +889,13 @@
   <button class="back-btn" id="backFromCustomizationBtn">بازگشت</button>
 </div>
 
-<!-- صفحه چالش‌ها -->
-<div class="challenges-page" id="challengesPage">
-  <h2 class="challenges-title">چالش‌های بازی</h2>
-  <div class="challenges-container" id="challengesContainer">
-    <!-- چالش‌ها با اسکریپت پر می‌شوند -->
-  </div>
-  <button class="back-btn" id="backFromChallengesBtn">بازگشت</button>
-</div>
-
-<!-- صفحه آمار -->
-<div class="stats-page" id="statsPage">
-  <h2 class="stats-title">آمار بازی</h2>
-  <div class="stats-container">
-    <div class="stat-item">
-      <div>تعداد بازی‌ها</div>
-      <div class="stat-value" id="gamesPlayed">0</div>
-    </div>
-    <div class="stat-item">
-      <div>میانگین امتیاز</div>
-      <div class="stat-value" id="averageScore">0</div>
-    </div>
-    <div class="stat-item">
-      <div>بیشترین سطح</div>
-      <div class="stat-value" id="maxLevel">1</div>
-    </div>
-    <div class="stat-item">
-      <div>کل امتیاز</div>
-      <div class="stat-value" id="totalScore">0</div>
-    </div>
-    <div class="stat-item">
-      <div>کل سکه‌ها</div>
-      <div class="stat-value" id="totalCoins">0</div>
-    </div>
-    <div class="stat-item">
-      <div>زمان بازی</div>
-      <div class="stat-value" id="playTime">0 دقیقه</div>
-    </div>
-  </div>
-  <button class="back-btn" id="backFromStatsBtn">بازگشت</button>
-</div>
-
-<!-- صفحه فروشگاه -->
-<div class="shop-page" id="shopPage">
-  <h2 class="shop-title">فروشگاه</h2>
-  <div class="shop-categories">
-    <button class="category-btn active" data-category="themes">تم‌ها</button>
-    <button class="category-btn" data-category="powerups">قدرت‌ها</button>
-    <button class="category-btn" data-category="balls">توپ‌ها</button>
-    <button class="category-btn" data-category="frames">قاب‌ها</button>
-  </div>
-  <div class="shop-items" id="shopItems">
-    <!-- آیتم‌های فروشگاه با اسکریپت پر می‌شوند -->
-  </div>
-  <button class="back-btn" id="backFromShopBtn">بازگشت</button>
-</div>
-
-<!-- صفحه دستاوردها -->
-<div class="achievements-page" id="achievementsPage">
-  <h2 class="achievements-title">دستاوردها</h2>
-  <div class="achievements-container" id="achievementsContainer">
-    <!-- دستاوردها با اسکریپت پر می‌شوند -->
-  </div>
-  <button class="back-btn" id="backFromAchievementsBtn">بازگشت</button>
-</div>
-
 <!-- عناصر بازی -->
 <div class="game-container">
   <div class="title">هنیا</div>
   <div class="score-container" id="scoreDisplay">امتیاز: 0</div>
   <div class="level-container" id="levelDisplay">سطح: 1</div>
-  <div class="coins-container" id="coinsDisplay">سکه: 0</div>
   <div class="time-container" id="timeDisplay">زمان: 60</div>
-  <div class="powerups-container" id="powerupsContainer">
-    <button class="powerup-btn" id="slowPowerup" data-powerup="slow">
-      <span>کند کردن</span>
-      <div class="powerup-count">3</div>
-    </button>
-    <button class="powerup-btn" id="clearPowerup" data-powerup="clear">
-      <span>پاک کردن</span>
-      <div class="powerup-count">2</div>
-    </button>
-    <button class="powerup-btn" id="doublePowerup" data-powerup="double">
-      <span>دو برابر</span>
-      <div class="powerup-count">1</div>
-    </button>
-    <button class="powerup-btn" id="shieldPowerup" data-powerup="shield">
-      <span>محافظ</span>
-      <div class="powerup-count">3</div>
-    </button>
-  </div>
+
   <canvas id="game"></canvas>
   <div class="blur-overlay" id="blurOverlay"></div>
   <div class="instructions">برای تعویض رنگ دایره‌ها کلیک کنید</div>
@@ -1489,7 +904,6 @@
   <div class="game-over" id="gameOver">
     <div>شما باختی!</div>
     <div>امتیاز نهایی: <span id="finalScore">0</span></div>
-    <div>سکه‌های کسب شده: <span id="earnedCoins">0</span></div>
     <div class="button-group">
       <button class="restart-btn" onclick="restartGame()">شروع مجدد</button>
       <button class="menu-back-btn" onclick="backToMainMenu()">بازگشت به منو</button>
@@ -1504,10 +918,7 @@
       <button class="restart-btn" onclick="closeLevelUp()">ادامه بازی</button>
     </div>
   </div>
-  
-  <!-- نمایش فعال بودن قدرت -->
-  <div class="powerup-active" id="powerupActive"></div>
-  
+    
   <!-- راهنمای بازی -->
   <div class="tutorial" id="tutorial">
     <h3>راهنمای بازی</h3>
@@ -1525,48 +936,29 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 const scoreDisplay = document.getElementById("scoreDisplay");
 const levelDisplay = document.getElementById("levelDisplay");
-const coinsDisplay = document.getElementById("coinsDisplay");
 const timeDisplay = document.getElementById("timeDisplay");
 const gameOverScreen = document.getElementById("gameOver");
 const finalScoreDisplay = document.getElementById("finalScore");
-const earnedCoinsDisplay = document.getElementById("earnedCoins");
 const mainMenu = document.getElementById("mainMenu");
 const themeSelection = document.getElementById("themeSelection");
 const gameModesPage = document.getElementById("gameModesPage");
 const customizationPage = document.getElementById("customizationPage");
-const challengesPage = document.getElementById("challengesPage");
-const statsPage = document.getElementById("statsPage");
-const shopPage = document.getElementById("shopPage");
-const achievementsPage = document.getElementById("achievementsPage");
 const startGameBtn = document.getElementById("startGameBtn");
 const gameModesBtn = document.getElementById("gameModesBtn");
 const changeThemeBtn = document.getElementById("changeThemeBtn");
 const customizationBtn = document.getElementById("customizationBtn");
-const challengesBtn = document.getElementById("challengesBtn");
-const statsBtn = document.getElementById("statsBtn");
-const shopBtn = document.getElementById("shopBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const backToMenuBtn = document.getElementById("backToMenuBtn");
 const backFromModesBtn = document.getElementById("backFromModesBtn");
 const backFromCustomizationBtn = document.getElementById("backFromCustomizationBtn");
-const backFromChallengesBtn = document.getElementById("backFromChallengesBtn");
-const backFromStatsBtn = document.getElementById("backFromStatsBtn");
-const backFromShopBtn = document.getElementById("backFromShopBtn");
-const backFromAchievementsBtn = document.getElementById("backFromAchievementsBtn");
 const themeOptions = document.querySelectorAll(".theme-option");
 const gameModes = document.querySelectorAll(".game-mode");
 const customizationOptions = document.querySelectorAll(".customization-option");
 const blurOverlay = document.getElementById("blurOverlay");
 const highScoreDisplay = document.getElementById("highScoreDisplay");
 const playerLevelDisplay = document.getElementById("playerLevelDisplay");
-const playerCoinsDisplay = document.getElementById("playerCoinsDisplay");
 const levelUpScreen = document.getElementById("levelUp");
 const newLevelDisplay = document.getElementById("newLevel");
-const powerupsContainer = document.getElementById("powerupsContainer");
-const powerupActive = document.getElementById("powerupActive");
-const shopItems = document.getElementById("shopItems");
-const challengesContainer = document.getElementById("challengesContainer");
-const achievementsContainer = document.getElementById("achievementsContainer");
 const tutorial = document.getElementById("tutorial");
 
 let w, h;
@@ -1577,84 +969,60 @@ const themes = {
     background: ['#1a1a2e', '#16213e', '#0f3460'],
     ballColors: ['#393e46', 'white'],
     levelRequired: 1,
-    price: 0,
     owned: true
   },
   'ocean': {
     background: ['#a8e6cf', '#dcedc1', '#ffd3b6'],
     ballColors: ['#45b7d1', '#96ceb4'],
     levelRequired: 2,
-    price: 0,
     owned: false
   },
   'lavender': {
     background: ['#e6e6fa', '#d8bfd8', '#dda0dd'],
     ballColors: ['#9370db', '#ba55d3'],
     levelRequired: 3,
-    price: 0,
     owned: false
   },
   'sunset': {
     background: ['#ffcccb', '#ffb6c1', '#ffa07a'],
     ballColors: ['#ff6347', '#ff4500'],
     levelRequired: 4,
-    price: 0,
     owned: false
   },
   'forest': {
     background: ['#98fb98', '#90ee90', '#adff2f'],
     ballColors: ['#228b22', '#006400'],
     levelRequired: 5,
-    price: 0,
     owned: false
   },
   'sky': {
     background: ['#87ceeb', '#b0e0e6', '#add8e6'],
     ballColors: ['#1e90ff', '#0000ff'],
     levelRequired: 6,
-    price: 0,
     owned: false
   },
   'desert': {
     background: ['#f5deb3', '#f4a460', '#daa520'],
     ballColors: ['#cd853f', '#8b4513'],
     levelRequired: 7,
-    price: 0,
     owned: false
   },
   'berry': {
     background: ['#d8bfd8', '#ee82ee', '#da70d6'],
     ballColors: ['#c71585', '#8b008b'],
     levelRequired: 8,
-    price: 0,
     owned: false
   },
   'mint': {
     background: ['#98ff98', '#afeeee', '#e0ffff'],
     ballColors: ['#20b2aa', '#008080'],
     levelRequired: 9,
-    price: 0,
     owned: false
   },
   'rose': {
     background: ['#ffe4e1', '#ffb6c1', '#ff69b4'],
     ballColors: ['#ff1493', '#c71585'],
     levelRequired: 10,
-    price: 0,
-    owned: false
-  },
-  'galaxy': {
-    background: ['#0c0c2e', '#1a1a4a', '#2d2d7a'],
-    ballColors: ['#6a0dad', '#9370db'],
-    levelRequired: 1,
-    price: 50,
-    owned: false
-  },
-  'neon': {
-    background: ['#0f0f23', '#1a1a2e', '#16213e'],
-    ballColors: ['#00ffff', '#ff00ff'],
-    levelRequired: 1,
-    price: 100,
     owned: false
   }
 };
@@ -1683,38 +1051,6 @@ const ballTypes = {
   }
 };
 
-// قدرت‌ها
-const powerups = {
-  'slow': {
-    name: 'کند کردن',
-    description: 'سرعت توپ‌ها را برای 5 ثانیه کاهش می‌دهد',
-    duration: 5000,
-    count: 3,
-    price: 20
-  },
-  'clear': {
-    name: 'پاک کردن',
-    description: 'همه توپ‌های فعلی را از صفحه پاک می‌کند',
-    duration: 0,
-    count: 2,
-    price: 30
-  },
-  'double': {
-    name: 'دو برابر',
-    description: 'امتیازها برای 10 ثانیه دو برابر می‌شوند',
-    duration: 10000,
-    count: 1,
-    price: 50
-  },
-  'shield': {
-    name: 'محافظ',
-    description: 'در برابر 3 اشتباه محافظت می‌کند',
-    duration: 0,
-    count: 3,
-    price: 40
-  }
-};
-
 // حالت‌های بازی
 const gameModesConfig = {
   'classic': {
@@ -1722,46 +1058,22 @@ const gameModesConfig = {
     description: 'حالت استاندارد بازی',
     speedMultiplier: 1,
     spawnIntervalMultiplier: 1,
-    chainBonus: false,
     timeLimit: 0,
-    practice: false
   },
   'speed': {
     name: 'سرعت',
     description: 'توپ‌ها سریع‌تر می‌آیند',
     speedMultiplier: 1.5,
     spawnIntervalMultiplier: 0.7,
-    chainBonus: false,
     timeLimit: 0,
-    practice: false
-  },
-  'chain': {
-    name: 'زنجیره‌ای',
-    description: 'امتیاز مضاعف برای ردیف درست',
-    speedMultiplier: 1,
-    spawnIntervalMultiplier: 1,
-    chainBonus: true,
-    timeLimit: 0,
-    practice: false
   },
   'survival': {
     name: 'بقا',
     description: 'زمان محدود',
     speedMultiplier: 1,
     spawnIntervalMultiplier: 1,
-    chainBonus: false,
     timeLimit: 60, // 60 ثانیه
-    practice: false
   },
-  'practice': {
-    name: 'تمرینی',
-    description: 'بدون پایان بازی',
-    speedMultiplier: 1,
-    spawnIntervalMultiplier: 1,
-    chainBonus: false,
-    timeLimit: 0,
-    practice: true
-  }
 };
 
 // شخصی‌سازی‌ها
@@ -1802,109 +1114,6 @@ const customizationConfig = {
   }
 };
 
-// دستاوردها
-const achievements = [
-  {
-    id: 1,
-    title: 'شروع کننده',
-    description: 'اولین بازی را انجام بده',
-    icon: '🚀',
-    type: 'games',
-    target: 1,
-    progress: 0,
-    completed: false,
-    reward: { coins: 10 }
-  },
-  {
-    id: 2,
-    title: 'حرفه‌ای',
-    description: 'به سطح 10 برس',
-    icon: '🏆',
-    type: 'level',
-    target: 10,
-    progress: 0,
-    completed: false,
-    reward: { coins: 50 }
-  },
-  {
-    id: 3,
-    title: 'بی‌خطا',
-    description: '50 امتیاز بدون اشتباه بگیر',
-    icon: '⭐',
-    type: 'perfect',
-    target: 50,
-    progress: 0,
-    completed: false,
-    reward: { coins: 30 }
-  },
-  {
-    id: 4,
-    title: 'جمع‌کننده',
-    description: '1000 امتیاز کلی کسب کن',
-    icon: '💰',
-    type: 'totalScore',
-    target: 1000,
-    progress: 0,
-    completed: false,
-    reward: { coins: 100 }
-  },
-  {
-    id: 5,
-    title: 'سرعت',
-    description: '5 بازی در یک روز انجام بده',
-    icon: '⚡',
-    type: 'dailyGames',
-    target: 5,
-    progress: 0,
-    completed: false,
-    reward: { coins: 25 }
-  }
-];
-
-// چالش‌ها
-const challenges = [
-  {
-    id: 1,
-    title: 'کسب 50 امتیاز',
-    description: 'در یک بازی 50 امتیاز کسب کن',
-    type: 'score',
-    target: 50,
-    progress: 0,
-    completed: false,
-    reward: { coins: 10 }
-  },
-  {
-    id: 2,
-    title: '10 بار تعویض رنگ',
-    description: '10 بار رنگ‌ها را عوض کن',
-    type: 'swaps',
-    target: 10,
-    progress: 0,
-    completed: false,
-    reward: { coins: 5 }
-  },
-  {
-    id: 3,
-    title: 'سطح 5 بدون اشتباه',
-    description: 'بدون اشتباه به سطح 5 برس',
-    type: 'perfect',
-    target: 5,
-    progress: 0,
-    completed: false,
-    reward: { coins: 20 }
-  },
-  {
-    id: 4,
-    title: 'استفاده از 5 قدرت',
-    description: '5 بار از قدرت‌ها استفاده کن',
-    type: 'powerups',
-    target: 5,
-    progress: 0,
-    completed: false,
-    reward: { coins: 15 }
-  }
-];
-
 // بارگذاری تنظیمات از localStorage
 let currentTheme = localStorage.getItem('hania-theme') || 'default';
 let currentGameMode = localStorage.getItem('hania-gameMode') || 'classic';
@@ -1912,19 +1121,10 @@ let currentBallShape = localStorage.getItem('hania-ballShape') || 'circle';
 let currentEffects = localStorage.getItem('hania-effects') || 'default';
 let highScore = parseInt(localStorage.getItem('hania-highscore')) || 0;
 let playerLevel = parseInt(localStorage.getItem('hania-level')) || 1;
-let playerCoins = parseInt(localStorage.getItem('hania-coins')) || 0;
 let gamesPlayed = parseInt(localStorage.getItem('hania-gamesPlayed')) || 0;
 let totalScore = parseInt(localStorage.getItem('hania-totalScore')) || 0;
 let maxLevel = parseInt(localStorage.getItem('hania-maxLevel')) || 1;
-let playTime = parseInt(localStorage.getItem('hania-playTime')) || 0; // به دقیقه
 let ownedThemes = JSON.parse(localStorage.getItem('hania-ownedThemes')) || ['default'];
-let ownedPowerups = JSON.parse(localStorage.getItem('hania-ownedPowerups')) || { slow: 3, clear: 2, double: 1, shield: 3 };
-let challengeProgress = JSON.parse(localStorage.getItem('hania-challengeProgress')) || challenges;
-let achievementProgress = JSON.parse(localStorage.getItem('hania-achievementProgress')) || achievements;
-let swapsCount = parseInt(localStorage.getItem('hania-swapsCount')) || 0;
-let powerupsUsed = parseInt(localStorage.getItem('hania-powerupsUsed')) || 0;
-let dailyGames = JSON.parse(localStorage.getItem('hania-dailyGames')) || { date: new Date().toDateString(), count: 0 };
-let perfectScore = parseInt(localStorage.getItem('hania-perfectScore')) || 0;
 
 // به‌روزرسانی مالکیت تم‌ها از localStorage
 if (ownedThemes) {
@@ -1938,7 +1138,6 @@ if (ownedThemes) {
 // به‌روزرسانی نمایش اطلاعات در صفحه اصلی
 highScoreDisplay.textContent = `بیشترین امتیاز: ${highScore}`;
 playerLevelDisplay.textContent = `سطح: ${playerLevel}`;
-playerCoinsDisplay.textContent = `سکه: ${playerCoins}`;
 
 let bottomCircles = [];
 let balls = [];
@@ -1950,10 +1149,6 @@ let clickEffect = null;
 let gameActive = false;
 let nextSpawnTime = 0;
 let frameId = null;
-let perfectGame = true; // برای چالش بدون اشتباه
-let currentSwaps = 0; // تعداد تعویض‌ها در این بازی
-let currentPowerupsUsed = 0; // تعداد قدرت‌های استفاده شده در این بازی
-let chainCount = 0; // تعداد ردیف درست پشت سر هم
 let gameTime = 60; // زمان بازی برای حالت بقا
 let gameTimer = null; // تایمر بازی
 
@@ -1973,13 +1168,6 @@ let explosions = []; // برای انفجارها
 let trails = []; // برای اثر دنباله‌دار
 let sparks = []; // برای جرقه‌ها
 let screenShake = { active: false, intensity: 0, duration: 0, startTime: 0 }; // برای لرزش صفحه
-
-// متغیرهای قدرت‌های فعال
-let activePowerups = {
-  slow: { active: false, endTime: 0 },
-  double: { active: false, endTime: 0 }
-};
-let shieldCount = 3; // تعداد محافظ‌های باقی‌مانده
 
 // تابع برای تنظیم اندازه کانواس
 function resizeCanvas() {
@@ -2023,8 +1211,6 @@ function startGame() {
     canvas.style.display = "block";
     scoreDisplay.style.display = "block";
     levelDisplay.style.display = "block";
-    coinsDisplay.style.display = "block";
-    powerupsContainer.style.display = "flex";
     document.querySelector(".title").style.display = "block";
     document.querySelector(".instructions").style.display = "block";
     
@@ -2035,18 +1221,11 @@ function startGame() {
     trails = [];
     sparks = [];
     score = 0;
-    perfectGame = true;
-    currentSwaps = 0;
-    currentPowerupsUsed = 0;
-    chainCount = 0;
-    shieldCount = ownedPowerups.shield;
     scoreDisplay.textContent = "امتیاز: " + score;
     levelDisplay.textContent = "سطح: " + playerLevel;
-    coinsDisplay.textContent = "سکه: " + playerCoins;
     gameOverScreen.classList.remove("active");
     blurOverlay.style.display = "none";
     levelUpScreen.style.display = "none";
-    powerupActive.style.display = "none";
     lastTime = 0;
     nextSpawnTime = 0;
     
@@ -2071,9 +1250,6 @@ function startGame() {
         tutorial.classList.add("active");
       }, 1000);
     }
-    
-    // به‌روزرسانی نمایش قدرت‌ها
-    updatePowerupsDisplay();
     
     // شروع حلقه بازی
     if (frameId) {
@@ -2106,15 +1282,12 @@ function backToMainMenu() {
   canvas.style.display = "none";
   scoreDisplay.style.display = "none";
   levelDisplay.style.display = "none";
-  coinsDisplay.style.display = "none";
   timeDisplay.style.display = "none";
-  powerupsContainer.style.display = "none";
   document.querySelector(".title").style.display = "none";
   document.querySelector(".instructions").style.display = "none";
   gameOverScreen.classList.remove("active");
   blurOverlay.style.display = "none";
   levelUpScreen.style.display = "none";
-  powerupActive.style.display = "none";
   tutorial.classList.remove("active");
   
   // نمایش منوی اصلی با انیمیشن
@@ -2126,21 +1299,7 @@ function backToMainMenu() {
 
 // تغییر تم
 function changeTheme(themeName) {
-  if (!themes[themeName].owned && themes[themeName].price > playerCoins) {
-    alert("سکه کافی برای خرید این تم ندارید!");
-    return;
-  }
-  
-  if (!themes[themeName].owned) {
-    playerCoins -= themes[themeName].price;
-    themes[themeName].owned = true;
-    ownedThemes.push(themeName);
-    localStorage.setItem('hania-coins', playerCoins);
-    localStorage.setItem('hania-ownedThemes', JSON.stringify(ownedThemes));
-    playerCoinsDisplay.textContent = `سکه: ${playerCoins}`;
-    updateThemeLocks();
-  }
-  
+
   currentTheme = themeName;
   
   // به‌روزرسانی رنگ توپ‌ها
@@ -2196,19 +1355,13 @@ function updateThemeLocks() {
   themeOptions.forEach(option => {
     const themeName = option.getAttribute('data-theme');
     const levelRequired = themes[themeName].levelRequired;
-    const price = themes[themeName].price;
     const owned = themes[themeName].owned;
     
-    if (owned || (playerLevel >= levelRequired && price === 0)) {
+    if (owned || (playerLevel >= levelRequired)) {
       option.classList.remove('locked');
       const lockIcon = option.querySelector('.lock-icon');
       if (lockIcon) lockIcon.remove();
-      
-      // حذف قیمت اگر تم مالکیت دارد
-      const priceElement = option.querySelector('.theme-price');
-      if (priceElement && owned) {
-        priceElement.remove();
-      }
+
     } else {
       option.classList.add('locked');
       if (!option.querySelector('.lock-icon')) {
@@ -2845,9 +1998,6 @@ function checkLevelUp() {
     // به‌روزرسانی قفل تم‌ها
     updateThemeLocks();
     
-    // به‌روزرسانی دستاوردها
-    updateAchievementProgress('level', playerLevel);
-    
     return true;
   }
   return false;
@@ -2860,84 +2010,6 @@ function closeLevelUp() {
   // ادامه بازی
   gameActive = true;
   frameId = requestAnimationFrame(gameLoop);
-}
-
-// استفاده از قدرت
-function usePowerup(powerupType) {
-  if (!gameActive || ownedPowerups[powerupType] <= 0) return;
-  
-  // کاهش تعداد قدرت‌های موجود
-  ownedPowerups[powerupType]--;
-  currentPowerupsUsed++;
-  localStorage.setItem('hania-ownedPowerups', JSON.stringify(ownedPowerups));
-  updatePowerupsDisplay();
-  
-  // فعال کردن قدرت
-  switch(powerupType) {
-    case 'slow':
-      activePowerups.slow.active = true;
-      activePowerups.slow.endTime = Date.now() + powerups.slow.duration;
-      powerupActive.textContent = "سرعت توپ‌ها کاهش یافت!";
-      powerupActive.style.display = "block";
-      setTimeout(() => {
-        powerupActive.style.display = "none";
-        activePowerups.slow.active = false;
-      }, powerups.slow.duration);
-      break;
-      
-    case 'clear':
-      // پاک کردن همه توپ‌ها
-      for (let ball of balls) {
-        ballPool.release(ball);
-      }
-      balls = [];
-      powerupActive.textContent = "همه توپ‌ها پاک شدند!";
-      powerupActive.style.display = "block";
-      setTimeout(() => {
-        powerupActive.style.display = "none";
-      }, 2000);
-      break;
-      
-    case 'double':
-      activePowerups.double.active = true;
-      activePowerups.double.endTime = Date.now() + powerups.double.duration;
-      powerupActive.textContent = "امتیازها دو برابر شد!";
-      powerupActive.style.display = "block";
-      setTimeout(() => {
-        powerupActive.style.display = "none";
-        activePowerups.double.active = false;
-      }, powerups.double.duration);
-      break;
-      
-    case 'shield':
-      shieldCount = ownedPowerups.shield;
-      powerupActive.textContent = `محافظ فعال! ${shieldCount} بار محافظت`;
-      powerupActive.style.display = "block";
-      setTimeout(() => {
-        powerupActive.style.display = "none";
-      }, 2000);
-      break;
-  }
-  
-  // به‌روزرسانی چالش‌ها و دستاوردها
-  updateChallengeProgress('powerups', 1);
-  updateAchievementProgress('powerups', 1);
-}
-
-// به‌روزرسانی نمایش قدرت‌ها
-function updatePowerupsDisplay() {
-  const powerupButtons = document.querySelectorAll('.powerup-btn');
-  powerupButtons.forEach(btn => {
-    const powerupType = btn.getAttribute('data-powerup');
-    const countElement = btn.querySelector('.powerup-count');
-    countElement.textContent = ownedPowerups[powerupType];
-    
-    if (ownedPowerups[powerupType] <= 0) {
-      btn.disabled = true;
-    } else {
-      btn.disabled = false;
-    }
-  });
 }
 
 // به‌روزرسانی موقعیت توپ‌ها
@@ -2974,9 +2046,6 @@ function update(deltaTime) {
   
   // محاسبه سرعت با در نظر گرفتن قدرت کند کردن
   let currentSpeed = speed;
-  if (activePowerups.slow.active) {
-    currentSpeed = speed * 0.5; // کاهش سرعت به نصف
-  }
   
   // بهینه‌سازی: به‌روزرسانی موقعیت توپ‌ها و اضافه کردن به شبکه فضایی
   for (let i = 0; i < balls.length; i++) {
@@ -3013,44 +2082,15 @@ function update(deltaTime) {
         
         // محاسبه امتیاز با در نظر گرفتن قدرت دو برابر کردن و حالت زنجیره‌ای
         let points = b.value;
-        if (activePowerups.double.active) {
-          points *= 2;
-        }
-        
-        // امتیاز مضاعف برای حالت زنجیره‌ای
-        if (gameModesConfig[currentGameMode].chainBonus) {
-          chainCount++;
-          if (chainCount > 1) {
-            points *= chainCount;
-          }
-        } else {
-          chainCount = 0;
-        }
         
         score += points;
         scoreDisplay.textContent = "امتیاز: " + score;
-        
-        // کسب سکه برای توپ‌های ویژه
-        if (b.type === 'gold' || b.type === 'diamond') {
-          playerCoins += points;
-          coinsDisplay.textContent = "سکه: " + playerCoins;
-        }
         
         ballPool.release(balls[i]);
         balls.splice(i, 1); // حذف توپ فقط در صورت برخورد صحیح
         
         // بررسی ارتقای سطح
         checkLevelUp();
-        
-        // به‌روزرسانی چالش‌ها و دستاوردها
-        updateChallengeProgress('score', points);
-        updateAchievementProgress('totalScore', points);
-        
-        // به‌روزرسانی امتیاز بی‌خطا
-        if (perfectGame) {
-          perfectScore = Math.max(perfectScore, score);
-          updateAchievementProgress('perfect', perfectScore);
-        }
       } else {
         // اگر توپ بمب باشد و اشتباه بیافتد
         if (b.type === 'bomb') {
@@ -3061,23 +2101,9 @@ function update(deltaTime) {
           if (gameActive) {
             gameOver();
           }
-        } else if (shieldCount > 0) {
-          // استفاده از محافظ
-          shieldCount--;
-          ownedPowerups.shield = shieldCount;
-          localStorage.setItem('hania-ownedPowerups', JSON.stringify(ownedPowerups));
-          updatePowerupsDisplay();
-          
-          // ایجاد انفجار برای نشان دادن استفاده از محافظ
-          createExplosion(b.x, b.y, '#00ff00');
-          
-          ballPool.release(balls[i]);
-          balls.splice(i, 1);
         } else {
           // فعال کردن لرزش صفحه
           triggerScreenShake(8, 400);
-          perfectGame = false; // برای چالش بدون اشتباه
-          chainCount = 0; // قطع زنجیره
           
           // فقط یک بار پایان بازی را نمایش می‌دهیم
           if (gameActive && !gameModesConfig[currentGameMode].practice) {
@@ -3148,11 +2174,6 @@ function gameOver() {
   gameActive = false;
   finalScoreDisplay.textContent = score;
   
-  // محاسبه سکه‌های کسب شده
-  const earnedCoins = Math.floor(score / 5);
-  playerCoins += earnedCoins;
-  earnedCoinsDisplay.textContent = earnedCoins;
-  
   // ذخیره آمار
   gamesPlayed++;
   totalScore += score;
@@ -3160,29 +2181,11 @@ function gameOver() {
     maxLevel = playerLevel;
   }
   
-  // محاسبه زمان بازی (تقریبی)
-  playTime += Math.floor((Date.now() - lastTime) / 60000);
-  
-  // به‌روزرسانی بازی‌های روزانه
-  const today = new Date().toDateString();
-  if (dailyGames.date === today) {
-    dailyGames.count++;
-  } else {
-    dailyGames.date = today;
-    dailyGames.count = 1;
-  }
-  
   // ذخیره در localStorage
   localStorage.setItem('hania-highscore', Math.max(highScore, score));
-  localStorage.setItem('hania-coins', playerCoins);
   localStorage.setItem('hania-gamesPlayed', gamesPlayed);
   localStorage.setItem('hania-totalScore', totalScore);
   localStorage.setItem('hania-maxLevel', maxLevel);
-  localStorage.setItem('hania-playTime', playTime);
-  localStorage.setItem('hania-swapsCount', swapsCount + currentSwaps);
-  localStorage.setItem('hania-powerupsUsed', powerupsUsed + currentPowerupsUsed);
-  localStorage.setItem('hania-dailyGames', JSON.stringify(dailyGames));
-  localStorage.setItem('hania-perfectScore', perfectScore);
   
   // ذخیره خودکار پیشرفت
   localStorage.setItem('hania-auto-save', JSON.stringify({
@@ -3197,14 +2200,6 @@ function gameOver() {
     highScore = score;
     highScoreDisplay.textContent = `بیشترین امتیاز: ${highScore}`;
   }
-  
-  // به‌روزرسانی چالش‌ها و دستاوردها
-  if (perfectGame && playerLevel >= 5) {
-    updateChallengeProgress('perfect', 1);
-  }
-  
-  updateAchievementProgress('games', 1);
-  updateAchievementProgress('dailyGames', dailyGames.count);
   
   // نمایش صفحه پایان بازی
   gameOverScreen.classList.add("active");
@@ -3226,23 +2221,12 @@ function restartGame() {
   const mode = gameModesConfig[currentGameMode];
   speed = 5 * mode.speedMultiplier;
   spawnInterval = 2000 * mode.spawnIntervalMultiplier;
-  perfectGame = true;
-  currentSwaps = 0;
-  currentPowerupsUsed = 0;
-  chainCount = 0;
-  shieldCount = ownedPowerups.shield;
-  activePowerups = {
-    slow: { active: false, endTime: 0 },
-    double: { active: false, endTime: 0 }
-  };
   
   scoreDisplay.textContent = "امتیاز: " + score;
-  coinsDisplay.textContent = "سکه: " + playerCoins;
   gameActive = true;
   gameOverScreen.classList.remove("active");
   blurOverlay.style.display = "none";
   levelUpScreen.style.display = "none";
-  powerupActive.style.display = "none";
   lastTime = 0;
   nextSpawnTime = 0;
   
@@ -3256,9 +2240,6 @@ function restartGame() {
   } else {
     timeDisplay.style.display = "none";
   }
-  
-  // به‌روزرسانی نمایش قدرت‌ها
-  updatePowerupsDisplay();
   
   // راه‌اندازی مجدد حلقه بازی
   if (frameId) {
@@ -3306,12 +2287,6 @@ function handleCanvasClick(x, y) {
   const tempColor = bottomCircles[0].color;
   bottomCircles[0].color = bottomCircles[1].color;
   bottomCircles[1].color = tempColor;
-  
-  // افزایش تعداد تعویض‌ها
-  currentSwaps++;
-  
-  // به‌روزرسانی چالش‌ها
-  updateChallengeProgress('swaps', 1);
 }
 
 // دانلود بازی
@@ -3323,195 +2298,6 @@ function downloadGame() {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-}
-
-// نمایش صفحه چالش‌ها
-function showChallenges() {
-  // پر کردن چالش‌ها
-  challengesContainer.innerHTML = '';
-  
-  challengeProgress.forEach(challenge => {
-    const progress = Math.min(challenge.progress / challenge.target * 100, 100);
-    const completed = challenge.completed;
-    
-    const challengeItem = document.createElement('div');
-    challengeItem.className = 'challenge-item';
-    challengeItem.innerHTML = `
-      <div style="flex: 1;">
-        <div>${challenge.title}</div>
-        <div style="font-size: 14px; opacity: 0.8;">${challenge.description}</div>
-        <div class="challenge-progress">
-          <div class="challenge-progress-bar" style="width: ${progress}%"></div>
-        </div>
-        ${completed ? 
-          '<div class="challenge-completed">کامل شده</div>' : 
-          `<div>${challenge.progress}/${challenge.target}</div>`
-        }
-      </div>
-      <div class="challenge-reward">${challenge.reward.coins} سکه</div>
-    `;
-    
-    challengesContainer.appendChild(challengeItem);
-  });
-  
-  // نمایش صفحه چالش‌ها
-  challengesPage.classList.add('active');
-}
-
-// نمایش صفحه آمار
-function showStats() {
-  // به‌روزرسانی آمار
-  document.getElementById('gamesPlayed').textContent = gamesPlayed;
-  document.getElementById('averageScore').textContent = gamesPlayed > 0 ? Math.round(totalScore / gamesPlayed) : 0;
-  document.getElementById('maxLevel').textContent = maxLevel;
-  document.getElementById('totalScore').textContent = totalScore;
-  document.getElementById('totalCoins').textContent = playerCoins;
-  document.getElementById('playTime').textContent = playTime + ' دقیقه';
-  
-  // نمایش صفحه آمار
-  statsPage.classList.add('active');
-}
-
-// نمایش صفحه فروشگاه
-function showShop() {
-  // پر کردن آیتم‌های فروشگاه
-  shopItems.innerHTML = '';
-  
-  // نمایش تم‌ها به عنوان دسته‌بندی پیش‌فرض
-  for (const themeName in themes) {
-    if (themes[themeName].price > 0) { // فقط تم‌های پولی نمایش داده شوند
-      const theme = themes[themeName];
-      const owned = theme.owned;
-      
-      const item = document.createElement('div');
-      item.className = `shop-item ${owned ? 'owned' : ''}`;
-      item.innerHTML = `
-        <div class="theme-option" style="background: linear-gradient(135deg, ${theme.background[0]}, ${theme.background[1]}, ${theme.background[2]}); height: 80px; border-radius: 10px;"></div>
-        <div class="theme-name">${themeName === 'default' ? 'تم پیش‌فرض' : 
-                                 themeName === 'ocean' ? 'اقیانوس آرام' :
-                                 themeName === 'lavender' ? 'اسطوخودوس' :
-                                 themeName === 'sunset' ? 'غروب آفتاب' :
-                                 themeName === 'forest' ? 'جنگل' :
-                                 themeName === 'sky' ? 'آسمان' :
-                                 themeName === 'desert' ? 'بیابان' :
-                                 themeName === 'berry' ? 'توت' :
-                                 themeName === 'mint' ? 'نعناع' :
-                                 themeName === 'rose' ? 'رز' :
-                                 themeName === 'galaxy' ? 'کهکشان' : 'نئون'}</div>
-        ${owned ? 
-          '<div class="item-owned">مالکیت دارید</div>' : 
-          `<div class="item-price">${theme.price} سکه</div>`
-        }
-      `;
-      
-      if (!owned) {
-        item.addEventListener('click', () => {
-          changeTheme(themeName);
-          showShop(); // به‌روزرسانی نمایش فروشگاه
-        });
-      }
-      
-      shopItems.appendChild(item);
-    }
-  }
-  
-  // نمایش صفحه فروشگاه
-  shopPage.classList.add('active');
-}
-
-// نمایش صفحه دستاوردها
-function showAchievements() {
-  // پر کردن دستاوردها
-  achievementsContainer.innerHTML = '';
-  
-  achievementProgress.forEach(achievement => {
-    const progress = Math.min(achievement.progress / achievement.target * 100, 100);
-    const completed = achievement.completed;
-    
-    const achievementItem = document.createElement('div');
-    achievementItem.className = 'achievement-item';
-    achievementItem.innerHTML = `
-      <div class="achievement-icon">${achievement.icon}</div>
-      <div style="flex: 1;">
-        <div>${achievement.title}</div>
-        <div style="font-size: 14px; opacity: 0.8;">${achievement.description}</div>
-        <div class="achievement-progress">
-          <div class="achievement-progress-bar" style="width: ${progress}%"></div>
-        </div>
-        ${completed ? 
-          '<div class="achievement-completed">کامل شده</div>' : 
-          `<div>${achievement.progress}/${achievement.target}</div>`
-        }
-      </div>
-    `;
-    
-    achievementsContainer.appendChild(achievementItem);
-  });
-  
-  // نمایش صفحه دستاوردها
-  achievementsPage.classList.add('active');
-}
-
-// به‌روزرسانی پیشرفت چالش‌ها
-function updateChallengeProgress(type, amount) {
-  let updated = false;
-  
-  challengeProgress.forEach(challenge => {
-    if (!challenge.completed) {
-      if (challenge.type === type) {
-        challenge.progress += amount;
-        if (challenge.progress >= challenge.target) {
-          challenge.completed = true;
-          challenge.progress = challenge.target;
-          
-          // اعطای جایزه
-          playerCoins += challenge.reward.coins;
-          playerCoinsDisplay.textContent = `سکه: ${playerCoins}`;
-          coinsDisplay.textContent = `سکه: ${playerCoins}`;
-          localStorage.setItem('hania-coins', playerCoins);
-          
-          // نمایش پیام
-          alert(`چالش "${challenge.title}" تکمیل شد! ${challenge.reward.coins} سکه دریافت کردید.`);
-        }
-        updated = true;
-      }
-    }
-  });
-  
-  if (updated) {
-    localStorage.setItem('hania-challengeProgress', JSON.stringify(challengeProgress));
-  }
-}
-
-// به‌روزرسانی پیشرفت دستاوردها
-function updateAchievementProgress(type, amount) {
-  let updated = false;
-  
-  achievementProgress.forEach(achievement => {
-    if (!achievement.completed) {
-      if (achievement.type === type) {
-        achievement.progress = Math.max(achievement.progress, amount);
-        if (achievement.progress >= achievement.target) {
-          achievement.completed = true;
-          achievement.progress = achievement.target;
-          
-          // اعطای جایزه
-          playerCoins += achievement.reward.coins;
-          playerCoinsDisplay.textContent = `سکه: ${playerCoins}`;
-          coinsDisplay.textContent = `سکه: ${playerCoins}`;
-          localStorage.setItem('hania-coins', playerCoins);
-          
-          // نمایش پیام
-          alert(`دستاورد "${achievement.title}" باز شد! ${achievement.reward.coins} سکه دریافت کردید.`);
-        }
-        updated = true;
-      }
-    }
-  });
-  
-  if (updated) {
-    localStorage.setItem('hania-achievementProgress', JSON.stringify(achievementProgress));
-  }
 }
 
 // مدیریت رویدادهای لمسی و کلیک
@@ -3544,9 +2330,6 @@ changeThemeBtn.addEventListener("click", () => {
 customizationBtn.addEventListener("click", () => {
   customizationPage.classList.add("active");
 });
-challengesBtn.addEventListener("click", showChallenges);
-statsBtn.addEventListener("click", showStats);
-shopBtn.addEventListener("click", showShop);
 downloadBtn.addEventListener("click", downloadGame);
 backToMenuBtn.addEventListener("click", () => {
   themeSelection.classList.remove("active");
@@ -3556,18 +2339,6 @@ backFromModesBtn.addEventListener("click", () => {
 });
 backFromCustomizationBtn.addEventListener("click", () => {
   customizationPage.classList.remove("active");
-});
-backFromChallengesBtn.addEventListener("click", () => {
-  challengesPage.classList.remove("active");
-});
-backFromStatsBtn.addEventListener("click", () => {
-  statsPage.classList.remove("active");
-});
-backFromShopBtn.addEventListener("click", () => {
-  shopPage.classList.remove("active");
-});
-backFromAchievementsBtn.addEventListener("click", () => {
-  achievementsPage.classList.remove("active");
 });
 
 // رویداد انتخاب تم
@@ -3599,31 +2370,6 @@ customizationOptions.forEach(option => {
   });
 });
 
-// رویدادهای قدرت‌ها
-document.querySelectorAll('.powerup-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const powerupType = btn.getAttribute('data-powerup');
-    usePowerup(powerupType);
-  });
-});
-
-// رویدادهای دسته‌بندی‌های فروشگاه
-document.querySelectorAll('.category-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    // حذف کلاس active از همه دکمه‌ها
-    document.querySelectorAll('.category-btn').forEach(b => {
-      b.classList.remove('active');
-    });
-    
-    // اضافه کردن کلاس active به دکمه کلیک شده
-    btn.classList.add('active');
-    
-    // تغییر نمایش آیتم‌ها بر اساس دسته‌بندی
-    // در این نسخه ساده فقط تم‌ها نمایش داده می‌شوند
-    // می‌توانید این قسمت را برای نمایش دسته‌بندی‌های دیگر گسترش دهید
-  });
-});
-
 // تنظیم مجدد اندازه کانواس هنگام تغییر اندازه پنجره
 window.addEventListener("resize", () => {
   if (gameActive) {
@@ -3634,7 +2380,6 @@ window.addEventListener("resize", () => {
 // مقداردهی اولیه
 resizeCanvas();
 updateThemeLocks();
-updatePowerupsDisplay();
 
 // تنظیم حالت بازی و شخصی‌سازی‌های پیش‌فرض
 changeGameMode(currentGameMode);
