@@ -53,33 +53,27 @@
 
   .game-title {
     color: white;
-    font-size: clamp(32px, 10vw, 60px);
+    font-size: 60px;
     margin-bottom: 15px;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    text-align: center;
   }
   
   .high-score {
     color: #ffcc00;
-    font-size: clamp(18px, 5vw, 28px);
+    font-size: 28px;
     margin-bottom: 10px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    text-align: center;
   }
   
   .player-level {
     color: #00ffcc;
-    font-size: clamp(16px, 4vw, 24px);
+    font-size: 24px;
     margin-bottom: 30px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    text-align: center;
   }
 
   .menu-buttons {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: min(300px, 80%);
+    width: 300px;
   }
 
   .menu-btn {
@@ -88,16 +82,13 @@
     color: white;
     padding: 15px 30px;
     border-radius: 30px;
-    cursor: pointer;
     font-size: clamp(16px, 5vw, 20px);
     font-weight: bold;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 
   .menu-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.5);
   }
 
   .theme-btn {
@@ -119,19 +110,13 @@
   /* استایل‌های صفحه انتخاب تم */
   .theme-selection {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     display: none;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.8);
     z-index: 200;
     backdrop-filter: blur(5px);
     padding: 20px;
-    overflow-y: auto;
     transition: opacity 0.5s ease, transform 0.5s ease;
     transform: translateX(100%);
   }
@@ -294,9 +279,51 @@
     z-index: 6;
   }
 
-  .time-container {
+  /* استایل جدید برای نوار پیشرفت سطح */
+  .level-progress-container {
     position: absolute;
     top: 70px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
+    z-index: 6;
+    width: 150px;
+    height: 20px;
+  }
+
+  .level-progress-bar {
+    height: 100%;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #00ffcc, #00b894);
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .level-progress-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  }
+
+  .time-container {
+    position: absolute;
+    top: 100px;
     right: 20px;
     background: rgba(0, 0, 0, 0.5);
     padding: 8px 16px;
@@ -360,31 +387,6 @@
     display: flex;
     transform: scale(1);
     opacity: 1;
-  }
-  
-  .level-up {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    text-align: center;
-    font-size: clamp(18px, 6vw, 28px);
-    z-index: 15;
-    padding: 20px;
-    animation: levelUpAnimation 1.5s ease;
-  }
-  
-  @keyframes levelUpAnimation {
-    0% { opacity: 0; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.1); }
-    100% { opacity: 1; transform: scale(1); }
   }
 
   .restart-btn, .menu-back-btn {
@@ -705,8 +707,14 @@
       right: 10px;
     }
     
-    .time-container {
+    .level-progress-container {
       top: 50px;
+      right: 10px;
+      width: 120px;
+    }
+    
+    .time-container {
+      top: 80px;
       right: 10px;
     }
   }
@@ -894,6 +902,11 @@
   <div class="title">هنیا</div>
   <div class="score-container" id="scoreDisplay">امتیاز: 0</div>
   <div class="level-container" id="levelDisplay">سطح: 1</div>
+  <div class="level-progress-container" id="levelProgressContainer">
+    <div class="level-progress-bar" id="levelProgressBar">
+      <div class="level-progress-text" id="levelProgressText">0/50</div>
+    </div>
+  </div>
   <div class="time-container" id="timeDisplay">زمان: 60</div>
 
   <canvas id="game"></canvas>
@@ -907,15 +920,6 @@
     <div class="button-group">
       <button class="restart-btn" onclick="restartGame()">شروع مجدد</button>
       <button class="menu-back-btn" onclick="backToMainMenu()">بازگشت به منو</button>
-    </div>
-  </div>
-  
-  <!-- صفحه ارتقای سطح -->
-  <div class="level-up" id="levelUp">
-    <div>تبریک!</div>
-    <div>شما به سطح <span id="newLevel">2</span> رسیدید!</div>
-    <div class="button-group">
-      <button class="restart-btn" onclick="closeLevelUp()">ادامه بازی</button>
     </div>
   </div>
     
@@ -957,9 +961,10 @@ const customizationOptions = document.querySelectorAll(".customization-option");
 const blurOverlay = document.getElementById("blurOverlay");
 const highScoreDisplay = document.getElementById("highScoreDisplay");
 const playerLevelDisplay = document.getElementById("playerLevelDisplay");
-const levelUpScreen = document.getElementById("levelUp");
-const newLevelDisplay = document.getElementById("newLevel");
 const tutorial = document.getElementById("tutorial");
+const levelProgressContainer = document.getElementById("levelProgressContainer");
+const levelProgressBar = document.getElementById("levelProgressBar");
+const levelProgressText = document.getElementById("levelProgressText");
 
 let w, h;
 
@@ -1156,7 +1161,7 @@ let gameTimer = null; // تایمر بازی
 let swapAnimation = {
   active: false,
   startTime: 0,
-  duration: 400, // مدت زمان انیمیشن به میلی‌ثانیه
+  duration: 300, // مدت زمان انیمیشن به میلی‌ثانیه
   leftCircle: { x: 0, y: 0, color: '' },
   rightCircle: { x: 0, y: 0, color: '' },
   targetLeftX: 0,
@@ -1180,22 +1185,21 @@ function resizeCanvas() {
   
   // به‌روزرسانی موقعیت دایره‌های پایین
   bottomCircles = [
-    { x: w / 4, y: h - 50, color: themes[currentTheme].ballColors[0] },
-    { x: (3 * w) / 4, y: h - 50, color: themes[currentTheme].ballColors[1] }
+    { x: w / 4, y: h - 100, color: themes[currentTheme].ballColors[0] },
+    { x: (3 * w) / 4, y: h - 100, color: themes[currentTheme].ballColors[1] }
   ];
 }
 
-// تابع stop برای توقف بازی
-function stopGame() {
-  gameActive = false;
-  if (frameId) {
-    cancelAnimationFrame(frameId);
-    frameId = null;
-  }
-  if (gameTimer) {
-    clearInterval(gameTimer);
-    gameTimer = null;
-  }
+// تابع برای به‌روزرسانی نوار پیشرفت سطح
+function updateLevelProgress() {
+  const currentLevel = playerLevel;
+  const pointsNeeded = currentLevel * 50; // هر سطح 50 امتیاز نیاز دارد
+  const progress = score % 50; // امتیاز فعلی در سطح کنونی
+  const progressPercent = (progress / 50) * 100;
+  
+  // به‌روزرسانی نوار پیشرفت
+  levelProgressBar.style.width = `${progressPercent}%`;
+  levelProgressText.textContent = `${progress}/50`;
 }
 
 // شروع بازی
@@ -1211,6 +1215,7 @@ function startGame() {
     canvas.style.display = "block";
     scoreDisplay.style.display = "block";
     levelDisplay.style.display = "block";
+    levelProgressContainer.style.display = "block";
     document.querySelector(".title").style.display = "block";
     document.querySelector(".instructions").style.display = "block";
     
@@ -1225,7 +1230,6 @@ function startGame() {
     levelDisplay.textContent = "سطح: " + playerLevel;
     gameOverScreen.classList.remove("active");
     blurOverlay.style.display = "none";
-    levelUpScreen.style.display = "none";
     lastTime = 0;
     nextSpawnTime = 0;
     
@@ -1233,6 +1237,9 @@ function startGame() {
     const mode = gameModesConfig[currentGameMode];
     speed = 5 * mode.speedMultiplier;
     spawnInterval = 2000 * mode.spawnIntervalMultiplier;
+    
+    // به‌روزرسانی نوار پیشرفت سطح
+    updateLevelProgress();
     
     // تنظیم تایمر برای حالت بقا
     if (mode.timeLimit > 0) {
@@ -1282,19 +1289,16 @@ function backToMainMenu() {
   canvas.style.display = "none";
   scoreDisplay.style.display = "none";
   levelDisplay.style.display = "none";
+  levelProgressContainer.style.display = "none";
   timeDisplay.style.display = "none";
   document.querySelector(".title").style.display = "none";
   document.querySelector(".instructions").style.display = "none";
   gameOverScreen.classList.remove("active");
   blurOverlay.style.display = "none";
-  levelUpScreen.style.display = "none";
   tutorial.classList.remove("active");
   
   // نمایش منوی اصلی با انیمیشن
   mainMenu.classList.remove("hidden");
-  
-  // توقف بازی
-  stopGame();
 }
 
 // تغییر تم
@@ -1988,28 +1992,12 @@ function checkLevelUp() {
     playerLevelDisplay.textContent = `سطح: ${playerLevel}`;
     levelDisplay.textContent = `سطح: ${playerLevel}`;
     
-    // نمایش صفحه ارتقای سطح
-    newLevelDisplay.textContent = playerLevel;
-    levelUpScreen.style.display = "flex";
-    
-    // توقف بازی هنگام ارتقای سطح
-    stopGame();
-    
     // به‌روزرسانی قفل تم‌ها
     updateThemeLocks();
     
     return true;
   }
   return false;
-}
-
-// بستن صفحه ارتقای سطح
-function closeLevelUp() {
-  levelUpScreen.style.display = "none";
-  
-  // ادامه بازی
-  gameActive = true;
-  frameId = requestAnimationFrame(gameLoop);
 }
 
 // به‌روزرسانی موقعیت توپ‌ها
@@ -2086,11 +2074,17 @@ function update(deltaTime) {
         score += points;
         scoreDisplay.textContent = "امتیاز: " + score;
         
+        // به‌روزرسانی نوار پیشرفت سطح
+        updateLevelProgress();
+        
         ballPool.release(balls[i]);
         balls.splice(i, 1); // حذف توپ فقط در صورت برخورد صحیح
         
         // بررسی ارتقای سطح
-        checkLevelUp();
+        if (checkLevelUp()) {
+          // نوار پیشرفت را ریست کنیم
+          updateLevelProgress();
+        }
       } else {
         // اگر توپ بمب باشد و اشتباه بیافتد
         if (b.type === 'bomb') {
@@ -2226,9 +2220,11 @@ function restartGame() {
   gameActive = true;
   gameOverScreen.classList.remove("active");
   blurOverlay.style.display = "none";
-  levelUpScreen.style.display = "none";
   lastTime = 0;
   nextSpawnTime = 0;
+  
+  // به‌روزرسانی نوار پیشرفت سطح
+  updateLevelProgress();
   
   // تنظیم تایمر برای حالت بقا
   if (mode.timeLimit > 0) {
